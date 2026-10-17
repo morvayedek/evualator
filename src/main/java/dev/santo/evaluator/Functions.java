@@ -64,6 +64,8 @@ final class Functions {
         map.put("sinDeg", new FunctionSpec(1, 1, a -> Math.sin(Math.toRadians(a[0]))));
         map.put("cosDeg", new FunctionSpec(1, 1, a -> Math.cos(Math.toRadians(a[0]))));
         map.put("tanDeg", new FunctionSpec(1, 1, a -> Math.tan(Math.toRadians(a[0]))));
+        map.put("log1p", new FunctionSpec(1, 1, a -> Math.log1p(a[0])));
+        map.put("expm1", new FunctionSpec(1, 1, a -> Math.expm1(a[0])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
