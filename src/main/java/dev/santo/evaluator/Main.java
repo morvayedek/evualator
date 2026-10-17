@@ -28,6 +28,9 @@ public final class Main {
                         variables.put(binding[0], value);
                         break;
                     }
+                    case "--file":
+                        if (!mode.isEmpty() || ++i == args.length) throw new IllegalArgumentException("Use one input mode and a file path");
+                        mode = "file"; file = args[i]; break;
                     default:
                         if (args[i].startsWith("--") && args[i].length() > 2 && Character.isLetter(args[i].charAt(2)))
                             throw new IllegalArgumentException("Unknown option: " + args[i]);
@@ -35,9 +38,26 @@ public final class Main {
                 }
             }
             Evaluator evaluator = new Evaluator();
+            if (!mode.isEmpty()) {
+                if (!expressions.isEmpty()) throw new IllegalArgumentException("Expression arguments cannot be combined with an input mode");
+                BufferedReader reader = mode.equals("file")
+                        ? Files.newBufferedReader(Path.of(file), StandardCharsets.UTF_8)
+                        : new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8));
+                int status = 0;
+                try {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        if (mode.equals("repl") && line.strip().equals(":quit")) break;
+                        if (!line.isBlank()) status |= evaluateOne(evaluator, line, variables, out, err, json, mode.equals("repl"));
+                    }
+                } finally {
+                    if (mode.equals("file")) reader.close();
+                }
+                return status;
+            }
             if (expressions.isEmpty()) throw new IllegalArgumentException("Provide an expression or an input mode");
             return evaluateOne(evaluator, String.join(" ", expressions), variables, out, err, json, false);
-        } catch (IllegalArgumentException exception) {
+        } catch (IOException | IllegalArgumentException exception) {
             err.println("Usage error: " + exception.getMessage());
             return 2;
         }
