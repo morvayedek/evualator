@@ -20,3 +20,7 @@ In `--repl`, `_` contains the last successful result. Failed expressions do not 
 
 Add `--json` for one JSON object per evaluated expression. Success records contain expression/result; failures contain expression/error/position. Non-finite values are rejected by the evaluator before JSON output.
 
+## add CLI help and option validation
+
+Use `--help` or `-h` for syntax and input-mode help. Use `--` before an expression that resembles an option. Unknown long options and conflicting input modes produce usage errors.
+
