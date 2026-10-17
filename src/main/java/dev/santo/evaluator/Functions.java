@@ -36,6 +36,9 @@ final class Functions {
         map.put("sum", new FunctionSpec(1, 256, a -> Arrays.stream(a).sum()));
         map.put("mean", new FunctionSpec(1, 256, a -> Arrays.stream(a).average().orElseThrow()));
         map.put("median", new FunctionSpec(1, 256, a -> median(a)));
+        map.put("variance", new FunctionSpec(1, 256, a -> variance(a, false)));
+        map.put("sampleVariance", new FunctionSpec(2, 256, a -> variance(a, true)));
+        map.put("stddev", new FunctionSpec(1, 256, a -> Math.sqrt(variance(a, false))));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -52,6 +55,16 @@ final class Functions {
         Arrays.sort(sorted);
         int middle = sorted.length / 2;
         return sorted.length % 2 == 1 ? sorted[middle] : sorted[middle-1]/2 + sorted[middle]/2;
+    }
+    private static double variance(double[] values, boolean sample) {
+        double mean = 0, sum = 0;
+        int n = 0;
+        for (double value : values) {
+            double delta = value - mean;
+            mean += delta / ++n;
+            sum += delta * (value - mean);
+        }
+        return sum / (sample ? n - 1 : n);
     }
     // HELPERS
 }
