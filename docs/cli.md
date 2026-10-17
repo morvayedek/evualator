@@ -16,3 +16,7 @@ Use `--repl` for a line-oriented session. Enter `:quit` to leave. Errors do not 
 
 In `--repl`, `_` contains the last successful result. Failed expressions do not overwrite it. Each new invocation starts with a fresh variable map.
 
+## add machine-readable JSON output
+
+Add `--json` for one JSON object per evaluated expression. Success records contain expression/result; failures contain expression/error/position. Non-finite values are rejected by the evaluator before JSON output.
+
