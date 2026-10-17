@@ -156,3 +156,9 @@ Examples: `lerp(10,20,.25)` → `12.5`; `inverseLerp(10,20,15)` → `0.5`.
 
 Examples: `hypot(3,4)` → `5.0`; `norm(2,3,6)` → `7.0`.
 
+## add positive-modulus normalization
+
+- `mod`: accepts 2 arguments.
+
+Examples: `mod(-1,5)` → `4.0`; `mod(6,5)` → `1.0`.
+
