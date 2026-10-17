@@ -107,3 +107,9 @@ Examples: `variance(2,4,6)` → `2.6666666666666665`; `sampleVariance(2,4,6)` �
 
 Examples: `factorial(5)` → `120.0`; `perm(5,2)` → `20.0`.
 
+## add binomial coefficients
+
+- `choose`: accepts 2 arguments.
+
+Examples: `choose(5,2)` → `10.0`; `choose(5,0)` → `1.0`; `choose(5,5)` → `1.0`.
+
