@@ -61,6 +61,9 @@ final class Functions {
         map.put("nextDown", new FunctionSpec(1, 1, a -> Math.nextDown(a[0])));
         map.put("percent", new FunctionSpec(2, 2, a -> a[0]*(a[1]/100)));
         map.put("percentChange", new FunctionSpec(2, 2, a -> percentChange(a[0],a[1])));
+        map.put("sinDeg", new FunctionSpec(1, 1, a -> Math.sin(Math.toRadians(a[0]))));
+        map.put("cosDeg", new FunctionSpec(1, 1, a -> Math.cos(Math.toRadians(a[0]))));
+        map.put("tanDeg", new FunctionSpec(1, 1, a -> Math.tan(Math.toRadians(a[0]))));
         // REGISTRATIONS
         return Map.copyOf(map);
     }

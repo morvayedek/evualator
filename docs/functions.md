@@ -177,3 +177,11 @@ Examples: `ulp(1)` → `2.220446049250313e-16`; `nextUp(0)` → `5e-324`; `nextD
 
 Examples: `percent(200,15)` → `30.0`; `percentChange(100,125)` → `25.0`.
 
+## add degree-based trigonometric functions
+
+- `sinDeg`: accepts 1 arguments.
+- `cosDeg`: accepts 1 arguments.
+- `tanDeg`: accepts 1 arguments.
+
+Examples: `sinDeg(90)` → `1.0`; `cosDeg(180)` → `-1.0`; `tanDeg(0)` → `0.0`.
+
