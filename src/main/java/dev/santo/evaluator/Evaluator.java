@@ -48,6 +48,10 @@ public final class Evaluator {
             while (true) {
                 if (take('*')) {
                     value = finite(value * unary());
+                } else if (take('%')) {
+                    double divisor = unary();
+                    if (divisor == 0.0) throw error("Remainder by zero");
+                    value = finite(value % divisor);
                 } else if (take('/')) {
                     double divisor = unary();
                     if (divisor == 0.0) {
