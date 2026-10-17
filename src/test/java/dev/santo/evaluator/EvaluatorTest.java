@@ -71,6 +71,12 @@ public final class EvaluatorTest {
         } catch (NullPointerException expected) {
             checks++;
         }
+        if (evaluator.evaluate("x*x+y", java.util.Map.of("x", 3.0, "y", 2.0)) != 11.0)
+            throw new AssertionError("Variable bindings failed");
+        checks++;
+        if (evaluator.evaluate("x", java.util.Map.of("x", 4.0)) != 4.0)
+            throw new AssertionError("Variable bindings leaked between calls");
+        checks++;
         // EXTRA_CHECKS
         System.out.println("PASS: " + checks + " evaluator checks");
     }
