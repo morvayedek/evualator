@@ -39,6 +39,8 @@ final class Functions {
         map.put("variance", new FunctionSpec(1, 256, a -> variance(a, false)));
         map.put("sampleVariance", new FunctionSpec(2, 256, a -> variance(a, true)));
         map.put("stddev", new FunctionSpec(1, 256, a -> Math.sqrt(variance(a, false))));
+        map.put("factorial", new FunctionSpec(1, 1, a -> factorial(a[0])));
+        map.put("perm", new FunctionSpec(2, 2, a -> permutation(a[0],a[1])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -65,6 +67,20 @@ final class Functions {
             sum += delta * (value - mean);
         }
         return sum / (sample ? n - 1 : n);
+    }
+    private static double factorial(double number) {
+        long n = integer(number);
+        require(n >= 0 && n <= 170, "factorial needs an integer from 0 to 170");
+        double result = 1;
+        for (int i = 2; i <= n; i++) result *= i;
+        return result;
+    }
+    private static double permutation(double number, double count) {
+        long n = integer(number), r = integer(count);
+        require(n >= 0 && n <= 170 && r >= 0 && r <= n, "perm needs 0 <= r <= n <= 170");
+        double result = 1;
+        for (long i = 0; i < r; i++) result *= n-i;
+        return result;
     }
     // HELPERS
 }
