@@ -8,6 +8,8 @@ final class Functions {
         var map = new HashMap<String, FunctionSpec>();
         map.put("abs", new FunctionSpec(1, 1, a -> Math.abs(a[0])));
         map.put("sign", new FunctionSpec(1, 1, a -> Math.signum(a[0])));
+        map.put("sqrt", new FunctionSpec(1, 1, a -> Math.sqrt(a[0])));
+        map.put("cbrt", new FunctionSpec(1, 1, a -> Math.cbrt(a[0])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
