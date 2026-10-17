@@ -49,6 +49,9 @@ public final class EvaluatorTest {
             {"mean(2,4,6)", 4.0},
             {"median(9,1,4)", 4.0},
             {"median(9,1,4,2)", 3.0},
+            {"variance(2,4,6)", 2.6666666666666665},
+            {"sampleVariance(2,4,6)", 4.0},
+            {"stddev(2,2)", 0.0},
             // ADD_CASES
             {"0", 0.0}, {"42", 42.0}, {"2+3*4", 14.0},
             {"(2+3)*4", 20.0}, {"10-3-2", 5.0}, {"20/2/5", 2.0},
@@ -84,6 +87,7 @@ public final class EvaluatorTest {
                 "cosh(1000)",
                 "min()",
                 "mean()",
+                "sampleVariance(1)",
                 // ADD_INVALID
                 "", " ", ".", "()", "1+", "(1+2", "1+2)",
                 "2 3", "1..2", "2**3", "abc", "1/0", "1/-0",
