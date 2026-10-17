@@ -16,3 +16,11 @@ Examples: `abs(-3)` → `3.0`; `sign(-4)` → `-1.0`.
 
 Examples: `sqrt(81)` → `9.0`; `cbrt(-27)` → `-3.0`.
 
+## add natural common and binary logarithms
+
+- `ln`: accepts 1 arguments.
+- `log10`: accepts 1 arguments.
+- `log2`: accepts 1 arguments.
+
+Examples: `ln(e)` → `1.0`; `log10(1000)` → `3.0`; `log2(8)` → `3.0`.
+
