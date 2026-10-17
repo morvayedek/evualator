@@ -15,6 +15,9 @@ final class Functions {
         map.put("log2", new FunctionSpec(1, 1, a -> Math.log(a[0])/Math.log(2)));
         map.put("exp", new FunctionSpec(1, 1, a -> Math.exp(a[0])));
         map.put("pow", new FunctionSpec(2, 2, a -> Math.pow(a[0],a[1])));
+        map.put("sin", new FunctionSpec(1, 1, a -> Math.sin(a[0])));
+        map.put("cos", new FunctionSpec(1, 1, a -> Math.cos(a[0])));
+        map.put("tan", new FunctionSpec(1, 1, a -> Math.tan(a[0])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
