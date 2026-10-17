@@ -142,3 +142,10 @@ Examples: `shiftLeft(3,2)` → `12.0`; `shiftRight(-8,1)` → `-4.0`.
 
 Examples: `clamp(10,0,5)` → `5.0`; `clamp(-1,0,5)` → `0.0`; `clamp(3,0,5)` → `3.0`.
 
+## add linear interpolation functions
+
+- `lerp`: accepts 3 arguments.
+- `inverseLerp`: accepts 3 arguments.
+
+Examples: `lerp(10,20,.25)` → `12.5`; `inverseLerp(10,20,15)` → `0.5`.
+
