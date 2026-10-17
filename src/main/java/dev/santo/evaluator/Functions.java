@@ -66,6 +66,7 @@ final class Functions {
         map.put("tanDeg", new FunctionSpec(1, 1, a -> Math.tan(Math.toRadians(a[0]))));
         map.put("log1p", new FunctionSpec(1, 1, a -> Math.log1p(a[0])));
         map.put("expm1", new FunctionSpec(1, 1, a -> Math.expm1(a[0])));
+        map.put("roundPlaces", new FunctionSpec(2, 2, a -> roundPlaces(a[0],a[1])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -155,6 +156,11 @@ final class Functions {
     private static double percentChange(double before, double after) {
         require(before != 0, "Percentage change needs a nonzero baseline");
         return ((after-before)/Math.abs(before))*100;
+    }
+    private static double roundPlaces(double value, double places) {
+        long scale = integer(places);
+        require(scale >= -308 && scale <= 308, "Decimal places must be between -308 and 308");
+        return java.math.BigDecimal.valueOf(value).setScale((int)scale, java.math.RoundingMode.HALF_EVEN).doubleValue();
     }
     // HELPERS
 }
