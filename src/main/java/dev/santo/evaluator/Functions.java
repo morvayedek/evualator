@@ -59,6 +59,8 @@ final class Functions {
         map.put("ulp", new FunctionSpec(1, 1, a -> Math.ulp(a[0])));
         map.put("nextUp", new FunctionSpec(1, 1, a -> Math.nextUp(a[0])));
         map.put("nextDown", new FunctionSpec(1, 1, a -> Math.nextDown(a[0])));
+        map.put("percent", new FunctionSpec(2, 2, a -> a[0]*(a[1]/100)));
+        map.put("percentChange", new FunctionSpec(2, 2, a -> percentChange(a[0],a[1])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -144,6 +146,10 @@ final class Functions {
         double remainder = value % modulus;
         double result = remainder < 0 ? remainder+modulus : remainder;
         return result == modulus || result == 0 ? 0 : result;
+    }
+    private static double percentChange(double before, double after) {
+        require(before != 0, "Percentage change needs a nonzero baseline");
+        return ((after-before)/Math.abs(before))*100;
     }
     // HELPERS
 }
