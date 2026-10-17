@@ -22,6 +22,9 @@ final class Functions {
         map.put("acos", new FunctionSpec(1, 1, a -> Math.acos(a[0])));
         map.put("atan", new FunctionSpec(1, 1, a -> Math.atan(a[0])));
         map.put("atan2", new FunctionSpec(2, 2, a -> Math.atan2(a[0],a[1])));
+        map.put("sinh", new FunctionSpec(1, 1, a -> Math.sinh(a[0])));
+        map.put("cosh", new FunctionSpec(1, 1, a -> Math.cosh(a[0])));
+        map.put("tanh", new FunctionSpec(1, 1, a -> Math.tanh(a[0])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
