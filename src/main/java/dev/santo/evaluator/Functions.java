@@ -55,6 +55,7 @@ final class Functions {
         map.put("inverseLerp", new FunctionSpec(3, 3, a -> inverseLerp(a[0],a[1],a[2])));
         map.put("hypot", new FunctionSpec(2, 2, a -> Math.hypot(a[0],a[1])));
         map.put("norm", new FunctionSpec(1, 256, a -> norm(a)));
+        map.put("mod", new FunctionSpec(2, 2, a -> mod(a[0],a[1])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -134,6 +135,12 @@ final class Functions {
         double result = 0;
         for (double value : values) result = Math.hypot(result,value);
         return result;
+    }
+    private static double mod(double value, double modulus) {
+        require(modulus > 0, "mod requires a positive modulus");
+        double remainder = value % modulus;
+        double result = remainder < 0 ? remainder+modulus : remainder;
+        return result == modulus || result == 0 ? 0 : result;
     }
     // HELPERS
 }
