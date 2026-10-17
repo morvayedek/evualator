@@ -149,3 +149,10 @@ Examples: `clamp(10,0,5)` → `5.0`; `clamp(-1,0,5)` → `0.0`; `clamp(3,0,5)` �
 
 Examples: `lerp(10,20,.25)` → `12.5`; `inverseLerp(10,20,15)` → `0.5`.
 
+## add overflow-resistant Euclidean norms
+
+- `hypot`: accepts 2 arguments.
+- `norm`: accepts 1–256 arguments.
+
+Examples: `hypot(3,4)` → `5.0`; `norm(2,3,6)` → `7.0`.
+
