@@ -7,6 +7,8 @@ public final class EvaluatorTest {
     public static void main(String[] args) {
         Evaluator evaluator = new Evaluator();
         Object[][] cases = {
+            {"1e3 + 2.5E-1", 1000.25},
+            {"2e+2", 200.0},
             // ADD_CASES
             {"0", 0.0}, {"42", 42.0}, {"2+3*4", 14.0},
             {"(2+3)*4", 20.0}, {"10-3-2", 5.0}, {"20/2/5", 2.0},
@@ -23,6 +25,9 @@ public final class EvaluatorTest {
             checks++;
         }
         for (String invalid : new String[] {
+                "1e",
+                "2e+",
+                "1e309",
                 // ADD_INVALID
                 "", " ", ".", "()", "1+", "(1+2", "1+2)",
                 "2 3", "1..2", "2**3", "abc", "1/0", "1/-0",
