@@ -67,6 +67,9 @@ public final class EvaluatorTest {
             {"bitNot(0)", -1.0},
             {"shiftLeft(3,2)", 12.0},
             {"shiftRight(-8,1)", -4.0},
+            {"clamp(10,0,5)", 5.0},
+            {"clamp(-1,0,5)", 0.0},
+            {"clamp(3,0,5)", 3.0},
             // ADD_CASES
             {"0", 0.0}, {"42", 42.0}, {"2+3*4", 14.0},
             {"(2+3)*4", 20.0}, {"10-3-2", 5.0}, {"20/2/5", 2.0},
@@ -113,6 +116,7 @@ public final class EvaluatorTest {
                 "bitAnd(1.2,2)",
                 "shiftLeft(1,53)",
                 "shiftLeft(1,-1)",
+                "clamp(1,5,0)",
                 // ADD_INVALID
                 "", " ", ".", "()", "1+", "(1+2", "1+2)",
                 "2 3", "1..2", "2**3", "abc", "1/0", "1/-0",
