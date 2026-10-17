@@ -8,8 +8,11 @@ try {
     $testSources = @(Get-ChildItem src/test/java -Recurse -Filter '*.java' | ForEach-Object FullName)
     & javac --release 17 -encoding UTF-8 -cp build/classes -d build/test-classes @testSources
     if ($LASTEXITCODE -ne 0) { throw 'Test compilation failed' }
-    & java -cp "build/classes$([IO.Path]::PathSeparator)build/test-classes" dev.santo.evaluator.EvaluatorTest
-    if ($LASTEXITCODE -ne 0) { throw 'Tests failed' }
+    foreach ($testSource in $testSources) {
+        $testClass = 'dev.santo.evaluator.' + [IO.Path]::GetFileNameWithoutExtension($testSource)
+        & java -cp "build/classes$([IO.Path]::PathSeparator)build/test-classes" $testClass
+        if ($LASTEXITCODE -ne 0) { throw "Tests failed: $testClass" }
+    }
     & jar --create --file build/evaluator.jar --main-class dev.santo.evaluator.Main -C build/classes .
     if ($LASTEXITCODE -ne 0) { throw 'JAR packaging failed' }
 } finally {
