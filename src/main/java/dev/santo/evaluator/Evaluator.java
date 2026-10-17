@@ -41,6 +41,21 @@ public final class Evaluator {
         return new Parser(expression, bindings, functions).parse();
     }
 
+    /** Evaluates each expression independently, preserving result order and failures. */
+    public java.util.List<EvaluationResult> evaluateAll(java.util.List<String> expressions, Map<String, Double> variables) {
+        var input = java.util.List.copyOf(expressions);
+        var bindings = Map.copyOf(variables);
+        var results = new java.util.ArrayList<EvaluationResult>(input.size());
+        for (String expression : input) {
+            try {
+                results.add(new EvaluationResult(expression, evaluate(expression, bindings), null, null));
+            } catch (EvaluationException exception) {
+                results.add(new EvaluationResult(expression, null, exception.getMessage(), exception.position()));
+            }
+        }
+        return java.util.List.copyOf(results);
+    }
+
     private static final class Parser {
         private final String input;
         private final Map<String, Double> variables;
