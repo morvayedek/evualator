@@ -28,6 +28,7 @@ public final class CliTest {
             check(new String[]{"--file",file.toString()}, "", 1, "4.0\n9.0\n");
             check(new String[]{"--file",file.toString(),"2+2"}, "", 2, "");
         } finally { Files.deleteIfExists(file); }
+        check(new String[]{"--repl"}, "2+3\n1/0\n4+4\n:quit\n9+9\n", 1, "5.0\n8.0\n");
         // CLI_CASES
         System.out.println("PASS: " + checks + " CLI checks");
     }

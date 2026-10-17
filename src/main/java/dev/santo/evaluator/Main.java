@@ -31,6 +31,9 @@ public final class Main {
                     case "--file":
                         if (!mode.isEmpty() || ++i == args.length) throw new IllegalArgumentException("Use one input mode and a file path");
                         mode = "file"; file = args[i]; break;
+                    case "--repl":
+                        if (!mode.isEmpty()) throw new IllegalArgumentException("Use one input mode");
+                        mode = "repl"; break;
                     default:
                         if (args[i].startsWith("--") && args[i].length() > 2 && Character.isLetter(args[i].charAt(2)))
                             throw new IllegalArgumentException("Unknown option: " + args[i]);
