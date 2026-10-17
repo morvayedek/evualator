@@ -39,3 +39,12 @@ Examples: `exp(0)` → `1.0`; `pow(2,-3)` → `0.125`.
 
 Examples: `sin(pi/2)` → `1.0`; `cos(pi)` → `-1.0`; `tan(0)` → `0.0`.
 
+## add inverse trigonometric functions
+
+- `asin`: accepts 1 arguments.
+- `acos`: accepts 1 arguments.
+- `atan`: accepts 1 arguments.
+- `atan2`: accepts 2 arguments.
+
+Examples: `asin(1)` → `1.5707963267948966`; `acos(1)` → `0.0`; `atan2(0,1)` → `0.0`.
+
