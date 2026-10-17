@@ -189,6 +189,11 @@ public final class EvaluatorTest {
         }));
         if (custom.evaluate("twice(twice(3))") != 12.0) throw new AssertionError("Custom function failed");
         checks++;
+        var batch = evaluator.evaluateAll(java.util.List.of("2+2", "1/0", "x*3"), java.util.Map.of("x", 2.0));
+        if (batch.size() != 3 || batch.get(0).value() != 4.0 || batch.get(1).successful()
+                || batch.get(1).position() == null || batch.get(2).value() != 6.0)
+            throw new AssertionError("Batch failure isolation failed");
+        checks++;
         // EXTRA_CHECKS
         System.out.println("PASS: " + checks + " evaluator checks");
     }
