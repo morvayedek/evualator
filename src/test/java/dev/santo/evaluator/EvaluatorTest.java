@@ -87,6 +87,9 @@ public final class EvaluatorTest {
             {"log1p(0)", 0.0},
             {"expm1(0)", 0.0},
             {"log1p(1e-16)", 1e-16},
+            {"roundPlaces(1.235,2)", 1.24},
+            {"roundPlaces(1.245,2)", 1.24},
+            {"roundPlaces(1250,-2)", 1200.0},
             // ADD_CASES
             {"0", 0.0}, {"42", 42.0}, {"2+3*4", 14.0},
             {"(2+3)*4", 20.0}, {"10-3-2", 5.0}, {"20/2/5", 2.0},
@@ -139,6 +142,8 @@ public final class EvaluatorTest {
                 "mod(1,-2)",
                 "percentChange(0,1)",
                 "log1p(-1)",
+                "roundPlaces(1,309)",
+                "roundPlaces(1,1.5)",
                 // ADD_INVALID
                 "", " ", ".", "()", "1+", "(1+2", "1+2)",
                 "2 3", "1..2", "2**3", "abc", "1/0", "1/-0",

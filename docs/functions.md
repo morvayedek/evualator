@@ -192,3 +192,9 @@ Examples: `sinDeg(90)` → `1.0`; `cosDeg(180)` → `-1.0`; `tanDeg(0)` → `0.0
 
 Examples: `log1p(0)` → `0.0`; `expm1(0)` → `0.0`; `log1p(1e-16)` → `1e-16`.
 
+## add decimal-place rounding
+
+- `roundPlaces`: accepts 2 arguments.
+
+Examples: `roundPlaces(1.235,2)` → `1.24`; `roundPlaces(1.245,2)` → `1.24`; `roundPlaces(1250,-2)` → `1200.0`.
+
