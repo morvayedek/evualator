@@ -100,3 +100,10 @@ Examples: `median(9,1,4)` → `4.0`; `median(9,1,4,2)` → `3.0`.
 
 Examples: `variance(2,4,6)` → `2.6666666666666665`; `sampleVariance(2,4,6)` → `4.0`; `stddev(2,2)` → `0.0`.
 
+## add bounded factorial and permutation functions
+
+- `factorial`: accepts 1 arguments.
+- `perm`: accepts 2 arguments.
+
+Examples: `factorial(5)` → `120.0`; `perm(5,2)` → `20.0`.
+
