@@ -113,3 +113,10 @@ Examples: `factorial(5)` → `120.0`; `perm(5,2)` → `20.0`.
 
 Examples: `choose(5,2)` → `10.0`; `choose(5,0)` → `1.0`; `choose(5,5)` → `1.0`.
 
+## add integer gcd and overflow-checked lcm
+
+- `gcd`: accepts 2 arguments.
+- `lcm`: accepts 2 arguments.
+
+Examples: `gcd(-48,18)` → `6.0`; `gcd(0,0)` → `0.0`; `lcm(6,8)` → `24.0`; `lcm(0,0)` → `0.0`.
+

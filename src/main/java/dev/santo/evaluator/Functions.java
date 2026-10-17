@@ -42,6 +42,8 @@ final class Functions {
         map.put("factorial", new FunctionSpec(1, 1, a -> factorial(a[0])));
         map.put("perm", new FunctionSpec(2, 2, a -> permutation(a[0],a[1])));
         map.put("choose", new FunctionSpec(2, 2, a -> choose(a[0],a[1])));
+        map.put("gcd", new FunctionSpec(2, 2, a -> gcd(a[0],a[1])));
+        map.put("lcm", new FunctionSpec(2, 2, a -> lcm(a[0],a[1])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -89,6 +91,18 @@ final class Functions {
         r = Math.min(r, n-r);
         double result = 1;
         for (long i = 1; i <= r; i++) result *= (double)(n-r+i)/i;
+        return result;
+    }
+    private static long gcd(double x, double y) {
+        long a = Math.abs(integer(x)), b = Math.abs(integer(y));
+        while (b != 0) { long remainder = a % b; a = b; b = remainder; }
+        return a;
+    }
+    private static double lcm(double x, double y) {
+        long a = Math.abs(integer(x)), b = Math.abs(integer(y));
+        if (a == 0 || b == 0) return 0;
+        long result = Math.multiplyExact(a / gcd(a,b), b);
+        integer(result);
         return result;
     }
     // HELPERS
