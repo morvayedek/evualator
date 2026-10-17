@@ -104,6 +104,14 @@ public final class Evaluator {
                     digits++;
                 }
             }
+            if (digits > 0 && cursor < input.length()
+                    && (input.charAt(cursor) == 'e' || input.charAt(cursor) == 'E')) {
+                cursor++;
+                if (cursor < input.length() && (input.charAt(cursor) == '+' || input.charAt(cursor) == '-')) cursor++;
+                int exponentStart = cursor;
+                while (cursor < input.length() && digit(input.charAt(cursor))) cursor++;
+                if (cursor == exponentStart) throw error("Expected exponent digits");
+            }
             if (digits == 0) {
                 throw error("Expected a number or '('");
             }
