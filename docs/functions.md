@@ -63,3 +63,12 @@ Examples: `sinh(0)` → `0.0`; `cosh(0)` → `1.0`; `tanh(0)` → `0.0`.
 
 Examples: `deg(pi)` → `180.0`; `rad(180)-pi` → `0.0`.
 
+## add rounding with explicit tie semantics
+
+- `floor`: accepts 1 arguments.
+- `ceil`: accepts 1 arguments.
+- `rint`: accepts 1 arguments.
+- `trunc`: accepts 1 arguments.
+
+Examples: `floor(-1.2)` → `-2.0`; `ceil(-1.2)` → `-1.0`; `rint(2.5)` → `2.0`; `rint(3.5)` → `4.0`; `trunc(-1.9)` → `-1.0`.
+
