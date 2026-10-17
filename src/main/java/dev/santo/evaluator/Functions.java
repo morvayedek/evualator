@@ -10,6 +10,9 @@ final class Functions {
         map.put("sign", new FunctionSpec(1, 1, a -> Math.signum(a[0])));
         map.put("sqrt", new FunctionSpec(1, 1, a -> Math.sqrt(a[0])));
         map.put("cbrt", new FunctionSpec(1, 1, a -> Math.cbrt(a[0])));
+        map.put("ln", new FunctionSpec(1, 1, a -> Math.log(a[0])));
+        map.put("log10", new FunctionSpec(1, 1, a -> Math.log10(a[0])));
+        map.put("log2", new FunctionSpec(1, 1, a -> Math.log(a[0])/Math.log(2)));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
