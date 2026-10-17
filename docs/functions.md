@@ -185,3 +185,10 @@ Examples: `percent(200,15)` → `30.0`; `percentChange(100,125)` → `25.0`.
 
 Examples: `sinDeg(90)` → `1.0`; `cosDeg(180)` → `-1.0`; `tanDeg(0)` → `0.0`.
 
+## add numerically stable small-argument transforms
+
+- `log1p`: accepts 1 arguments.
+- `expm1`: accepts 1 arguments.
+
+Examples: `log1p(0)` → `0.0`; `expm1(0)` → `0.0`; `log1p(1e-16)` → `1e-16`.
+

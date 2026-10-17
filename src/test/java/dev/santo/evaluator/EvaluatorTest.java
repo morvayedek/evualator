@@ -84,6 +84,9 @@ public final class EvaluatorTest {
             {"sinDeg(90)", 1.0},
             {"cosDeg(180)", -1.0},
             {"tanDeg(0)", 0.0},
+            {"log1p(0)", 0.0},
+            {"expm1(0)", 0.0},
+            {"log1p(1e-16)", 1e-16},
             // ADD_CASES
             {"0", 0.0}, {"42", 42.0}, {"2+3*4", 14.0},
             {"(2+3)*4", 20.0}, {"10-3-2", 5.0}, {"20/2/5", 2.0},
@@ -135,6 +138,7 @@ public final class EvaluatorTest {
                 "mod(1,0)",
                 "mod(1,-2)",
                 "percentChange(0,1)",
+                "log1p(-1)",
                 // ADD_INVALID
                 "", " ", ".", "()", "1+", "(1+2", "1+2)",
                 "2 3", "1..2", "2**3", "abc", "1/0", "1/-0",
