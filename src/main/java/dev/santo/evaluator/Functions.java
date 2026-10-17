@@ -35,6 +35,7 @@ final class Functions {
         map.put("max", new FunctionSpec(1, 256, a -> Arrays.stream(a).max().orElseThrow()));
         map.put("sum", new FunctionSpec(1, 256, a -> Arrays.stream(a).sum()));
         map.put("mean", new FunctionSpec(1, 256, a -> Arrays.stream(a).average().orElseThrow()));
+        map.put("median", new FunctionSpec(1, 256, a -> median(a)));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -45,6 +46,12 @@ final class Functions {
         require(value == Math.rint(value) && Math.abs(value) <= 9007199254740991.0,
                 "Expected an exact integer in [-2^53+1, 2^53-1]");
         return (long) value;
+    }
+    private static double median(double[] values) {
+        double[] sorted = values.clone();
+        Arrays.sort(sorted);
+        int middle = sorted.length / 2;
+        return sorted.length % 2 == 1 ? sorted[middle] : sorted[middle-1]/2 + sorted[middle]/2;
     }
     // HELPERS
 }

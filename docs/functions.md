@@ -86,3 +86,9 @@ Examples: `min(8,-2,4)` → `-2.0`; `max(8,-2,4)` → `8.0`.
 
 Examples: `sum(1,2,3)` → `6.0`; `mean(2,4,6)` → `4.0`.
 
+## add median without mutating caller arguments
+
+- `median`: accepts 1–256 arguments.
+
+Examples: `median(9,1,4)` → `4.0`; `median(9,1,4,2)` → `3.0`.
+
