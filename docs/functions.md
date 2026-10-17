@@ -79,3 +79,10 @@ Examples: `floor(-1.2)` → `-2.0`; `ceil(-1.2)` → `-1.0`; `rint(2.5)` → `2.
 
 Examples: `min(8,-2,4)` → `-2.0`; `max(8,-2,4)` → `8.0`.
 
+## add compensated sum and mean functions
+
+- `sum`: accepts 1–256 arguments.
+- `mean`: accepts 1–256 arguments.
+
+Examples: `sum(1,2,3)` → `6.0`; `mean(2,4,6)` → `4.0`.
+
