@@ -22,6 +22,12 @@ public final class CliTest {
         check(new String[]{"--var"}, "", 2, "");
         check(new String[]{"1/0"}, "", 1, "");
         check(new String[]{}, "", 2, "");
+        Path file = Files.createTempFile("evaluator-cli", ".txt");
+        try {
+            Files.writeString(file, "2+2\n\n1/0\n3*3\n", StandardCharsets.UTF_8);
+            check(new String[]{"--file",file.toString()}, "", 1, "4.0\n9.0\n");
+            check(new String[]{"--file",file.toString(),"2+2"}, "", 2, "");
+        } finally { Files.deleteIfExists(file); }
         // CLI_CASES
         System.out.println("PASS: " + checks + " CLI checks");
     }
