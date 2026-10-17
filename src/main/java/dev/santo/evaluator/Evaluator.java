@@ -70,8 +70,18 @@ public final class Evaluator {
                     break;
                 }
             }
-            double value = primary();
+            double value = power();
             return negative ? -value : value;
+        }
+
+        private double power() {
+            double value = primary();
+            if (take('^')) {
+                if (++depth > 128) throw error("Exponent nesting exceeds 128");
+                value = finite(Math.pow(value, unary()));
+                depth--;
+            }
+            return value;
         }
 
         private double primary() {
