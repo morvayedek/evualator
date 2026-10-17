@@ -48,6 +48,8 @@ final class Functions {
         map.put("bitOr", new FunctionSpec(2, 2, a -> integer(a[0]) | integer(a[1])));
         map.put("bitXor", new FunctionSpec(2, 2, a -> integer(a[0]) ^ integer(a[1])));
         map.put("bitNot", new FunctionSpec(1, 1, a -> integer(~integer(a[0]))));
+        map.put("shiftLeft", new FunctionSpec(2, 2, a -> shift(a[0],a[1],true)));
+        map.put("shiftRight", new FunctionSpec(2, 2, a -> shift(a[0],a[1],false)));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -108,6 +110,12 @@ final class Functions {
         long result = Math.multiplyExact(a / gcd(a,b), b);
         integer(result);
         return result;
+    }
+    private static double shift(double number, double distance, boolean left) {
+        long value = integer(number), bits = integer(distance);
+        require(bits >= 0 && bits <= 52, "Shift distance must be from 0 to 52");
+        if (!left) return value >> bits;
+        return integer(Math.scalb((double)value, (int)bits));
     }
     // HELPERS
 }

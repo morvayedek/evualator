@@ -129,3 +129,10 @@ Examples: `gcd(-48,18)` → `6.0`; `gcd(0,0)` → `0.0`; `lcm(6,8)` → `24.0`; 
 
 Examples: `bitAnd(6,3)` → `2.0`; `bitOr(6,3)` → `7.0`; `bitXor(6,3)` → `5.0`; `bitNot(0)` → `-1.0`.
 
+## add bounded integer shifts
+
+- `shiftLeft`: accepts 2 arguments.
+- `shiftRight`: accepts 2 arguments.
+
+Examples: `shiftLeft(3,2)` → `12.0`; `shiftRight(-8,1)` → `-4.0`.
+

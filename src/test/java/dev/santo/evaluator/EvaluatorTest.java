@@ -65,6 +65,8 @@ public final class EvaluatorTest {
             {"bitOr(6,3)", 7.0},
             {"bitXor(6,3)", 5.0},
             {"bitNot(0)", -1.0},
+            {"shiftLeft(3,2)", 12.0},
+            {"shiftRight(-8,1)", -4.0},
             // ADD_CASES
             {"0", 0.0}, {"42", 42.0}, {"2+3*4", 14.0},
             {"(2+3)*4", 20.0}, {"10-3-2", 5.0}, {"20/2/5", 2.0},
@@ -109,6 +111,8 @@ public final class EvaluatorTest {
                 "choose(100001,1)",
                 "gcd(1.2,3)",
                 "bitAnd(1.2,2)",
+                "shiftLeft(1,53)",
+                "shiftLeft(1,-1)",
                 // ADD_INVALID
                 "", " ", ".", "()", "1+", "(1+2", "1+2)",
                 "2 3", "1..2", "2**3", "abc", "1/0", "1/-0",
