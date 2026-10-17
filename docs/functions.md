@@ -120,3 +120,12 @@ Examples: `choose(5,2)` → `10.0`; `choose(5,0)` → `1.0`; `choose(5,5)` → `
 
 Examples: `gcd(-48,18)` → `6.0`; `gcd(0,0)` → `0.0`; `lcm(6,8)` → `24.0`; `lcm(0,0)` → `0.0`.
 
+## add exact-range bitwise integer functions
+
+- `bitAnd`: accepts 2 arguments.
+- `bitOr`: accepts 2 arguments.
+- `bitXor`: accepts 2 arguments.
+- `bitNot`: accepts 1 arguments.
+
+Examples: `bitAnd(6,3)` → `2.0`; `bitOr(6,3)` → `7.0`; `bitXor(6,3)` → `5.0`; `bitNot(0)` → `-1.0`.
+
