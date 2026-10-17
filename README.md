@@ -25,11 +25,12 @@ java -jar build/evaluator.jar "2 * (3 + 4)"
 The build runs dependency-free acceptance tests before packaging the JAR.
 The PowerShell build is verified on Windows with JDK 21, targeting Java 17.
 
-## Current arithmetic
+## Expressions
 
-Supports decimal numbers (`.5`, `1.`, `2.5`), `+`, `-`, `*`, `/`, parentheses,
-whitespace, and unary signs. Multiplication and division bind more tightly than
-addition and subtraction; operations at equal precedence associate to the left.
+Supports decimal and scientific numbers, `+`, `-`, `*`, `/`, `%`, `^`,
+parentheses, variables, constants and validated function calls. See the
+[grammar and numerical contract](docs/grammar.md), [function catalog](docs/functions.md),
+[CLI reference](docs/cli.md) and [Java API cookbook](docs/java-api.md).
 Evaluation uses IEEE 754 `double`: `0.1 + 0.2` is approximately `0.3`.
 
 Malformed expressions, division by zero, non-finite results, inputs longer than
@@ -45,5 +46,6 @@ import dev.santo.evaluator.Evaluator;
 double result = new Evaluator().evaluate("(12 - 2) / 5"); // 2.0
 ```
 
-See [ROADMAP.md](ROADMAP.md) for the planned increments. Roadmap entries are
-planned work, not a claim that those capabilities already exist.
+The [development roadmap](ROADMAP.md) records the 48 implementation and
+verification increments. Each increment is covered by the build-time test suite
+or documentation review. Remote PR and CI status must be checked on GitHub.
