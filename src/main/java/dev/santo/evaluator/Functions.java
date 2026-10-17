@@ -50,6 +50,7 @@ final class Functions {
         map.put("bitNot", new FunctionSpec(1, 1, a -> integer(~integer(a[0]))));
         map.put("shiftLeft", new FunctionSpec(2, 2, a -> shift(a[0],a[1],true)));
         map.put("shiftRight", new FunctionSpec(2, 2, a -> shift(a[0],a[1],false)));
+        map.put("clamp", new FunctionSpec(3, 3, a -> clamp(a[0],a[1],a[2])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -116,6 +117,10 @@ final class Functions {
         require(bits >= 0 && bits <= 52, "Shift distance must be from 0 to 52");
         if (!left) return value >> bits;
         return integer(Math.scalb((double)value, (int)bits));
+    }
+    private static double clamp(double value, double low, double high) {
+        require(low <= high, "Lower bound exceeds upper bound");
+        return Math.max(low, Math.min(high,value));
     }
     // HELPERS
 }

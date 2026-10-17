@@ -136,3 +136,9 @@ Examples: `bitAnd(6,3)` → `2.0`; `bitOr(6,3)` → `7.0`; `bitXor(6,3)` → `5.
 
 Examples: `shiftLeft(3,2)` → `12.0`; `shiftRight(-8,1)` → `-4.0`.
 
+## add validated range clamping
+
+- `clamp`: accepts 3 arguments.
+
+Examples: `clamp(10,0,5)` → `5.0`; `clamp(-1,0,5)` → `0.0`; `clamp(3,0,5)` → `3.0`.
+
