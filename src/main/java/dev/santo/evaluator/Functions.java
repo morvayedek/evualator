@@ -51,6 +51,8 @@ final class Functions {
         map.put("shiftLeft", new FunctionSpec(2, 2, a -> shift(a[0],a[1],true)));
         map.put("shiftRight", new FunctionSpec(2, 2, a -> shift(a[0],a[1],false)));
         map.put("clamp", new FunctionSpec(3, 3, a -> clamp(a[0],a[1],a[2])));
+        map.put("lerp", new FunctionSpec(3, 3, a -> (1-a[2])*a[0] + a[2]*a[1]));
+        map.put("inverseLerp", new FunctionSpec(3, 3, a -> inverseLerp(a[0],a[1],a[2])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -121,6 +123,10 @@ final class Functions {
     private static double clamp(double value, double low, double high) {
         require(low <= high, "Lower bound exceeds upper bound");
         return Math.max(low, Math.min(high,value));
+    }
+    private static double inverseLerp(double low, double high, double value) {
+        require(low != high, "Interpolation endpoints must differ");
+        return (value-low)/(high-low);
     }
     // HELPERS
 }
