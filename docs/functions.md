@@ -162,3 +162,11 @@ Examples: `hypot(3,4)` → `5.0`; `norm(2,3,6)` → `7.0`.
 
 Examples: `mod(-1,5)` → `4.0`; `mod(6,5)` → `1.0`.
 
+## expose floating-point spacing helpers
+
+- `ulp`: accepts 1 arguments.
+- `nextUp`: accepts 1 arguments.
+- `nextDown`: accepts 1 arguments.
+
+Examples: `ulp(1)` → `2.220446049250313e-16`; `nextUp(0)` → `5e-324`; `nextDown(0)` → `-5e-324`.
+
