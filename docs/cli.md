@@ -12,3 +12,7 @@ Use `--file expressions.txt` to evaluate one expression per UTF-8 line. Blank li
 
 Use `--repl` for a line-oriented session. Enter `:quit` to leave. Errors do not end the session, and EOF also exits. Caller-owned input/output streams remain open.
 
+## retain the last successful REPL result
+
+In `--repl`, `_` contains the last successful result. Failed expressions do not overwrite it. Each new invocation starts with a fresh variable map.
+

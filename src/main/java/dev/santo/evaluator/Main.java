@@ -70,6 +70,7 @@ public final class Main {
         try {
             double value = evaluator.evaluate(expression, variables);
             out.println(value);
+            if (remember) variables.put("_", value);
             return 0;
         } catch (EvaluationException exception) {
             err.println("Error: " + exception.getMessage());
