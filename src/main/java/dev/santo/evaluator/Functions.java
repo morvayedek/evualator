@@ -31,6 +31,8 @@ final class Functions {
         map.put("ceil", new FunctionSpec(1, 1, a -> Math.ceil(a[0])));
         map.put("rint", new FunctionSpec(1, 1, a -> Math.rint(a[0])));
         map.put("trunc", new FunctionSpec(1, 1, a -> a[0] < 0 ? Math.ceil(a[0]) : Math.floor(a[0])));
+        map.put("min", new FunctionSpec(1, 256, a -> Arrays.stream(a).min().orElseThrow()));
+        map.put("max", new FunctionSpec(1, 256, a -> Arrays.stream(a).max().orElseThrow()));
         // REGISTRATIONS
         return Map.copyOf(map);
     }

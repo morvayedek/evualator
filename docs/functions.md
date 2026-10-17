@@ -72,3 +72,10 @@ Examples: `deg(pi)` → `180.0`; `rad(180)-pi` → `0.0`.
 
 Examples: `floor(-1.2)` → `-2.0`; `ceil(-1.2)` → `-1.0`; `rint(2.5)` → `2.0`; `rint(3.5)` → `4.0`; `trunc(-1.9)` → `-1.0`.
 
+## add variadic minimum and maximum
+
+- `min`: accepts 1–256 arguments.
+- `max`: accepts 1–256 arguments.
+
+Examples: `min(8,-2,4)` → `-2.0`; `max(8,-2,4)` → `8.0`.
+
