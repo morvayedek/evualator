@@ -35,6 +35,14 @@ public final class Main {
                         if (!mode.isEmpty()) throw new IllegalArgumentException("Use one input mode");
                         mode = "repl"; break;
                     case "--json": json = true; break;
+                    case "--help": case "-h":
+                        out.println("Usage: java -jar build/evaluator.jar [--var name=value] [--json] EXPRESSION");
+                        out.println("Input modes: --file PATH | --stdin | --repl (type :quit to leave)");
+                        out.println("Use -- before an expression that resembles an option. Names are case-sensitive.");
+                        return 0;
+                    case "--":
+                        while (++i < args.length) expressions.add(args[i]);
+                        break;
                     default:
                         if (args[i].startsWith("--") && args[i].length() > 2 && Character.isLetter(args[i].charAt(2)))
                             throw new IllegalArgumentException("Unknown option: " + args[i]);
