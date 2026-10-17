@@ -37,6 +37,8 @@ public final class CliTest {
         if (Main.run(new String[]{"--help"}, InputStream.nullInputStream(), new PrintStream(helpOut), System.err) != 0
                 || !helpOut.toString().contains("Usage:")) throw new AssertionError("Missing help");
         checks++;
+        check(new String[]{"--stdin"}, "2+2\n\n3*3\n", 0, "4.0\n9.0\n");
+        check(new String[]{"--stdin","--repl"}, "", 2, "");
         // CLI_CASES
         System.out.println("PASS: " + checks + " CLI checks");
     }

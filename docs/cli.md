@@ -24,3 +24,7 @@ Add `--json` for one JSON object per evaluated expression. Success records conta
 
 Use `--help` or `-h` for syntax and input-mode help. Use `--` before an expression that resembles an option. Unknown long options and conflicting input modes produce usage errors.
 
+## evaluate expression streams from standard input
+
+Use `--stdin` for pipeline input, for example `printf "2+2\n3*3\n" | java -jar build/evaluator.jar --stdin`. Unlike REPL mode, this does not maintain the `_` result binding.
+
