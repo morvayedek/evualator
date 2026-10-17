@@ -56,6 +56,9 @@ final class Functions {
         map.put("hypot", new FunctionSpec(2, 2, a -> Math.hypot(a[0],a[1])));
         map.put("norm", new FunctionSpec(1, 256, a -> norm(a)));
         map.put("mod", new FunctionSpec(2, 2, a -> mod(a[0],a[1])));
+        map.put("ulp", new FunctionSpec(1, 1, a -> Math.ulp(a[0])));
+        map.put("nextUp", new FunctionSpec(1, 1, a -> Math.nextUp(a[0])));
+        map.put("nextDown", new FunctionSpec(1, 1, a -> Math.nextDown(a[0])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
