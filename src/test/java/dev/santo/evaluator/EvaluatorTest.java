@@ -40,6 +40,7 @@ public final class EvaluatorTest {
                 "(-1)^.5",
                 "0^-1",
                 "1%0",
+                "missing(1)",
                 // ADD_INVALID
                 "", " ", ".", "()", "1+", "(1+2", "1+2)",
                 "2 3", "1..2", "2**3", "abc", "1/0", "1/-0",
@@ -78,6 +79,12 @@ public final class EvaluatorTest {
         checks++;
         if (evaluator.evaluate("x", java.util.Map.of("x", 4.0)) != 4.0)
             throw new AssertionError("Variable bindings leaked between calls");
+        checks++;
+        var custom = new Evaluator(java.util.Map.of("twice", a -> {
+            if (a.length != 1) throw new IllegalArgumentException("one argument required");
+            return a[0] * 2;
+        }));
+        if (custom.evaluate("twice(twice(3))") != 12.0) throw new AssertionError("Custom function failed");
         checks++;
         // EXTRA_CHECKS
         System.out.println("PASS: " + checks + " evaluator checks");
