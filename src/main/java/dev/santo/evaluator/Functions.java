@@ -25,6 +25,8 @@ final class Functions {
         map.put("sinh", new FunctionSpec(1, 1, a -> Math.sinh(a[0])));
         map.put("cosh", new FunctionSpec(1, 1, a -> Math.cosh(a[0])));
         map.put("tanh", new FunctionSpec(1, 1, a -> Math.tanh(a[0])));
+        map.put("deg", new FunctionSpec(1, 1, a -> Math.toDegrees(a[0])));
+        map.put("rad", new FunctionSpec(1, 1, a -> Math.toRadians(a[0])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }

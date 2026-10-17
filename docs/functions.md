@@ -56,3 +56,10 @@ Examples: `asin(1)` → `1.5707963267948966`; `acos(1)` → `0.0`; `atan2(0,1)` 
 
 Examples: `sinh(0)` → `0.0`; `cosh(0)` → `1.0`; `tanh(0)` → `0.0`.
 
+## add angle conversion functions
+
+- `deg`: accepts 1 arguments.
+- `rad`: accepts 1 arguments.
+
+Examples: `deg(pi)` → `180.0`; `rad(180)-pi` → `0.0`.
+
