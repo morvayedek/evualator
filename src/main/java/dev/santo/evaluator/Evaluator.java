@@ -1,24 +1,37 @@
 package dev.santo.evaluator;
 
 import java.util.Objects;
+import java.util.Map;
 
 /** Stateless, thread-safe evaluator of finite double-precision arithmetic. */
 public final class Evaluator {
     public double evaluate(String expression) {
+        return evaluate(expression, Map.of());
+    }
+
+    public double evaluate(String expression, Map<String, Double> variables) {
         Objects.requireNonNull(expression, "expression");
+        Map<String, Double> bindings = Map.copyOf(variables);
+        for (var entry : bindings.entrySet()) {
+            if (!entry.getKey().matches("[A-Za-z_][A-Za-z0-9_]*") || !Double.isFinite(entry.getValue())) {
+                throw new IllegalArgumentException("Variables need identifier names and finite values");
+            }
+        }
         if (expression.length() > 10_000) {
             throw new EvaluationException("Expression exceeds 10000 characters", 10_000);
         }
-        return new Parser(expression).parse();
+        return new Parser(expression, bindings).parse();
     }
 
     private static final class Parser {
         private final String input;
+        private final Map<String, Double> variables;
         private int cursor;
         private int depth;
 
-        private Parser(String input) {
+        private Parser(String input, Map<String, Double> variables) {
             this.input = input;
+            this.variables = variables;
         }
 
         private double parse() {
@@ -89,6 +102,12 @@ public final class Evaluator {
         }
 
         private double primary() {
+            skipSpace();
+            if (cursor < input.length() && (Character.isLetter(input.charAt(cursor)) || input.charAt(cursor) == '_')) {
+                int start = cursor++;
+                while (cursor < input.length() && (Character.isLetterOrDigit(input.charAt(cursor)) || input.charAt(cursor) == '_')) cursor++;
+                return resolveName(input.substring(start, cursor));
+            }
             if (take('(')) {
                 if (++depth > 128) {
                     throw error("Parentheses exceed maximum nesting of 128");
@@ -101,6 +120,12 @@ public final class Evaluator {
                 return value;
             }
             return number();
+        }
+
+        private double resolveName(String name) {
+            Double value = variables.get(name);
+            if (value != null) return value;
+            throw error("Unknown variable '" + name + "'");
         }
 
         private double number() {
