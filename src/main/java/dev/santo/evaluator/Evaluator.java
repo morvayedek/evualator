@@ -125,6 +125,12 @@ public final class Evaluator {
         private double resolveName(String name) {
             Double value = variables.get(name);
             if (value != null) return value;
+            switch (name) {
+                case "pi": return Math.PI;
+                case "e": return Math.E;
+                case "tau": return 2 * Math.PI;
+                default: break;
+            }
             throw error("Unknown variable '" + name + "'");
         }
 
