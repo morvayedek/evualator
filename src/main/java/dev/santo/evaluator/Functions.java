@@ -44,6 +44,10 @@ final class Functions {
         map.put("choose", new FunctionSpec(2, 2, a -> choose(a[0],a[1])));
         map.put("gcd", new FunctionSpec(2, 2, a -> gcd(a[0],a[1])));
         map.put("lcm", new FunctionSpec(2, 2, a -> lcm(a[0],a[1])));
+        map.put("bitAnd", new FunctionSpec(2, 2, a -> integer(a[0]) & integer(a[1])));
+        map.put("bitOr", new FunctionSpec(2, 2, a -> integer(a[0]) | integer(a[1])));
+        map.put("bitXor", new FunctionSpec(2, 2, a -> integer(a[0]) ^ integer(a[1])));
+        map.put("bitNot", new FunctionSpec(1, 1, a -> integer(~integer(a[0]))));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
