@@ -18,6 +18,10 @@ final class Functions {
         map.put("sin", new FunctionSpec(1, 1, a -> Math.sin(a[0])));
         map.put("cos", new FunctionSpec(1, 1, a -> Math.cos(a[0])));
         map.put("tan", new FunctionSpec(1, 1, a -> Math.tan(a[0])));
+        map.put("asin", new FunctionSpec(1, 1, a -> Math.asin(a[0])));
+        map.put("acos", new FunctionSpec(1, 1, a -> Math.acos(a[0])));
+        map.put("atan", new FunctionSpec(1, 1, a -> Math.atan(a[0])));
+        map.put("atan2", new FunctionSpec(2, 2, a -> Math.atan2(a[0],a[1])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
