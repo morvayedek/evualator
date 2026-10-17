@@ -2,9 +2,27 @@ package dev.santo.evaluator;
 
 import java.util.Objects;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.function.ToDoubleFunction;
 
 /** Stateless, thread-safe evaluator of finite double-precision arithmetic. */
 public final class Evaluator {
+    private final Map<String, FunctionSpec> functions;
+
+    public Evaluator() {
+        functions = Functions.builtins();
+    }
+
+    /** Custom functions accept a fresh argument array and can override built-ins. */
+    public Evaluator(Map<String, ToDoubleFunction<double[]>> custom) {
+        var registry = new HashMap<>(Functions.builtins());
+        custom.forEach((name, function) -> {
+            if (!name.matches("[A-Za-z_][A-Za-z0-9_]*")) throw new IllegalArgumentException("Invalid function name");
+            registry.put(name, new FunctionSpec(0, 256, Objects.requireNonNull(function)));
+        });
+        functions = Map.copyOf(registry);
+    }
     public double evaluate(String expression) {
         return evaluate(expression, Map.of());
     }
@@ -20,18 +38,20 @@ public final class Evaluator {
         if (expression.length() > 10_000) {
             throw new EvaluationException("Expression exceeds 10000 characters", 10_000);
         }
-        return new Parser(expression, bindings).parse();
+        return new Parser(expression, bindings, functions).parse();
     }
 
     private static final class Parser {
         private final String input;
         private final Map<String, Double> variables;
+        private final Map<String, FunctionSpec> functions;
         private int cursor;
         private int depth;
 
-        private Parser(String input, Map<String, Double> variables) {
+        private Parser(String input, Map<String, Double> variables, Map<String, FunctionSpec> functions) {
             this.input = input;
             this.variables = variables;
+            this.functions = functions;
         }
 
         private double parse() {
@@ -106,7 +126,8 @@ public final class Evaluator {
             if (cursor < input.length() && (Character.isLetter(input.charAt(cursor)) || input.charAt(cursor) == '_')) {
                 int start = cursor++;
                 while (cursor < input.length() && (Character.isLetterOrDigit(input.charAt(cursor)) || input.charAt(cursor) == '_')) cursor++;
-                return resolveName(input.substring(start, cursor));
+                String name = input.substring(start, cursor);
+                return take('(') ? function(name, start) : resolveName(name);
             }
             if (take('(')) {
                 if (++depth > 128) {
@@ -120,6 +141,27 @@ public final class Evaluator {
                 return value;
             }
             return number();
+        }
+
+        private double function(String name, int start) {
+            FunctionSpec specification = functions.get(name);
+            if (specification == null) throw new EvaluationException("Unknown function '" + name + "'", start);
+            if (++depth > 128) throw error("Function nesting exceeds 128");
+            var arguments = new ArrayList<Double>();
+            if (!take(')')) {
+                do {
+                    if (arguments.size() == 256) throw error("Function has more than 256 arguments");
+                    arguments.add(sum());
+                } while (take(','));
+                if (!take(')')) throw error("Expected ')' after arguments");
+            }
+            depth--;
+            double[] values = arguments.stream().mapToDouble(Double::doubleValue).toArray();
+            try {
+                return finite(specification.apply(values));
+            } catch (IllegalArgumentException | ArithmeticException exception) {
+                throw new EvaluationException(name + ": " + exception.getMessage(), start);
+            }
         }
 
         private double resolveName(String name) {
