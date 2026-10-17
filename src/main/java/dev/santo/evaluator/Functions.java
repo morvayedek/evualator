@@ -41,6 +41,7 @@ final class Functions {
         map.put("stddev", new FunctionSpec(1, 256, a -> Math.sqrt(variance(a, false))));
         map.put("factorial", new FunctionSpec(1, 1, a -> factorial(a[0])));
         map.put("perm", new FunctionSpec(2, 2, a -> permutation(a[0],a[1])));
+        map.put("choose", new FunctionSpec(2, 2, a -> choose(a[0],a[1])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -80,6 +81,14 @@ final class Functions {
         require(n >= 0 && n <= 170 && r >= 0 && r <= n, "perm needs 0 <= r <= n <= 170");
         double result = 1;
         for (long i = 0; i < r; i++) result *= n-i;
+        return result;
+    }
+    private static double choose(double number, double count) {
+        long n = integer(number), r = integer(count);
+        require(n >= 0 && n <= 100000 && r >= 0 && r <= n, "choose needs 0 <= r <= n <= 100000");
+        r = Math.min(r, n-r);
+        double result = 1;
+        for (long i = 1; i <= r; i++) result *= (double)(n-r+i)/i;
         return result;
     }
     // HELPERS

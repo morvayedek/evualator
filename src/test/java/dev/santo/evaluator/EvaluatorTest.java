@@ -54,6 +54,9 @@ public final class EvaluatorTest {
             {"stddev(2,2)", 0.0},
             {"factorial(5)", 120.0},
             {"perm(5,2)", 20.0},
+            {"choose(5,2)", 10.0},
+            {"choose(5,0)", 1.0},
+            {"choose(5,5)", 1.0},
             // ADD_CASES
             {"0", 0.0}, {"42", 42.0}, {"2+3*4", 14.0},
             {"(2+3)*4", 20.0}, {"10-3-2", 5.0}, {"20/2/5", 2.0},
@@ -94,6 +97,8 @@ public final class EvaluatorTest {
                 "factorial(171)",
                 "perm(2,3)",
                 "factorial(1.5)",
+                "choose(4,5)",
+                "choose(100001,1)",
                 // ADD_INVALID
                 "", " ", ".", "()", "1+", "(1+2", "1+2)",
                 "2 3", "1..2", "2**3", "abc", "1/0", "1/-0",
