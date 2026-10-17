@@ -34,6 +34,7 @@ public final class Main {
                     case "--repl":
                         if (!mode.isEmpty()) throw new IllegalArgumentException("Use one input mode");
                         mode = "repl"; break;
+                    case "--json": json = true; break;
                     default:
                         if (args[i].startsWith("--") && args[i].length() > 2 && Character.isLetter(args[i].charAt(2)))
                             throw new IllegalArgumentException("Unknown option: " + args[i]);
@@ -69,11 +70,13 @@ public final class Main {
             PrintStream out, PrintStream err, boolean json, boolean remember) {
         try {
             double value = evaluator.evaluate(expression, variables);
-            out.println(value);
+            if (json) out.println(JsonOutput.success(expression, value));
+            else out.println(value);
             if (remember) variables.put("_", value);
             return 0;
         } catch (EvaluationException exception) {
-            err.println("Error: " + exception.getMessage());
+            if (json) out.println(JsonOutput.failure(expression, exception));
+            else err.println("Error: " + exception.getMessage());
             return 1;
         }
     }
