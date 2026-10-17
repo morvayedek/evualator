@@ -27,6 +27,10 @@ final class Functions {
         map.put("tanh", new FunctionSpec(1, 1, a -> Math.tanh(a[0])));
         map.put("deg", new FunctionSpec(1, 1, a -> Math.toDegrees(a[0])));
         map.put("rad", new FunctionSpec(1, 1, a -> Math.toRadians(a[0])));
+        map.put("floor", new FunctionSpec(1, 1, a -> Math.floor(a[0])));
+        map.put("ceil", new FunctionSpec(1, 1, a -> Math.ceil(a[0])));
+        map.put("rint", new FunctionSpec(1, 1, a -> Math.rint(a[0])));
+        map.put("trunc", new FunctionSpec(1, 1, a -> a[0] < 0 ? Math.ceil(a[0]) : Math.floor(a[0])));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
