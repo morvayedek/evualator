@@ -48,3 +48,11 @@ Examples: `sin(pi/2)` → `1.0`; `cos(pi)` → `-1.0`; `tan(0)` → `0.0`.
 
 Examples: `asin(1)` → `1.5707963267948966`; `acos(1)` → `0.0`; `atan2(0,1)` → `0.0`.
 
+## add hyperbolic functions
+
+- `sinh`: accepts 1 arguments.
+- `cosh`: accepts 1 arguments.
+- `tanh`: accepts 1 arguments.
+
+Examples: `sinh(0)` → `0.0`; `cosh(0)` → `1.0`; `tanh(0)` → `0.0`.
+
