@@ -53,6 +53,8 @@ final class Functions {
         map.put("clamp", new FunctionSpec(3, 3, a -> clamp(a[0],a[1],a[2])));
         map.put("lerp", new FunctionSpec(3, 3, a -> (1-a[2])*a[0] + a[2]*a[1]));
         map.put("inverseLerp", new FunctionSpec(3, 3, a -> inverseLerp(a[0],a[1],a[2])));
+        map.put("hypot", new FunctionSpec(2, 2, a -> Math.hypot(a[0],a[1])));
+        map.put("norm", new FunctionSpec(1, 256, a -> norm(a)));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
@@ -127,6 +129,11 @@ final class Functions {
     private static double inverseLerp(double low, double high, double value) {
         require(low != high, "Interpolation endpoints must differ");
         return (value-low)/(high-low);
+    }
+    private static double norm(double[] values) {
+        double result = 0;
+        for (double value : values) result = Math.hypot(result,value);
+        return result;
     }
     // HELPERS
 }
