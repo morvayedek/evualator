@@ -24,3 +24,10 @@ Examples: `sqrt(81)` → `9.0`; `cbrt(-27)` → `-3.0`.
 
 Examples: `ln(e)` → `1.0`; `log10(1000)` → `3.0`; `log2(8)` → `3.0`.
 
+## add exponential and power functions
+
+- `exp`: accepts 1 arguments.
+- `pow`: accepts 2 arguments.
+
+Examples: `exp(0)` → `1.0`; `pow(2,-3)` → `0.125`.
+
