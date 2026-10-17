@@ -33,6 +33,8 @@ final class Functions {
         map.put("trunc", new FunctionSpec(1, 1, a -> a[0] < 0 ? Math.ceil(a[0]) : Math.floor(a[0])));
         map.put("min", new FunctionSpec(1, 256, a -> Arrays.stream(a).min().orElseThrow()));
         map.put("max", new FunctionSpec(1, 256, a -> Arrays.stream(a).max().orElseThrow()));
+        map.put("sum", new FunctionSpec(1, 256, a -> Arrays.stream(a).sum()));
+        map.put("mean", new FunctionSpec(1, 256, a -> Arrays.stream(a).average().orElseThrow()));
         // REGISTRATIONS
         return Map.copyOf(map);
     }
