@@ -170,3 +170,10 @@ Examples: `mod(-1,5)` → `4.0`; `mod(6,5)` → `1.0`.
 
 Examples: `ulp(1)` → `2.220446049250313e-16`; `nextUp(0)` → `5e-324`; `nextDown(0)` → `-5e-324`.
 
+## add percentage and relative-change calculations
+
+- `percent`: accepts 2 arguments.
+- `percentChange`: accepts 2 arguments.
+
+Examples: `percent(200,15)` → `30.0`; `percentChange(100,125)` → `25.0`.
+

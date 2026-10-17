@@ -79,6 +79,8 @@ public final class EvaluatorTest {
             {"ulp(1)", 2.220446049250313e-16},
             {"nextUp(0)", 5e-324},
             {"nextDown(0)", -5e-324},
+            {"percent(200,15)", 30.0},
+            {"percentChange(100,125)", 25.0},
             // ADD_CASES
             {"0", 0.0}, {"42", 42.0}, {"2+3*4", 14.0},
             {"(2+3)*4", 20.0}, {"10-3-2", 5.0}, {"20/2/5", 2.0},
@@ -129,6 +131,7 @@ public final class EvaluatorTest {
                 "inverseLerp(1,1,2)",
                 "mod(1,0)",
                 "mod(1,-2)",
+                "percentChange(0,1)",
                 // ADD_INVALID
                 "", " ", ".", "()", "1+", "(1+2", "1+2)",
                 "2 3", "1..2", "2**3", "abc", "1/0", "1/-0",
