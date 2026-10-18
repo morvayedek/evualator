@@ -51,6 +51,13 @@ public final class ExtendedMathTest {
         reject(e, "root(4,0)");
         reject(e, "root(4,1.5)");
         reject(e, "root()");
+        check(e, "wrap(370,0,360)", 10.0);
+        check(e, "wrap(-10,0,360)", 350.0);
+        check(e, "wrap(180,-180,180)", -180.0);
+        check(e, "wrap(10,10,20)", 10.0);
+        reject(e, "wrap(1,2,2)");
+        reject(e, "wrap(1,-1e308,1e308)");
+        reject(e, "wrap()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

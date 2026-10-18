@@ -13,6 +13,7 @@ final class ExtendedMath {
         map.put("sinc", new FunctionSpec(1, 1, ExtendedMath::sinc));
         map.put("logBase", new FunctionSpec(2, 2, ExtendedMath::logBase));
         map.put("root", new FunctionSpec(2, 2, ExtendedMath::root));
+        map.put("wrap", new FunctionSpec(3, 3, ExtendedMath::wrap));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -65,5 +66,16 @@ final class ExtendedMath {
         Functions.require(n>=1 && n<=1000000, "root degree must be 1..1000000");
         Functions.require(a[0]>=0 || n%2==1, "Negative radicands require an odd degree");
         return a[0]<0 ? -Math.pow(-a[0],1.0/n) : Math.pow(a[0],1.0/n);
+    }
+
+    /** Wrap values to [low,high), requiring a finite positive interval width. */
+    private static double wrap(double[] a) {
+        
+        double low=a[1], high=a[2], width=high-low;
+        Functions.require(high>low && Double.isFinite(width), "wrap requires finite low < high and finite width");
+        double offset=(a[0]%width-low%width)%width;
+        if (offset<0) offset+=width;
+        double result=low+offset;
+        return result>=high ? low : result;
     }
 }

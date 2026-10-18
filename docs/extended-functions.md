@@ -105,3 +105,18 @@ root(16,1) = 16
 
 Rejected examples: `root(-1,2)`, `root(4,0)`, `root(4,1.5)`.
 
+## `wrap`
+
+Wrap values to [low,high), requiring a finite positive interval width.
+
+Arguments: 3.
+
+```text
+wrap(370,0,360) = 10
+wrap(-10,0,360) = 350
+wrap(180,-180,180) = -180
+wrap(10,10,20) = 10
+```
+
+Rejected examples: `wrap(1,2,2)`, `wrap(1,-1e308,1e308)`.
+
