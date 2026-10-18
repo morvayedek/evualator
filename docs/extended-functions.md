@@ -19,3 +19,17 @@ asinh(1e300) = 691.4686750787737
 asinh(1e-20) = 1e-20
 ```
 
+## `acosh`
+
+Inverse hyperbolic cosine for x >= 1 without squaring huge inputs.
+
+Arguments: 1.
+
+```text
+acosh(1) = 0
+acosh(2) = 1.3169578969248166
+acosh(1e300) = 691.4686750787737
+```
+
+Rejected examples: `acosh(.9)`.
+
