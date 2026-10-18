@@ -52,6 +52,7 @@ final class ExtendedMath {
         map.put("sphereArea", new FunctionSpec(1, 1, ExtendedMath::sphereArea));
         map.put("coneVolume", new FunctionSpec(2, 2, ExtendedMath::coneVolume));
         map.put("cylinderVolume", new FunctionSpec(2, 2, ExtendedMath::cylinderVolume));
+        map.put("rectangleDiagonal", new FunctionSpec(2, 2, ExtendedMath::rectangleDiagonal));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -402,5 +403,10 @@ final class ExtendedMath {
     /** Volume of a cylinder from nonnegative radius and height; decimal accumulation avoids intermediate overflow. */
     private static double cylinderVolume(double[] a) {
         Functions.require(a[0]>=0 && a[1]>=0,"Radius and height must be nonnegative"); var r=java.math.BigDecimal.valueOf(a[0]); return r.multiply(r).multiply(java.math.BigDecimal.valueOf(a[1])).multiply(java.math.BigDecimal.valueOf(Math.PI)).doubleValue();
+    }
+
+    /** Diagonal of a rectangle with nonnegative side lengths, avoiding square overflow. */
+    private static double rectangleDiagonal(double[] a) {
+        Functions.require(a[0]>=0 && a[1]>=0,"Side lengths must be nonnegative"); return Math.hypot(a[0],a[1]);
     }
 }

@@ -646,3 +646,17 @@ cylinderVolume(1e200,1e-200) = 3.141592653589793e+200
 
 Rejected examples: `cylinderVolume(-1,2)`, `cylinderVolume(1,-1)`.
 
+## `rectangleDiagonal`
+
+Diagonal of a rectangle with nonnegative side lengths, avoiding square overflow.
+
+Arguments: 2.
+
+```text
+rectangleDiagonal(3,4) = 5
+rectangleDiagonal(0,0) = 0
+rectangleDiagonal(1e300,0) = 1e+300
+```
+
+Rejected examples: `rectangleDiagonal(-1,2)`.
+

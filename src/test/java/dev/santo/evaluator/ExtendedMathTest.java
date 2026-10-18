@@ -268,6 +268,11 @@ public final class ExtendedMathTest {
         reject(e, "cylinderVolume(-1,2)");
         reject(e, "cylinderVolume(1,-1)");
         reject(e, "cylinderVolume()");
+        check(e, "rectangleDiagonal(3,4)", 5.0);
+        check(e, "rectangleDiagonal(0,0)", 0.0);
+        check(e, "rectangleDiagonal(1e300,0)", 1e+300);
+        reject(e, "rectangleDiagonal(-1,2)");
+        reject(e, "rectangleDiagonal()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
