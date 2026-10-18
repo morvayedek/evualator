@@ -66,6 +66,7 @@ final class ExtendedMath {
         map.put("isPrime", new FunctionSpec(1, 1, ExtendedMath::isPrime));
         map.put("nextPrime", new FunctionSpec(1, 1, ExtendedMath::nextPrime));
         map.put("divisorCount", new FunctionSpec(1, 1, ExtendedMath::divisorCount));
+        map.put("fibonacci", new FunctionSpec(1, 1, ExtendedMath::fibonacci));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -501,5 +502,15 @@ final class ExtendedMath {
         long total=0;
         for(long d=1;d*d<=n;d++) if(n%d==0) total+=d*d==n?1:2;
         return total;
+    }
+
+    /** Exact Fibonacci numbers F(0)..F(78), staying within the exact double integer range. */
+    private static double fibonacci(double[] a) {
+        
+        long n=Functions.integer(a[0]);
+        Functions.require(n>=0 && n<=78,"fibonacci requires an integer in [0,78]");
+        long x=0,y=1;
+        for(int i=0;i<n;i++) { long next=x+y; x=y; y=next; }
+        return x;
     }
 }

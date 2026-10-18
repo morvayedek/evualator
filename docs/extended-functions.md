@@ -842,3 +842,18 @@ divisorCount(97) = 2
 
 Rejected examples: `divisorCount(0)`, `divisorCount(1.5)`.
 
+## `fibonacci`
+
+Exact Fibonacci numbers F(0)..F(78), staying within the exact double integer range.
+
+Arguments: 1.
+
+```text
+fibonacci(0) = 0
+fibonacci(1) = 1
+fibonacci(10) = 55
+fibonacci(78) = 8944394323791464
+```
+
+Rejected examples: `fibonacci(-1)`, `fibonacci(79)`, `fibonacci(.5)`.
+
