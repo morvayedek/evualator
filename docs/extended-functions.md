@@ -412,3 +412,17 @@ geometricMean(1) = 1
 
 Rejected examples: `geometricMean(0,1)`, `geometricMean(-1,2)`.
 
+## `harmonicMean`
+
+Harmonic mean of positive observations with reciprocal scaling.
+
+Arguments: 1..256.
+
+```text
+harmonicMean(1,2) = 1.3333333333333333
+harmonicMean(2,2) = 2
+harmonicMean(1e-300,1e-300) = 1e-300
+```
+
+Rejected examples: `harmonicMean(0,1)`, `harmonicMean(-1,2)`.
+
