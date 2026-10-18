@@ -40,6 +40,7 @@ final class ExtendedMath {
         map.put("medianAbsoluteDeviation", new FunctionSpec(1, 256, ExtendedMath::medianAbsoluteDeviation));
         map.put("sampleStddev", new FunctionSpec(2, 256, ExtendedMath::sampleStddev));
         map.put("coefficientVariation", new FunctionSpec(1, 256, ExtendedMath::coefficientVariation));
+        map.put("sumSquares", new FunctionSpec(1, 256, ExtendedMath::sumSquares));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -312,5 +313,13 @@ final class ExtendedMath {
         double sum=0;
         for(double x:a) { double d=x/scale-mean; sum+=d*d; }
         return Math.sqrt(sum/a.length)/mean;
+    }
+
+    /** Sum of squares calculated with a stable Euclidean norm. */
+    private static double sumSquares(double[] a) {
+        
+        double norm=0;
+        for(double x:a) norm=Math.hypot(norm,x);
+        return norm*norm;
     }
 }

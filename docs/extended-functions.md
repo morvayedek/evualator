@@ -477,3 +477,17 @@ coefficientVariation(1e300,1e300) = 0
 
 Rejected examples: `coefficientVariation(0,1)`, `coefficientVariation(-1,1)`.
 
+## `sumSquares`
+
+Sum of squares calculated with a stable Euclidean norm.
+
+Arguments: 1..256.
+
+```text
+sumSquares(3,4) = 25
+sumSquares(-2,2) = 8
+sumSquares(0) = 0
+```
+
+Rejected examples: `sumSquares(1e200)`.
+
