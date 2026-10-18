@@ -43,6 +43,7 @@ final class ExtendedMath {
         map.put("sumSquares", new FunctionSpec(1, 256, ExtendedMath::sumSquares));
         map.put("product", new FunctionSpec(1, 256, ExtendedMath::product));
         map.put("weightedMean", new FunctionSpec(2, 256, ExtendedMath::weightedMean));
+        map.put("dot", new FunctionSpec(2, 256, ExtendedMath::dot));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -344,5 +345,14 @@ final class ExtendedMath {
         double weights=0,sum=0;
         for(int i=0;i<a.length;i+=2) { double w=a[i+1]/weightScale; weights+=w; sum+=(a[i]/valueScale)*w; }
         return (sum/weights)*valueScale;
+    }
+
+    /** Dot product from interleaved x,y pairs, using decimal products and accumulation. */
+    private static double dot(double[] a) {
+        
+        Functions.require(a.length%2==0,"dot requires x,y pairs");
+        var sum=java.math.BigDecimal.ZERO;
+        for(int i=0;i<a.length;i+=2) sum=sum.add(java.math.BigDecimal.valueOf(a[i]).multiply(java.math.BigDecimal.valueOf(a[i+1])));
+        return sum.doubleValue();
     }
 }

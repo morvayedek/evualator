@@ -522,3 +522,17 @@ weightedMean(0,1) = 0
 
 Rejected examples: `weightedMean(1,0)`, `weightedMean(1,-1)`, `weightedMean(1,1,2)`.
 
+## `dot`
+
+Dot product from interleaved x,y pairs, using decimal products and accumulation.
+
+Arguments: 2..256.
+
+```text
+dot(1,3,2,4) = 11
+dot(1e300,1e300,-1e300,1e300) = 0
+dot(2,-3) = -6
+```
+
+Rejected examples: `dot(1,2,3)`.
+
