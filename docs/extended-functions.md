@@ -714,3 +714,17 @@ celsiusToFahrenheit(100) = 212
 celsiusToFahrenheit(-40) = -40
 ```
 
+## `celsiusToKelvin`
+
+Convert Celsius to Kelvin, rejecting temperatures below absolute zero.
+
+Arguments: 1.
+
+```text
+celsiusToKelvin(0) = 273.15
+celsiusToKelvin(-273.15) = 0
+celsiusToKelvin(100) = 373.15
+```
+
+Rejected examples: `celsiusToKelvin(-274)`.
+

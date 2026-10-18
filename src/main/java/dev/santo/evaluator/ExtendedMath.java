@@ -57,6 +57,7 @@ final class ExtendedMath {
         map.put("trapezoidArea", new FunctionSpec(3, 3, ExtendedMath::trapezoidArea));
         map.put("fahrenheitToCelsius", new FunctionSpec(1, 1, ExtendedMath::fahrenheitToCelsius));
         map.put("celsiusToFahrenheit", new FunctionSpec(1, 1, ExtendedMath::celsiusToFahrenheit));
+        map.put("celsiusToKelvin", new FunctionSpec(1, 1, ExtendedMath::celsiusToKelvin));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -432,5 +433,10 @@ final class ExtendedMath {
     /** Convert Celsius to Fahrenheit. */
     private static double celsiusToFahrenheit(double[] a) {
         return Math.fma(a[0],1.8,32);
+    }
+
+    /** Convert Celsius to Kelvin, rejecting temperatures below absolute zero. */
+    private static double celsiusToKelvin(double[] a) {
+        Functions.require(a[0]>=-273.15,"Temperature is below absolute zero"); return a[0]+273.15;
     }
 }
