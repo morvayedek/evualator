@@ -339,3 +339,18 @@ ieeeRemainder(-7,4) = 1
 
 Rejected examples: `ieeeRemainder(1,0)`.
 
+## `roundToMultiple`
+
+Round to a positive decimal step with ties to even using decimal arithmetic.
+
+Arguments: 2.
+
+```text
+roundToMultiple(1.25,.5) = 1
+roundToMultiple(1.75,.5) = 2
+roundToMultiple(-1.25,.5) = -1
+roundToMultiple(1e300,1e-300) = 1e+300
+```
+
+Rejected examples: `roundToMultiple(1,0)`, `roundToMultiple(1,-1)`.
+

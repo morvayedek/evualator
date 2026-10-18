@@ -30,6 +30,7 @@ final class ExtendedMath {
         map.put("scalb", new FunctionSpec(2, 2, ExtendedMath::scalb));
         map.put("exponent", new FunctionSpec(1, 1, ExtendedMath::exponent));
         map.put("ieeeRemainder", new FunctionSpec(2, 2, ExtendedMath::ieeeRemainder));
+        map.put("roundToMultiple", new FunctionSpec(2, 2, ExtendedMath::roundToMultiple));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -197,5 +198,14 @@ final class ExtendedMath {
         
         Functions.require(a[1]!=0,"ieeeRemainder requires a nonzero divisor");
         return Math.IEEEremainder(a[0],a[1]);
+    }
+
+    /** Round to a positive decimal step with ties to even using decimal arithmetic. */
+    private static double roundToMultiple(double[] a) {
+        
+        Functions.require(a[1]>0,"roundToMultiple requires a positive step");
+        var value=java.math.BigDecimal.valueOf(a[0]);
+        var step=java.math.BigDecimal.valueOf(a[1]);
+        return value.divide(step,0,java.math.RoundingMode.HALF_EVEN).multiply(step).doubleValue();
     }
 }
