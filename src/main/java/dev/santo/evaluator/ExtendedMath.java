@@ -69,6 +69,7 @@ final class ExtendedMath {
         map.put("fibonacci", new FunctionSpec(1, 1, ExtendedMath::fibonacci));
         map.put("triangular", new FunctionSpec(1, 1, ExtendedMath::triangular));
         map.put("binomialProbability", new FunctionSpec(3, 3, ExtendedMath::binomialProbability));
+        map.put("poissonProbability", new FunctionSpec(2, 2, ExtendedMath::poissonProbability));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -534,5 +535,16 @@ final class ExtendedMath {
         long r=Math.min(k,n-k); double coefficient=0;
         for(long i=1;i<=r;i++) coefficient+=Math.log(n-r+i)-Math.log(i);
         return Math.exp(coefficient+k*Math.log(p)+(n-k)*Math.log1p(-p));
+    }
+
+    /** Poisson probability mass P(X=k), with integral 0 <= k <= 10000 and nonnegative rate. */
+    private static double poissonProbability(double[] a) {
+        
+        long k=Functions.integer(a[0]); double rate=a[1];
+        Functions.require(k>=0 && k<=10000 && rate>=0,"poissonProbability requires 0 <= k <= 10000 and rate >= 0");
+        if(rate==0) return k==0?1:0;
+        double logFactorial=0;
+        for(long i=2;i<=k;i++) logFactorial+=Math.log(i);
+        return Math.exp(k*Math.log(rate)-rate-logFactorial);
     }
 }

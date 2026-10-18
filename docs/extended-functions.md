@@ -888,3 +888,18 @@ binomialProbability(5,1,0) = 0
 
 Rejected examples: `binomialProbability(3,4,.5)`, `binomialProbability(2,1,2)`, `binomialProbability(10001,1,.5)`.
 
+## `poissonProbability`
+
+Poisson probability mass P(X=k), with integral 0 <= k <= 10000 and nonnegative rate.
+
+Arguments: 2.
+
+```text
+poissonProbability(3,2) = 0.18044704431548356
+poissonProbability(0,0) = 1
+poissonProbability(1,0) = 0
+poissonProbability(0,1) = 0.36787944117144233
+```
+
+Rejected examples: `poissonProbability(-1,1)`, `poissonProbability(2,-1)`, `poissonProbability(10001,1)`.
+
