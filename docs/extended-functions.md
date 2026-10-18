@@ -463,3 +463,17 @@ sampleStddev(-1e200,1e200) = 1.414213562373095e+200
 sampleStddev(0,0) = 0
 ```
 
+## `coefficientVariation`
+
+Population coefficient of variation for strictly positive observations.
+
+Arguments: 1..256.
+
+```text
+coefficientVariation(1,3) = 0.5
+coefficientVariation(2,2) = 0
+coefficientVariation(1e300,1e300) = 0
+```
+
+Rejected examples: `coefficientVariation(0,1)`, `coefficientVariation(-1,1)`.
+

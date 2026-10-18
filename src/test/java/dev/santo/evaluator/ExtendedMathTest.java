@@ -195,6 +195,12 @@ public final class ExtendedMathTest {
         check(e, "sampleStddev(-1e200,1e200)", 1.414213562373095e+200);
         check(e, "sampleStddev(0,0)", 0.0);
         reject(e, "sampleStddev()");
+        check(e, "coefficientVariation(1,3)", 0.5);
+        check(e, "coefficientVariation(2,2)", 0.0);
+        check(e, "coefficientVariation(1e300,1e300)", 0.0);
+        reject(e, "coefficientVariation(0,1)");
+        reject(e, "coefficientVariation(-1,1)");
+        reject(e, "coefficientVariation()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
