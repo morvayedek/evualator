@@ -312,6 +312,11 @@ public final class ExtendedMathTest {
         check(e, "angularDistance(rad(350),rad(10))", 0.3490658503988659);
         check(e, "angularDistance(2,2)", 0.0);
         reject(e, "angularDistance()");
+        check(e, "polarX(2,0)", 2.0);
+        check(e, "polarX(2,pi)", -2.0);
+        check(e, "polarX(0,3)", 0.0);
+        reject(e, "polarX(-1,0)");
+        reject(e, "polarX()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

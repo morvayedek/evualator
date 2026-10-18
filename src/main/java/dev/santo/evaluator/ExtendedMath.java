@@ -61,6 +61,7 @@ final class ExtendedMath {
         map.put("kelvinToCelsius", new FunctionSpec(1, 1, ExtendedMath::kelvinToCelsius));
         map.put("degreesWrap", new FunctionSpec(1, 1, ExtendedMath::degreesWrap));
         map.put("angularDistance", new FunctionSpec(2, 2, ExtendedMath::angularDistance));
+        map.put("polarX", new FunctionSpec(2, 2, ExtendedMath::polarX));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -456,5 +457,10 @@ final class ExtendedMath {
     /** Signed shortest rotation from the first angle to the second, in radians [-pi,pi). */
     private static double angularDistance(double[] a) {
         double tau=2*Math.PI; double x=(a[1]%tau-a[0]%tau)%tau; if(x>=Math.PI) x-=tau; if(x< -Math.PI) x+=tau; return x==0?0:x;
+    }
+
+    /** Cartesian x coordinate from nonnegative radius and angle in radians. */
+    private static double polarX(double[] a) {
+        Functions.require(a[0]>=0,"Radius must be nonnegative"); return a[0]*Math.cos(a[1]);
     }
 }

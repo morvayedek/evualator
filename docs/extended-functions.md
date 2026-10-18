@@ -767,3 +767,17 @@ angularDistance(rad(350),rad(10)) = 0.3490658503988659
 angularDistance(2,2) = 0
 ```
 
+## `polarX`
+
+Cartesian x coordinate from nonnegative radius and angle in radians.
+
+Arguments: 2.
+
+```text
+polarX(2,0) = 2
+polarX(2,pi) = -2
+polarX(0,3) = 0
+```
+
+Rejected examples: `polarX(-1,0)`.
+
