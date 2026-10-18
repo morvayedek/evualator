@@ -781,3 +781,17 @@ polarX(0,3) = 0
 
 Rejected examples: `polarX(-1,0)`.
 
+## `polarY`
+
+Cartesian y coordinate from nonnegative radius and angle in radians.
+
+Arguments: 2.
+
+```text
+polarY(2,pi/2) = 2
+polarY(2,0) = 0
+polarY(0,3) = 0
+```
+
+Rejected examples: `polarY(-1,0)`.
+

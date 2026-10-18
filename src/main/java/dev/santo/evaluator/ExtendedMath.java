@@ -62,6 +62,7 @@ final class ExtendedMath {
         map.put("degreesWrap", new FunctionSpec(1, 1, ExtendedMath::degreesWrap));
         map.put("angularDistance", new FunctionSpec(2, 2, ExtendedMath::angularDistance));
         map.put("polarX", new FunctionSpec(2, 2, ExtendedMath::polarX));
+        map.put("polarY", new FunctionSpec(2, 2, ExtendedMath::polarY));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -462,5 +463,10 @@ final class ExtendedMath {
     /** Cartesian x coordinate from nonnegative radius and angle in radians. */
     private static double polarX(double[] a) {
         Functions.require(a[0]>=0,"Radius must be nonnegative"); return a[0]*Math.cos(a[1]);
+    }
+
+    /** Cartesian y coordinate from nonnegative radius and angle in radians. */
+    private static double polarY(double[] a) {
+        Functions.require(a[0]>=0,"Radius must be nonnegative"); return a[0]*Math.sin(a[1]);
     }
 }

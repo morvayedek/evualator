@@ -317,6 +317,11 @@ public final class ExtendedMathTest {
         check(e, "polarX(0,3)", 0.0);
         reject(e, "polarX(-1,0)");
         reject(e, "polarX()");
+        check(e, "polarY(2,pi/2)", 2.0);
+        check(e, "polarY(2,0)", 0.0);
+        check(e, "polarY(0,3)", 0.0);
+        reject(e, "polarY(-1,0)");
+        reject(e, "polarY()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
