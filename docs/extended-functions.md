@@ -450,3 +450,16 @@ medianAbsoluteDeviation(1,1,2,2) = 0.5
 medianAbsoluteDeviation(9) = 0
 ```
 
+## `sampleStddev`
+
+Sample standard deviation with scaled observations and n-1 denominator.
+
+Arguments: 2..256.
+
+```text
+sampleStddev(2,4,6) = 2
+sampleStddev(1e200,1e200) = 0
+sampleStddev(-1e200,1e200) = 1.414213562373095e+200
+sampleStddev(0,0) = 0
+```
+

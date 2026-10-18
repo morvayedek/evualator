@@ -38,6 +38,7 @@ final class ExtendedMath {
         map.put("harmonicMean", new FunctionSpec(1, 256, ExtendedMath::harmonicMean));
         map.put("meanAbsoluteDeviation", new FunctionSpec(1, 256, ExtendedMath::meanAbsoluteDeviation));
         map.put("medianAbsoluteDeviation", new FunctionSpec(1, 256, ExtendedMath::medianAbsoluteDeviation));
+        map.put("sampleStddev", new FunctionSpec(2, 256, ExtendedMath::sampleStddev));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -285,5 +286,18 @@ final class ExtendedMath {
         for(int i=0;i<n;i++) sorted[i]=Math.abs(a[i]-center);
         java.util.Arrays.sort(sorted);
         return n%2==1?sorted[m]:sorted[m-1]/2+sorted[m]/2;
+    }
+
+    /** Sample standard deviation with scaled observations and n-1 denominator. */
+    private static double sampleStddev(double[] a) {
+        
+        double scale=0;
+        for(double x:a) scale=Math.max(scale,Math.abs(x));
+        if(scale==0) return 0;
+        double mean=0;
+        for(double x:a) mean+=x/scale/a.length;
+        double sum=0;
+        for(double x:a) { double d=x/scale-mean; sum+=d*d; }
+        return scale*Math.sqrt(sum/(a.length-1));
     }
 }
