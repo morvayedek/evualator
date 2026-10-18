@@ -49,6 +49,7 @@ final class ExtendedMath {
         map.put("circleArea", new FunctionSpec(1, 1, ExtendedMath::circleArea));
         map.put("circleCircumference", new FunctionSpec(1, 1, ExtendedMath::circleCircumference));
         map.put("sphereVolume", new FunctionSpec(1, 1, ExtendedMath::sphereVolume));
+        map.put("sphereArea", new FunctionSpec(1, 1, ExtendedMath::sphereArea));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -384,5 +385,10 @@ final class ExtendedMath {
     /** Volume of a sphere with a nonnegative radius. */
     private static double sphereVolume(double[] a) {
         Functions.require(a[0]>=0,"Radius must be nonnegative"); return ((4*Math.PI/3*a[0])*a[0])*a[0];
+    }
+
+    /** Surface area of a sphere with a nonnegative radius. */
+    private static double sphereArea(double[] a) {
+        Functions.require(a[0]>=0,"Radius must be nonnegative"); return (4*Math.PI*a[0])*a[0];
     }
 }

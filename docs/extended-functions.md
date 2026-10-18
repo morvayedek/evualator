@@ -602,3 +602,17 @@ sphereVolume(2) = 33.510321638291124
 
 Rejected examples: `sphereVolume(-1)`.
 
+## `sphereArea`
+
+Surface area of a sphere with a nonnegative radius.
+
+Arguments: 1.
+
+```text
+sphereArea(1) = 12.566370614359172
+sphereArea(0) = 0
+sphereArea(2) = 50.26548245743669
+```
+
+Rejected examples: `sphereArea(-1)`.
+

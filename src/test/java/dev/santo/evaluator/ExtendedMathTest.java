@@ -249,6 +249,11 @@ public final class ExtendedMathTest {
         check(e, "sphereVolume(2)", 33.510321638291124);
         reject(e, "sphereVolume(-1)");
         reject(e, "sphereVolume()");
+        check(e, "sphereArea(1)", 12.566370614359172);
+        check(e, "sphereArea(0)", 0.0);
+        check(e, "sphereArea(2)", 50.26548245743669);
+        reject(e, "sphereArea(-1)");
+        reject(e, "sphereArea()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
