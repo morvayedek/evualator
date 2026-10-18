@@ -35,6 +35,14 @@ public final class ExtendedMathTest {
         check(e, "sinc(-pi)", 0.0);
         check(e, "sinc(1e-20)", 1.0);
         reject(e, "sinc()");
+        check(e, "logBase(8,2)", 3.0);
+        check(e, "logBase(100,10)", 2.0);
+        check(e, "logBase(.25,.5)", 2.0);
+        check(e, "logBase(1,3)", 0.0);
+        reject(e, "logBase(0,2)");
+        reject(e, "logBase(2,1)");
+        reject(e, "logBase(2,-1)");
+        reject(e, "logBase()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

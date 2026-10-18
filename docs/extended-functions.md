@@ -75,3 +75,18 @@ sinc(-pi) = 0
 sinc(1e-20) = 1
 ```
 
+## `logBase`
+
+Logarithm of a positive value in any positive base other than one.
+
+Arguments: 2.
+
+```text
+logBase(8,2) = 3
+logBase(100,10) = 2
+logBase(.25,.5) = 2
+logBase(1,3) = 0
+```
+
+Rejected examples: `logBase(0,2)`, `logBase(2,1)`, `logBase(2,-1)`.
+
