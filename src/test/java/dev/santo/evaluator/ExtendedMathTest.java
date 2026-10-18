@@ -30,11 +30,17 @@ public final class ExtendedMathTest {
         reject(e, "reciprocal(-0)");
         reject(e, "reciprocal(5e-324)");
         reject(e, "reciprocal()");
+        check(e, "sinc(0)", 1.0);
+        check(e, "sinc(pi)", 0.0);
+        check(e, "sinc(-pi)", 0.0);
+        check(e, "sinc(1e-20)", 1.0);
+        reject(e, "sinc()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
         double actual=e.evaluate(expression);
         double tolerance=Math.max(Math.ulp(expected)*8,Math.abs(expected)*2e-12);
+        if(expected==0) tolerance=1e-14;
         if(!Double.isFinite(actual) || Math.abs(actual-expected)>tolerance)
             throw new AssertionError(expression+": expected "+expected+", received "+actual);
         checks++;
