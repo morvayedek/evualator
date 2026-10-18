@@ -119,6 +119,10 @@ public final class ExtendedMathTest {
         check(e, "cube(0)", 0.0);
         reject(e, "cube(1e200)");
         reject(e, "cube()");
+        check(e, "fma(2,3,4)", 10.0);
+        check(e, "fma(1e308,2,-1e308)", 1e+308);
+        check(e, "fma(-2,3,6)", 0.0);
+        reject(e, "fma()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
