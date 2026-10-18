@@ -536,3 +536,15 @@ dot(2,-3) = -6
 
 Rejected examples: `dot(1,2,3)`.
 
+## `distance2d`
+
+Euclidean distance between two planar points (x1,y1,x2,y2).
+
+Arguments: 4.
+
+```text
+distance2d(0,0,3,4) = 5
+distance2d(-1,-1,-1,-1) = 0
+distance2d(0,0,1e300,0) = 1e+300
+```
+

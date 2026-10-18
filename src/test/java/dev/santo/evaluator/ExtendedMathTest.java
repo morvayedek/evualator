@@ -226,6 +226,10 @@ public final class ExtendedMathTest {
         check(e, "dot(2,-3)", -6.0);
         reject(e, "dot(1,2,3)");
         reject(e, "dot()");
+        check(e, "distance2d(0,0,3,4)", 5.0);
+        check(e, "distance2d(-1,-1,-1,-1)", 0.0);
+        check(e, "distance2d(0,0,1e300,0)", 1e+300);
+        reject(e, "distance2d()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
