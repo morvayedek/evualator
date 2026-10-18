@@ -33,6 +33,7 @@ final class ExtendedMath {
         map.put("roundToMultiple", new FunctionSpec(2, 2, ExtendedMath::roundToMultiple));
         map.put("quantile", new FunctionSpec(2, 256, ExtendedMath::quantile));
         map.put("rangeSpread", new FunctionSpec(1, 256, ExtendedMath::rangeSpread));
+        map.put("rms", new FunctionSpec(1, 256, ExtendedMath::rms));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -226,5 +227,16 @@ final class ExtendedMath {
     /** Maximum observation minus minimum observation. */
     private static double rangeSpread(double[] a) {
         return java.util.Arrays.stream(a).max().orElseThrow()-java.util.Arrays.stream(a).min().orElseThrow();
+    }
+
+    /** Root-mean-square with scaling to avoid overflow from squaring large observations. */
+    private static double rms(double[] a) {
+        
+        double scale=0;
+        for(double x:a) scale=Math.max(scale,Math.abs(x));
+        if(scale==0) return 0;
+        double sum=0;
+        for(double x:a) { double y=x/scale; sum+=y*y; }
+        return scale*Math.sqrt(sum/a.length);
     }
 }

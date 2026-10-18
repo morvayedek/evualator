@@ -164,6 +164,11 @@ public final class ExtendedMathTest {
         check(e, "rangeSpread(2,2)", 0.0);
         reject(e, "rangeSpread(-1e308,1e308)");
         reject(e, "rangeSpread()");
+        check(e, "rms(3,4)", 3.5355339059327378);
+        check(e, "rms(-2,2)", 2.0);
+        check(e, "rms(0,0)", 0.0);
+        check(e, "rms(1e308,1e308)", 1e+308);
+        reject(e, "rms()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
