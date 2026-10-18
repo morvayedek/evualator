@@ -631,3 +631,18 @@ coneVolume(1e200,1e-200) = 1.0471975511965977e+200
 
 Rejected examples: `coneVolume(-1,2)`, `coneVolume(1,-1)`.
 
+## `cylinderVolume`
+
+Volume of a cylinder from nonnegative radius and height; decimal accumulation avoids intermediate overflow.
+
+Arguments: 2.
+
+```text
+cylinderVolume(1,3) = 9.42477796076938
+cylinderVolume(0,1) = 0
+cylinderVolume(1e308,0) = 0
+cylinderVolume(1e200,1e-200) = 3.141592653589793e+200
+```
+
+Rejected examples: `cylinderVolume(-1,2)`, `cylinderVolume(1,-1)`.
+
