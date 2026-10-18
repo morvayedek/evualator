@@ -114,6 +114,11 @@ public final class ExtendedMathTest {
         check(e, "square(0)", 0.0);
         reject(e, "square(1e308)");
         reject(e, "square()");
+        check(e, "cube(-3)", -27.0);
+        check(e, "cube(.5)", 0.125);
+        check(e, "cube(0)", 0.0);
+        reject(e, "cube(1e200)");
+        reject(e, "cube()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
