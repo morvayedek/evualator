@@ -702,3 +702,15 @@ fahrenheitToCelsius(212) = 100
 fahrenheitToCelsius(-40) = -40
 ```
 
+## `celsiusToFahrenheit`
+
+Convert Celsius to Fahrenheit.
+
+Arguments: 1.
+
+```text
+celsiusToFahrenheit(0) = 32
+celsiusToFahrenheit(100) = 212
+celsiusToFahrenheit(-40) = -40
+```
+
