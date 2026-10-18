@@ -139,6 +139,11 @@ public final class ExtendedMathTest {
         check(e, "exponent(0)", -1023.0);
         check(e, "exponent(5e-324)", -1023.0);
         reject(e, "exponent()");
+        check(e, "ieeeRemainder(7,4)", -1.0);
+        check(e, "ieeeRemainder(6,4)", -2.0);
+        check(e, "ieeeRemainder(-7,4)", 1.0);
+        reject(e, "ieeeRemainder(1,0)");
+        reject(e, "ieeeRemainder()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
