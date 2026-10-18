@@ -177,3 +177,16 @@ logistic(logit(.2)) = 0.2
 
 Rejected examples: `logit(0)`, `logit(1)`.
 
+## `softplus`
+
+Stable log(1+exp(x)) activation, retaining small negative tails.
+
+Arguments: 1.
+
+```text
+softplus(0) = 0.6931471805599453
+softplus(1000) = 1000
+softplus(-1000) = 0
+softplus(-10) = 4.539889921686465e-05
+```
+

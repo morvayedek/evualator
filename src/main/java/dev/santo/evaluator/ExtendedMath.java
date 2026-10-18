@@ -18,6 +18,7 @@ final class ExtendedMath {
         map.put("smootherstep", new FunctionSpec(3, 3, ExtendedMath::smootherstep));
         map.put("logistic", new FunctionSpec(1, 1, ExtendedMath::logistic));
         map.put("logit", new FunctionSpec(1, 1, ExtendedMath::logit));
+        map.put("softplus", new FunctionSpec(1, 1, ExtendedMath::softplus));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -116,5 +117,10 @@ final class ExtendedMath {
         
         Functions.require(a[0]>0 && a[0]<1, "logit requires 0 < p < 1");
         return Math.log(a[0])-Math.log1p(-a[0]);
+    }
+
+    /** Stable log(1+exp(x)) activation, retaining small negative tails. */
+    private static double softplus(double[] a) {
+        return Math.max(a[0],0)+Math.log1p(Math.exp(-Math.abs(a[0])));
     }
 }

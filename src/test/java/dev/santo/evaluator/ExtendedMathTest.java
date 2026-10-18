@@ -81,6 +81,11 @@ public final class ExtendedMathTest {
         reject(e, "logit(0)");
         reject(e, "logit(1)");
         reject(e, "logit()");
+        check(e, "softplus(0)", 0.6931471805599453);
+        check(e, "softplus(1000)", 1000.0);
+        check(e, "softplus(-1000)", 0.0);
+        check(e, "softplus(-10)", 4.539889921686465e-05);
+        reject(e, "softplus()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
