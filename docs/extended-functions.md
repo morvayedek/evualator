@@ -588,3 +588,17 @@ circleCircumference(2) = 12.566370614359172
 
 Rejected examples: `circleCircumference(-1)`.
 
+## `sphereVolume`
+
+Volume of a sphere with a nonnegative radius.
+
+Arguments: 1.
+
+```text
+sphereVolume(1) = 4.1887902047863905
+sphereVolume(0) = 0
+sphereVolume(2) = 33.510321638291124
+```
+
+Rejected examples: `sphereVolume(-1)`.
+
