@@ -201,6 +201,11 @@ public final class ExtendedMathTest {
         reject(e, "coefficientVariation(0,1)");
         reject(e, "coefficientVariation(-1,1)");
         reject(e, "coefficientVariation()");
+        check(e, "sumSquares(3,4)", 25.0);
+        check(e, "sumSquares(-2,2)", 8.0);
+        check(e, "sumSquares(0)", 0.0);
+        reject(e, "sumSquares(1e200)");
+        reject(e, "sumSquares()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
