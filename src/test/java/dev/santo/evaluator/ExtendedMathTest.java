@@ -221,6 +221,11 @@ public final class ExtendedMathTest {
         reject(e, "weightedMean(1,-1)");
         reject(e, "weightedMean(1,1,2)");
         reject(e, "weightedMean()");
+        check(e, "dot(1,3,2,4)", 11.0);
+        check(e, "dot(1e300,1e300,-1e300,1e300)", 0.0);
+        check(e, "dot(2,-3)", -6.0);
+        reject(e, "dot(1,2,3)");
+        reject(e, "dot()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
