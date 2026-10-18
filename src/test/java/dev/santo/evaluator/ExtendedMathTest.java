@@ -289,6 +289,10 @@ public final class ExtendedMathTest {
         check(e, "fahrenheitToCelsius(212)", 100.0);
         check(e, "fahrenheitToCelsius(-40)", -40.0);
         reject(e, "fahrenheitToCelsius()");
+        check(e, "celsiusToFahrenheit(0)", 32.0);
+        check(e, "celsiusToFahrenheit(100)", 212.0);
+        check(e, "celsiusToFahrenheit(-40)", -40.0);
+        reject(e, "celsiusToFahrenheit()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

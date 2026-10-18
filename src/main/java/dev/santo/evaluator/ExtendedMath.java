@@ -56,6 +56,7 @@ final class ExtendedMath {
         map.put("triangleArea", new FunctionSpec(2, 2, ExtendedMath::triangleArea));
         map.put("trapezoidArea", new FunctionSpec(3, 3, ExtendedMath::trapezoidArea));
         map.put("fahrenheitToCelsius", new FunctionSpec(1, 1, ExtendedMath::fahrenheitToCelsius));
+        map.put("celsiusToFahrenheit", new FunctionSpec(1, 1, ExtendedMath::celsiusToFahrenheit));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -426,5 +427,10 @@ final class ExtendedMath {
     /** Convert Fahrenheit to Celsius without an overflowing initial subtraction. */
     private static double fahrenheitToCelsius(double[] a) {
         return (a[0]/9)*5-(32.0/9)*5;
+    }
+
+    /** Convert Celsius to Fahrenheit. */
+    private static double celsiusToFahrenheit(double[] a) {
+        return Math.fma(a[0],1.8,32);
     }
 }
