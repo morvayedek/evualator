@@ -370,6 +370,14 @@ public final class ExtendedMathTest {
         reject(e, "binomialProbability(2,1,2)");
         reject(e, "binomialProbability(10001,1,.5)");
         reject(e, "binomialProbability()");
+        check(e, "poissonProbability(3,2)", 0.18044704431548356);
+        check(e, "poissonProbability(0,0)", 1.0);
+        check(e, "poissonProbability(1,0)", 0.0);
+        check(e, "poissonProbability(0,1)", 0.36787944117144233);
+        reject(e, "poissonProbability(-1,1)");
+        reject(e, "poissonProbability(2,-1)");
+        reject(e, "poissonProbability(10001,1)");
+        reject(e, "poissonProbability()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
