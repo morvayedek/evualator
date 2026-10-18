@@ -150,3 +150,16 @@ smootherstep(0,1,.25) = 0.103515625
 
 Rejected examples: `smootherstep(2,1,1)`.
 
+## `logistic`
+
+Overflow-safe logistic activation for arbitrarily large finite inputs.
+
+Arguments: 1.
+
+```text
+logistic(0) = 0.5
+logistic(1000) = 1
+logistic(-1000) = 0
+logistic(1) = 0.7310585786300049
+```
+
