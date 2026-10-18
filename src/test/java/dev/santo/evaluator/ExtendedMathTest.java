@@ -244,6 +244,11 @@ public final class ExtendedMathTest {
         check(e, "circleCircumference(2)", 12.566370614359172);
         reject(e, "circleCircumference(-1)");
         reject(e, "circleCircumference()");
+        check(e, "sphereVolume(1)", 4.1887902047863905);
+        check(e, "sphereVolume(0)", 0.0);
+        check(e, "sphereVolume(2)", 33.510321638291124);
+        reject(e, "sphereVolume(-1)");
+        reject(e, "sphereVolume()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
