@@ -54,6 +54,7 @@ final class ExtendedMath {
         map.put("cylinderVolume", new FunctionSpec(2, 2, ExtendedMath::cylinderVolume));
         map.put("rectangleDiagonal", new FunctionSpec(2, 2, ExtendedMath::rectangleDiagonal));
         map.put("triangleArea", new FunctionSpec(2, 2, ExtendedMath::triangleArea));
+        map.put("trapezoidArea", new FunctionSpec(3, 3, ExtendedMath::trapezoidArea));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -414,5 +415,10 @@ final class ExtendedMath {
     /** Triangle area from a nonnegative base and perpendicular height, without premature underflow. */
     private static double triangleArea(double[] a) {
         Functions.require(a[0]>=0 && a[1]>=0,"Base and height must be nonnegative"); return java.math.BigDecimal.valueOf(a[0]).multiply(java.math.BigDecimal.valueOf(a[1])).multiply(java.math.BigDecimal.valueOf(.5)).doubleValue();
+    }
+
+    /** Trapezoid area from two nonnegative parallel side lengths and a nonnegative height, using decimal intermediates. */
+    private static double trapezoidArea(double[] a) {
+        Functions.require(a[0]>=0 && a[1]>=0 && a[2]>=0,"Side lengths and height must be nonnegative"); return java.math.BigDecimal.valueOf(a[0]).add(java.math.BigDecimal.valueOf(a[1])).multiply(java.math.BigDecimal.valueOf(a[2])).multiply(java.math.BigDecimal.valueOf(.5)).doubleValue();
     }
 }

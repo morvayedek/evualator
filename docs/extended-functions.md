@@ -675,3 +675,18 @@ triangleArea(1e-300,1e300) = 0.5
 
 Rejected examples: `triangleArea(1,-1)`.
 
+## `trapezoidArea`
+
+Trapezoid area from two nonnegative parallel side lengths and a nonnegative height, using decimal intermediates.
+
+Arguments: 3.
+
+```text
+trapezoidArea(2,4,3) = 9
+trapezoidArea(0,0,3) = 0
+trapezoidArea(1e308,1e308,1) = 1e+308
+trapezoidArea(1e-300,1e-300,1e300) = 1
+```
+
+Rejected examples: `trapezoidArea(-1,2,3)`.
+
