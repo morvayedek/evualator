@@ -62,3 +62,16 @@ reciprocal(1e300) = 1e-300
 
 Rejected examples: `reciprocal(0)`, `reciprocal(-0)`, `reciprocal(5e-324)`.
 
+## `sinc`
+
+Unnormalised sinc, sin(x)/x, with its continuous value at zero.
+
+Arguments: 1.
+
+```text
+sinc(0) = 1
+sinc(pi) = 0
+sinc(-pi) = 0
+sinc(1e-20) = 1
+```
+

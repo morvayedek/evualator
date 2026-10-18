@@ -10,6 +10,7 @@ final class ExtendedMath {
         map.put("acosh", new FunctionSpec(1, 1, ExtendedMath::acosh));
         map.put("atanh", new FunctionSpec(1, 1, ExtendedMath::atanh));
         map.put("reciprocal", new FunctionSpec(1, 1, ExtendedMath::reciprocal));
+        map.put("sinc", new FunctionSpec(1, 1, ExtendedMath::sinc));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -41,5 +42,10 @@ final class ExtendedMath {
         
         Functions.require(a[0] != 0, "reciprocal requires a nonzero value");
         return 1/a[0];
+    }
+
+    /** Unnormalised sinc, sin(x)/x, with its continuous value at zero. */
+    private static double sinc(double[] a) {
+        return a[0] == 0 ? 1 : Math.sin(a[0])/a[0];
     }
 }
