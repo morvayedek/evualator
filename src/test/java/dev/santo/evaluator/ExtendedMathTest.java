@@ -254,6 +254,13 @@ public final class ExtendedMathTest {
         check(e, "sphereArea(2)", 50.26548245743669);
         reject(e, "sphereArea(-1)");
         reject(e, "sphereArea()");
+        check(e, "coneVolume(1,3)", 3.141592653589793);
+        check(e, "coneVolume(0,1)", 0.0);
+        check(e, "coneVolume(1e308,0)", 0.0);
+        check(e, "coneVolume(1e200,1e-200)", 1.0471975511965977e+200);
+        reject(e, "coneVolume(-1,2)");
+        reject(e, "coneVolume(1,-1)");
+        reject(e, "coneVolume()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

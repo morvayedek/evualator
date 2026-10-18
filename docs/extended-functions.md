@@ -616,3 +616,18 @@ sphereArea(2) = 50.26548245743669
 
 Rejected examples: `sphereArea(-1)`.
 
+## `coneVolume`
+
+Volume of a cone from nonnegative radius and height; decimal accumulation avoids intermediate overflow.
+
+Arguments: 2.
+
+```text
+coneVolume(1,3) = 3.141592653589793
+coneVolume(0,1) = 0
+coneVolume(1e308,0) = 0
+coneVolume(1e200,1e-200) = 1.0471975511965977e+200
+```
+
+Rejected examples: `coneVolume(-1,2)`, `coneVolume(1,-1)`.
+
