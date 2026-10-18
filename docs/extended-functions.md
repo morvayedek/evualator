@@ -491,3 +491,19 @@ sumSquares(0) = 0
 
 Rejected examples: `sumSquares(1e200)`.
 
+## `product`
+
+Product accumulated in decimal arithmetic to avoid intermediate double overflow or underflow.
+
+Arguments: 1..256.
+
+```text
+product(2,3,4) = 24
+product(-2,3) = -6
+product(1e300,1e300,1e-300) = 1e+300
+product(1e-300,1e-300,1e300) = 1e-300
+product(1e300,1e300,0) = 0
+```
+
+Rejected examples: `product(1e300,1e300)`.
+
