@@ -339,6 +339,13 @@ public final class ExtendedMathTest {
         reject(e, "nextPrime(-1)");
         reject(e, "nextPrime(2147483629)");
         reject(e, "nextPrime()");
+        check(e, "divisorCount(1)", 1.0);
+        check(e, "divisorCount(12)", 6.0);
+        check(e, "divisorCount(36)", 9.0);
+        check(e, "divisorCount(97)", 2.0);
+        reject(e, "divisorCount(0)");
+        reject(e, "divisorCount(1.5)");
+        reject(e, "divisorCount()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
