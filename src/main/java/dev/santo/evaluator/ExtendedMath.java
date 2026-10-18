@@ -68,6 +68,7 @@ final class ExtendedMath {
         map.put("divisorCount", new FunctionSpec(1, 1, ExtendedMath::divisorCount));
         map.put("fibonacci", new FunctionSpec(1, 1, ExtendedMath::fibonacci));
         map.put("triangular", new FunctionSpec(1, 1, ExtendedMath::triangular));
+        map.put("binomialProbability", new FunctionSpec(3, 3, ExtendedMath::binomialProbability));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -521,5 +522,17 @@ final class ExtendedMath {
         long n=Functions.integer(a[0]);
         Functions.require(n>=0 && n<=134217727,"triangular requires an integer in [0,134217727]");
         return n*(n+1)/2;
+    }
+
+    /** Binomial probability mass P(X=k) for n trials and probability p; n <= 10000. */
+    private static double binomialProbability(double[] a) {
+        
+        long n=Functions.integer(a[0]),k=Functions.integer(a[1]); double p=a[2];
+        Functions.require(n>=0 && n<=10000 && k>=0 && k<=n && p>=0 && p<=1,"binomialProbability requires 0 <= k <= n <= 10000 and p in [0,1]");
+        if(p==0) return k==0?1:0;
+        if(p==1) return k==n?1:0;
+        long r=Math.min(k,n-k); double coefficient=0;
+        for(long i=1;i<=r;i++) coefficient+=Math.log(n-r+i)-Math.log(i);
+        return Math.exp(coefficient+k*Math.log(p)+(n-k)*Math.log1p(-p));
     }
 }
