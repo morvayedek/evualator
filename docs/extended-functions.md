@@ -190,3 +190,16 @@ softplus(-1000) = 0
 softplus(-10) = 4.539889921686465e-05
 ```
 
+## `softsign`
+
+Bounded softsign activation x/(1+abs(x)).
+
+Arguments: 1.
+
+```text
+softsign(0) = 0
+softsign(2) = 0.6666666666666666
+softsign(-2) = -0.6666666666666666
+softsign(1e300) = 1
+```
+
