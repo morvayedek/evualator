@@ -1,0 +1,31 @@
+package dev.santo.evaluator;
+
+/** Examples and domain/arity boundaries for the extended function catalog. */
+public final class ExtendedMathTest {
+    private static int checks;
+    public static void main(String[] args) {
+        var e = new Evaluator();
+        check(e, "asinh(0)", 0.0);
+        check(e, "asinh(1)", 0.881373587019543);
+        check(e, "asinh(-1)", -0.881373587019543);
+        check(e, "asinh(1e300)", 691.4686750787737);
+        check(e, "asinh(1e-20)", 1e-20);
+        reject(e, "asinh()");
+        System.out.println("PASS: " + checks + " extended numerical checks");
+    }
+    private static void check(Evaluator e, String expression, double expected) {
+        double actual=e.evaluate(expression);
+        double tolerance=Math.max(Math.ulp(expected)*8,Math.abs(expected)*2e-12);
+        if(!Double.isFinite(actual) || Math.abs(actual-expected)>tolerance)
+            throw new AssertionError(expression+": expected "+expected+", received "+actual);
+        checks++;
+    }
+    private static void reject(Evaluator e, String expression) {
+        try { e.evaluate(expression); throw new AssertionError("Accepted "+expression); }
+        catch(EvaluationException expected) {
+            if(expected.position()<0 || expected.position()>expression.length())
+                throw new AssertionError("Bad diagnostic offset for "+expression);
+            checks++;
+        }
+    }
+}

@@ -67,6 +67,7 @@ final class Functions {
         map.put("log1p", new FunctionSpec(1, 1, a -> Math.log1p(a[0])));
         map.put("expm1", new FunctionSpec(1, 1, a -> Math.expm1(a[0])));
         map.put("roundPlaces", new FunctionSpec(2, 2, a -> roundPlaces(a[0],a[1])));
+        ExtendedMath.register(map);
         // REGISTRATIONS
         return Map.copyOf(map);
     }

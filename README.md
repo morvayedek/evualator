@@ -30,6 +30,7 @@ The PowerShell build is verified on Windows with JDK 21, targeting Java 17.
 Supports decimal and scientific numbers, `+`, `-`, `*`, `/`, `%`, `^`,
 parentheses, variables, constants and validated function calls. See the
 [grammar and numerical contract](docs/grammar.md), [function catalog](docs/functions.md),
+[extended numerical functions](docs/extended-functions.md),
 [CLI reference](docs/cli.md) and [Java API cookbook](docs/java-api.md).
 Evaluation uses IEEE 754 `double`: `0.1 + 0.2` is approximately `0.3`.
 
