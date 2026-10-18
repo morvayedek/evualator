@@ -59,6 +59,7 @@ final class ExtendedMath {
         map.put("celsiusToFahrenheit", new FunctionSpec(1, 1, ExtendedMath::celsiusToFahrenheit));
         map.put("celsiusToKelvin", new FunctionSpec(1, 1, ExtendedMath::celsiusToKelvin));
         map.put("kelvinToCelsius", new FunctionSpec(1, 1, ExtendedMath::kelvinToCelsius));
+        map.put("degreesWrap", new FunctionSpec(1, 1, ExtendedMath::degreesWrap));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -444,5 +445,10 @@ final class ExtendedMath {
     /** Convert nonnegative Kelvin temperatures to Celsius. */
     private static double kelvinToCelsius(double[] a) {
         Functions.require(a[0]>=0,"Kelvin temperature must be nonnegative"); return a[0]-273.15;
+    }
+
+    /** Canonical degree angle in [-180,180), including negative and multiple-turn inputs. */
+    private static double degreesWrap(double[] a) {
+        double x=a[0]%360; if(x>=180) x-=360; if(x< -180) x+=360; return x==0?0:x;
     }
 }

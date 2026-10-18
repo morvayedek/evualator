@@ -742,3 +742,16 @@ kelvinToCelsius(373.15) = 100
 
 Rejected examples: `kelvinToCelsius(-1)`.
 
+## `degreesWrap`
+
+Canonical degree angle in [-180,180), including negative and multiple-turn inputs.
+
+Arguments: 1.
+
+```text
+degreesWrap(370) = 10
+degreesWrap(-190) = 170
+degreesWrap(180) = -180
+degreesWrap(720) = 0
+```
+
