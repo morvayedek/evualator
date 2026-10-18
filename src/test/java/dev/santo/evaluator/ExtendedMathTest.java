@@ -298,6 +298,11 @@ public final class ExtendedMathTest {
         check(e, "celsiusToKelvin(100)", 373.15);
         reject(e, "celsiusToKelvin(-274)");
         reject(e, "celsiusToKelvin()");
+        check(e, "kelvinToCelsius(0)", -273.15);
+        check(e, "kelvinToCelsius(273.15)", 0.0);
+        check(e, "kelvinToCelsius(373.15)", 100.0);
+        reject(e, "kelvinToCelsius(-1)");
+        reject(e, "kelvinToCelsius()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

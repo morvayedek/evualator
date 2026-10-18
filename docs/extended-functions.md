@@ -728,3 +728,17 @@ celsiusToKelvin(100) = 373.15
 
 Rejected examples: `celsiusToKelvin(-274)`.
 
+## `kelvinToCelsius`
+
+Convert nonnegative Kelvin temperatures to Celsius.
+
+Arguments: 1.
+
+```text
+kelvinToCelsius(0) = -273.15
+kelvinToCelsius(273.15) = 0
+kelvinToCelsius(373.15) = 100
+```
+
+Rejected examples: `kelvinToCelsius(-1)`.
+

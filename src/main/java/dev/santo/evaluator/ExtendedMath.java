@@ -58,6 +58,7 @@ final class ExtendedMath {
         map.put("fahrenheitToCelsius", new FunctionSpec(1, 1, ExtendedMath::fahrenheitToCelsius));
         map.put("celsiusToFahrenheit", new FunctionSpec(1, 1, ExtendedMath::celsiusToFahrenheit));
         map.put("celsiusToKelvin", new FunctionSpec(1, 1, ExtendedMath::celsiusToKelvin));
+        map.put("kelvinToCelsius", new FunctionSpec(1, 1, ExtendedMath::kelvinToCelsius));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -438,5 +439,10 @@ final class ExtendedMath {
     /** Convert Celsius to Kelvin, rejecting temperatures below absolute zero. */
     private static double celsiusToKelvin(double[] a) {
         Functions.require(a[0]>=-273.15,"Temperature is below absolute zero"); return a[0]+273.15;
+    }
+
+    /** Convert nonnegative Kelvin temperatures to Celsius. */
+    private static double kelvinToCelsius(double[] a) {
+        Functions.require(a[0]>=0,"Kelvin temperature must be nonnegative"); return a[0]-273.15;
     }
 }
