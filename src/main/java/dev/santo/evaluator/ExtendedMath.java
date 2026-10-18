@@ -24,6 +24,7 @@ final class ExtendedMath {
         map.put("leakyRelu", new FunctionSpec(2, 2, ExtendedMath::leakyRelu));
         map.put("elu", new FunctionSpec(2, 2, ExtendedMath::elu));
         map.put("square", new FunctionSpec(1, 1, ExtendedMath::square));
+        map.put("cube", new FunctionSpec(1, 1, ExtendedMath::cube));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -156,5 +157,10 @@ final class ExtendedMath {
     /** Square a value; the evaluator rejects results outside the finite-double range. */
     private static double square(double[] a) {
         return a[0]*a[0];
+    }
+
+    /** Cube a value, preserving its sign. */
+    private static double cube(double[] a) {
+        return a[0]*a[0]*a[0];
     }
 }

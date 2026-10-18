@@ -260,3 +260,17 @@ square(0) = 0
 
 Rejected examples: `square(1e308)`.
 
+## `cube`
+
+Cube a value, preserving its sign.
+
+Arguments: 1.
+
+```text
+cube(-3) = -27
+cube(.5) = 0.125
+cube(0) = 0
+```
+
+Rejected examples: `cube(1e200)`.
+
