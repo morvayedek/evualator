@@ -384,3 +384,16 @@ rangeSpread(2,2) = 0
 
 Rejected examples: `rangeSpread(-1e308,1e308)`.
 
+## `rms`
+
+Root-mean-square with scaling to avoid overflow from squaring large observations.
+
+Arguments: 1..256.
+
+```text
+rms(3,4) = 3.5355339059327378
+rms(-2,2) = 2
+rms(0,0) = 0
+rms(1e308,1e308) = 1e+308
+```
+
