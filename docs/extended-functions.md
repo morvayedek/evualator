@@ -903,3 +903,18 @@ poissonProbability(0,1) = 0.36787944117144233
 
 Rejected examples: `poissonProbability(-1,1)`, `poissonProbability(2,-1)`, `poissonProbability(10001,1)`.
 
+## `normalPdf`
+
+Normal probability density at x with a finite mean and positive standard deviation.
+
+Arguments: 3.
+
+```text
+normalPdf(0,0,1) = 0.3989422804014327
+normalPdf(1,0,1) = 0.24197072451914337
+normalPdf(2,2,2) = 0.19947114020071635
+normalPdf(1000,0,1) = 0
+normalPdf(1e308,-1e308,1e308) = 5.3990966513188e-310
+```
+
+Rejected examples: `normalPdf(0,0,0)`, `normalPdf(0,0,-1)`.
