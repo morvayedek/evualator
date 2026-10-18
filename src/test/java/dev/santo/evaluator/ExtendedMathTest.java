@@ -182,6 +182,10 @@ public final class ExtendedMathTest {
         reject(e, "harmonicMean(0,1)");
         reject(e, "harmonicMean(-1,2)");
         reject(e, "harmonicMean()");
+        check(e, "meanAbsoluteDeviation(1,2,3)", 0.6666666666666666);
+        check(e, "meanAbsoluteDeviation(2,2)", 0.0);
+        check(e, "meanAbsoluteDeviation(-1e308,1e308)", 1e+308);
+        reject(e, "meanAbsoluteDeviation()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
