@@ -246,3 +246,17 @@ elu(-1000,2) = -2
 
 Rejected examples: `elu(-1,0)`.
 
+## `square`
+
+Square a value; the evaluator rejects results outside the finite-double range.
+
+Arguments: 1.
+
+```text
+square(-3) = 9
+square(.5) = 0.25
+square(0) = 0
+```
+
+Rejected examples: `square(1e308)`.
+
