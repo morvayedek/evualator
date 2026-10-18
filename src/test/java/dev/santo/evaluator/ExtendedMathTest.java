@@ -159,6 +159,11 @@ public final class ExtendedMathTest {
         reject(e, "quantile(-.1,1,2)");
         reject(e, "quantile(1.1,1,2)");
         reject(e, "quantile()");
+        check(e, "rangeSpread(1,8,-2)", 10.0);
+        check(e, "rangeSpread(4)", 0.0);
+        check(e, "rangeSpread(2,2)", 0.0);
+        reject(e, "rangeSpread(-1e308,1e308)");
+        reject(e, "rangeSpread()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

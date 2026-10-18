@@ -370,3 +370,17 @@ quantile(.7,5) = 5
 
 Rejected examples: `quantile(-.1,1,2)`, `quantile(1.1,1,2)`.
 
+## `rangeSpread`
+
+Maximum observation minus minimum observation.
+
+Arguments: 1..256.
+
+```text
+rangeSpread(1,8,-2) = 10
+rangeSpread(4) = 0
+rangeSpread(2,2) = 0
+```
+
+Rejected examples: `rangeSpread(-1e308,1e308)`.
+
