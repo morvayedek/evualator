@@ -322,6 +322,16 @@ public final class ExtendedMathTest {
         check(e, "polarY(0,3)", 0.0);
         reject(e, "polarY(-1,0)");
         reject(e, "polarY()");
+        check(e, "isPrime(0)", 0.0);
+        check(e, "isPrime(1)", 0.0);
+        check(e, "isPrime(2)", 1.0);
+        check(e, "isPrime(97)", 1.0);
+        check(e, "isPrime(99)", 0.0);
+        check(e, "isPrime(2147483647)", 1.0);
+        reject(e, "isPrime(-1)");
+        reject(e, "isPrime(2147483648)");
+        reject(e, "isPrime(1.5)");
+        reject(e, "isPrime()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
