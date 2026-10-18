@@ -22,6 +22,7 @@ final class ExtendedMath {
         map.put("softsign", new FunctionSpec(1, 1, ExtendedMath::softsign));
         map.put("relu", new FunctionSpec(1, 1, ExtendedMath::relu));
         map.put("leakyRelu", new FunctionSpec(2, 2, ExtendedMath::leakyRelu));
+        map.put("elu", new FunctionSpec(2, 2, ExtendedMath::elu));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -142,5 +143,12 @@ final class ExtendedMath {
         
         Functions.require(a[1]>=0 && a[1]<=1, "leakyRelu slope must be in [0,1]");
         return a[0]>=0 ? a[0] : a[0]*a[1];
+    }
+
+    /** Exponential linear activation with a positive alpha parameter. */
+    private static double elu(double[] a) {
+        
+        Functions.require(a[1]>0,"elu requires alpha > 0");
+        return a[0]>=0 ? a[0] : a[1]*Math.expm1(a[0]);
     }
 }

@@ -231,3 +231,18 @@ leakyRelu(-3,1) = -3
 
 Rejected examples: `leakyRelu(1,-1)`, `leakyRelu(1,2)`.
 
+## `elu`
+
+Exponential linear activation with a positive alpha parameter.
+
+Arguments: 2.
+
+```text
+elu(2,1) = 2
+elu(0,2) = 0
+elu(-1,1) = -0.6321205588285577
+elu(-1000,2) = -2
+```
+
+Rejected examples: `elu(-1,0)`.
+

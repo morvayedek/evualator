@@ -103,6 +103,12 @@ public final class ExtendedMathTest {
         reject(e, "leakyRelu(1,-1)");
         reject(e, "leakyRelu(1,2)");
         reject(e, "leakyRelu()");
+        check(e, "elu(2,1)", 2.0);
+        check(e, "elu(0,2)", 0.0);
+        check(e, "elu(-1,1)", -0.6321205588285577);
+        check(e, "elu(-1000,2)", -2.0);
+        reject(e, "elu(-1,0)");
+        reject(e, "elu()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
