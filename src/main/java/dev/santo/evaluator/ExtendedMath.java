@@ -11,6 +11,7 @@ final class ExtendedMath {
         map.put("atanh", new FunctionSpec(1, 1, ExtendedMath::atanh));
         map.put("reciprocal", new FunctionSpec(1, 1, ExtendedMath::reciprocal));
         map.put("sinc", new FunctionSpec(1, 1, ExtendedMath::sinc));
+        map.put("logBase", new FunctionSpec(2, 2, ExtendedMath::logBase));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -47,5 +48,12 @@ final class ExtendedMath {
     /** Unnormalised sinc, sin(x)/x, with its continuous value at zero. */
     private static double sinc(double[] a) {
         return a[0] == 0 ? 1 : Math.sin(a[0])/a[0];
+    }
+
+    /** Logarithm of a positive value in any positive base other than one. */
+    private static double logBase(double[] a) {
+        
+        Functions.require(a[0]>0 && a[1]>0 && a[1]!=1, "logBase requires x > 0 and base > 0, base != 1");
+        return Math.log(a[0])/Math.log(a[1]);
     }
 }
