@@ -397,3 +397,18 @@ rms(0,0) = 0
 rms(1e308,1e308) = 1e+308
 ```
 
+## `geometricMean`
+
+Geometric mean of strictly positive observations, calculated in log space.
+
+Arguments: 1..256.
+
+```text
+geometricMean(1,4) = 2
+geometricMean(2,8) = 4
+geometricMean(1e200,1e200) = 1e+200
+geometricMean(1) = 1
+```
+
+Rejected examples: `geometricMean(0,1)`, `geometricMean(-1,2)`.
+

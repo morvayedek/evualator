@@ -169,6 +169,13 @@ public final class ExtendedMathTest {
         check(e, "rms(0,0)", 0.0);
         check(e, "rms(1e308,1e308)", 1e+308);
         reject(e, "rms()");
+        check(e, "geometricMean(1,4)", 2.0);
+        check(e, "geometricMean(2,8)", 4.0);
+        check(e, "geometricMean(1e200,1e200)", 1e+200);
+        check(e, "geometricMean(1)", 1.0);
+        reject(e, "geometricMean(0,1)");
+        reject(e, "geometricMean(-1,2)");
+        reject(e, "geometricMean()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
