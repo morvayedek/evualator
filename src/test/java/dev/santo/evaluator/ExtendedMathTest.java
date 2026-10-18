@@ -151,6 +151,14 @@ public final class ExtendedMathTest {
         reject(e, "roundToMultiple(1,0)");
         reject(e, "roundToMultiple(1,-1)");
         reject(e, "roundToMultiple()");
+        check(e, "quantile(.5,9,1,4,2)", 3.0);
+        check(e, "quantile(.25,0,10,20,30)", 7.5);
+        check(e, "quantile(0,3,1,2)", 1.0);
+        check(e, "quantile(1,3,1,2)", 3.0);
+        check(e, "quantile(.7,5)", 5.0);
+        reject(e, "quantile(-.1,1,2)");
+        reject(e, "quantile(1.1,1,2)");
+        reject(e, "quantile()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

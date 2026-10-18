@@ -354,3 +354,19 @@ roundToMultiple(1e300,1e-300) = 1e+300
 
 Rejected examples: `roundToMultiple(1,0)`, `roundToMultiple(1,-1)`.
 
+## `quantile`
+
+Type-7 linearly interpolated quantile: probability first, then one or more observations.
+
+Arguments: 2..256.
+
+```text
+quantile(.5,9,1,4,2) = 3
+quantile(.25,0,10,20,30) = 7.5
+quantile(0,3,1,2) = 1
+quantile(1,3,1,2) = 3
+quantile(.7,5) = 5
+```
+
+Rejected examples: `quantile(-.1,1,2)`, `quantile(1.1,1,2)`.
+

@@ -31,6 +31,7 @@ final class ExtendedMath {
         map.put("exponent", new FunctionSpec(1, 1, ExtendedMath::exponent));
         map.put("ieeeRemainder", new FunctionSpec(2, 2, ExtendedMath::ieeeRemainder));
         map.put("roundToMultiple", new FunctionSpec(2, 2, ExtendedMath::roundToMultiple));
+        map.put("quantile", new FunctionSpec(2, 256, ExtendedMath::quantile));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -207,5 +208,17 @@ final class ExtendedMath {
         var value=java.math.BigDecimal.valueOf(a[0]);
         var step=java.math.BigDecimal.valueOf(a[1]);
         return value.divide(step,0,java.math.RoundingMode.HALF_EVEN).multiply(step).doubleValue();
+    }
+
+    /** Type-7 linearly interpolated quantile: probability first, then one or more observations. */
+    private static double quantile(double[] a) {
+        
+        Functions.require(a[0]>=0 && a[0]<=1,"quantile probability must be in [0,1]");
+        double[] values=java.util.Arrays.copyOfRange(a,1,a.length);
+        java.util.Arrays.sort(values);
+        double index=a[0]*(values.length-1);
+        int low=(int)Math.floor(index), high=Math.min(low+1,values.length-1);
+        double fraction=index-low;
+        return values[low]*(1-fraction)+values[high]*fraction;
     }
 }
