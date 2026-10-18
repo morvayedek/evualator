@@ -386,6 +386,10 @@ public final class ExtendedMathTest {
         reject(e, "normalPdf(0,0,0)");
         reject(e, "normalPdf(0,0,-1)");
         reject(e, "normalPdf()");
+        check(e, "weightedMean(1e308,0,1e-300,1)", 1e-300);
+        check(e, "weightedMean(1e-300,1,1e308,0)", 1e-300);
+        check(e, "weightedMean(1e308,1,-1e308,1,1,1)", 1.0/3);
+        check(e, "weightedMean(1e308,1e-308,1e-300,1)", 1.0);
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
