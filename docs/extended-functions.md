@@ -872,3 +872,19 @@ triangular(134217727) = 9007199187632128
 
 Rejected examples: `triangular(-1)`, `triangular(134217728)`.
 
+## `binomialProbability`
+
+Binomial probability mass P(X=k) for n trials and probability p; n <= 10000.
+
+Arguments: 3.
+
+```text
+binomialProbability(10,3,.5) = 0.1171875
+binomialProbability(0,0,.5) = 1
+binomialProbability(5,0,0) = 1
+binomialProbability(5,5,1) = 1
+binomialProbability(5,1,0) = 0
+```
+
+Rejected examples: `binomialProbability(3,4,.5)`, `binomialProbability(2,1,2)`, `binomialProbability(10001,1,.5)`.
+

@@ -361,6 +361,15 @@ public final class ExtendedMathTest {
         reject(e, "triangular(-1)");
         reject(e, "triangular(134217728)");
         reject(e, "triangular()");
+        check(e, "binomialProbability(10,3,.5)", 0.1171875);
+        check(e, "binomialProbability(0,0,.5)", 1.0);
+        check(e, "binomialProbability(5,0,0)", 1.0);
+        check(e, "binomialProbability(5,5,1)", 1.0);
+        check(e, "binomialProbability(5,1,0)", 0.0);
+        reject(e, "binomialProbability(3,4,.5)");
+        reject(e, "binomialProbability(2,1,2)");
+        reject(e, "binomialProbability(10001,1,.5)");
+        reject(e, "binomialProbability()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
