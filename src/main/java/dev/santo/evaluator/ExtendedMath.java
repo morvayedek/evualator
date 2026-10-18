@@ -21,6 +21,7 @@ final class ExtendedMath {
         map.put("softplus", new FunctionSpec(1, 1, ExtendedMath::softplus));
         map.put("softsign", new FunctionSpec(1, 1, ExtendedMath::softsign));
         map.put("relu", new FunctionSpec(1, 1, ExtendedMath::relu));
+        map.put("leakyRelu", new FunctionSpec(2, 2, ExtendedMath::leakyRelu));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -134,5 +135,12 @@ final class ExtendedMath {
     /** Rectified linear activation with a nonnegative zero result. */
     private static double relu(double[] a) {
         return Math.max(0,a[0]);
+    }
+
+    /** Leaky rectifier with a caller-selected negative slope in [0,1]. */
+    private static double leakyRelu(double[] a) {
+        
+        Functions.require(a[1]>=0 && a[1]<=1, "leakyRelu slope must be in [0,1]");
+        return a[0]>=0 ? a[0] : a[0]*a[1];
     }
 }

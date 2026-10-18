@@ -216,3 +216,18 @@ relu(0) = 0
 relu(-0) = 0
 ```
 
+## `leakyRelu`
+
+Leaky rectifier with a caller-selected negative slope in [0,1].
+
+Arguments: 2.
+
+```text
+leakyRelu(-2,.1) = -0.2
+leakyRelu(2,.1) = 2
+leakyRelu(-3,0) = 0
+leakyRelu(-3,1) = -3
+```
+
+Rejected examples: `leakyRelu(1,-1)`, `leakyRelu(1,2)`.
+
