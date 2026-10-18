@@ -32,6 +32,7 @@ final class ExtendedMath {
         map.put("ieeeRemainder", new FunctionSpec(2, 2, ExtendedMath::ieeeRemainder));
         map.put("roundToMultiple", new FunctionSpec(2, 2, ExtendedMath::roundToMultiple));
         map.put("quantile", new FunctionSpec(2, 256, ExtendedMath::quantile));
+        map.put("rangeSpread", new FunctionSpec(1, 256, ExtendedMath::rangeSpread));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -220,5 +221,10 @@ final class ExtendedMath {
         int low=(int)Math.floor(index), high=Math.min(low+1,values.length-1);
         double fraction=index-low;
         return values[low]*(1-fraction)+values[high]*fraction;
+    }
+
+    /** Maximum observation minus minimum observation. */
+    private static double rangeSpread(double[] a) {
+        return java.util.Arrays.stream(a).max().orElseThrow()-java.util.Arrays.stream(a).min().orElseThrow();
     }
 }
