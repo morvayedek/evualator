@@ -23,6 +23,13 @@ public final class ExtendedMathTest {
         reject(e, "atanh(1)");
         reject(e, "atanh(-1)");
         reject(e, "atanh()");
+        check(e, "reciprocal(4)", 0.25);
+        check(e, "reciprocal(-2)", -0.5);
+        check(e, "reciprocal(1e300)", 1e-300);
+        reject(e, "reciprocal(0)");
+        reject(e, "reciprocal(-0)");
+        reject(e, "reciprocal(5e-324)");
+        reject(e, "reciprocal()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

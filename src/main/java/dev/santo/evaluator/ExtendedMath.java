@@ -9,6 +9,7 @@ final class ExtendedMath {
         map.put("asinh", new FunctionSpec(1, 1, ExtendedMath::asinh));
         map.put("acosh", new FunctionSpec(1, 1, ExtendedMath::acosh));
         map.put("atanh", new FunctionSpec(1, 1, ExtendedMath::atanh));
+        map.put("reciprocal", new FunctionSpec(1, 1, ExtendedMath::reciprocal));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -33,5 +34,12 @@ final class ExtendedMath {
         double x=Math.abs(a[0]);
         Functions.require(x < 1, "atanh requires -1 < x < 1");
         return Math.copySign(.5*Math.log1p(2*x/(1-x)),a[0]);
+    }
+
+    /** Reciprocal with explicit rejection of signed zero. */
+    private static double reciprocal(double[] a) {
+        
+        Functions.require(a[0] != 0, "reciprocal requires a nonzero value");
+        return 1/a[0];
     }
 }
