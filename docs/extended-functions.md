@@ -312,3 +312,16 @@ scalb(1,-1074) = 5e-324
 
 Rejected examples: `scalb(1,2099)`, `scalb(1,.5)`, `scalb(1,1024)`.
 
+## `exponent`
+
+Return the unbiased binary exponent; zero and subnormals return -1023.
+
+Arguments: 1.
+
+```text
+exponent(8) = 3
+exponent(.5) = -1
+exponent(0) = -1023
+exponent(5e-324) = -1023
+```
+
