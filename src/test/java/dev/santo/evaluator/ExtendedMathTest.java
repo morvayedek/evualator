@@ -303,6 +303,11 @@ public final class ExtendedMathTest {
         check(e, "kelvinToCelsius(373.15)", 100.0);
         reject(e, "kelvinToCelsius(-1)");
         reject(e, "kelvinToCelsius()");
+        check(e, "degreesWrap(370)", 10.0);
+        check(e, "degreesWrap(-190)", 170.0);
+        check(e, "degreesWrap(180)", -180.0);
+        check(e, "degreesWrap(720)", 0.0);
+        reject(e, "degreesWrap()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
