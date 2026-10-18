@@ -120,3 +120,18 @@ wrap(10,10,20) = 10
 
 Rejected examples: `wrap(1,2,2)`, `wrap(1,-1e308,1e308)`.
 
+## `smoothstep`
+
+Cubic interpolation between ordered edges with saturation outside the interval.
+
+Arguments: 3.
+
+```text
+smoothstep(0,1,.5) = 0.5
+smoothstep(0,1,-1) = 0
+smoothstep(0,1,2) = 1
+smoothstep(0,1,.25) = 0.15625
+```
+
+Rejected examples: `smoothstep(1,1,1)`.
+
