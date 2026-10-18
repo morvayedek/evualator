@@ -298,3 +298,17 @@ copySign(-3,1) = 3
 copySign(3,-0) = -3
 ```
 
+## `scalb`
+
+Scale by an integral power of two with a bounded exponent parameter.
+
+Arguments: 2.
+
+```text
+scalb(3,2) = 12
+scalb(8,-3) = 1
+scalb(1,-1074) = 5e-324
+```
+
+Rejected examples: `scalb(1,2099)`, `scalb(1,.5)`, `scalb(1,1024)`.
+

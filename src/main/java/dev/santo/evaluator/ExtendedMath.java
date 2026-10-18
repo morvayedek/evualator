@@ -27,6 +27,7 @@ final class ExtendedMath {
         map.put("cube", new FunctionSpec(1, 1, ExtendedMath::cube));
         map.put("fma", new FunctionSpec(3, 3, ExtendedMath::fma));
         map.put("copySign", new FunctionSpec(2, 2, ExtendedMath::copySign));
+        map.put("scalb", new FunctionSpec(2, 2, ExtendedMath::scalb));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -174,5 +175,13 @@ final class ExtendedMath {
     /** Copy the sign of the second value to the magnitude of the first, including signed zero. */
     private static double copySign(double[] a) {
         return Math.copySign(a[0],a[1]);
+    }
+
+    /** Scale by an integral power of two with a bounded exponent parameter. */
+    private static double scalb(double[] a) {
+        
+        long n=Functions.integer(a[1]);
+        Functions.require(n>=-2098 && n<=2098,"scalb exponent must be -2098..2098");
+        return Math.scalb(a[0],(int)n);
     }
 }

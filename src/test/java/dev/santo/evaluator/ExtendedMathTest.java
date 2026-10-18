@@ -127,6 +127,13 @@ public final class ExtendedMathTest {
         check(e, "copySign(-3,1)", 3.0);
         check(e, "copySign(3,-0)", -3.0);
         reject(e, "copySign()");
+        check(e, "scalb(3,2)", 12.0);
+        check(e, "scalb(8,-3)", 1.0);
+        check(e, "scalb(1,-1074)", 5e-324);
+        reject(e, "scalb(1,2099)");
+        reject(e, "scalb(1,.5)");
+        reject(e, "scalb(1,1024)");
+        reject(e, "scalb()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
