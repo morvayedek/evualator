@@ -29,6 +29,7 @@ final class ExtendedMath {
         map.put("copySign", new FunctionSpec(2, 2, ExtendedMath::copySign));
         map.put("scalb", new FunctionSpec(2, 2, ExtendedMath::scalb));
         map.put("exponent", new FunctionSpec(1, 1, ExtendedMath::exponent));
+        map.put("ieeeRemainder", new FunctionSpec(2, 2, ExtendedMath::ieeeRemainder));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -189,5 +190,12 @@ final class ExtendedMath {
     /** Return the unbiased binary exponent; zero and subnormals return -1023. */
     private static double exponent(double[] a) {
         return Math.getExponent(a[0]);
+    }
+
+    /** IEEE remainder using the nearest ties-to-even quotient, distinct from percent remainder. */
+    private static double ieeeRemainder(double[] a) {
+        
+        Functions.require(a[1]!=0,"ieeeRemainder requires a nonzero divisor");
+        return Math.IEEEremainder(a[0],a[1]);
     }
 }

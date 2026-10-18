@@ -325,3 +325,17 @@ exponent(0) = -1023
 exponent(5e-324) = -1023
 ```
 
+## `ieeeRemainder`
+
+IEEE remainder using the nearest ties-to-even quotient, distinct from percent remainder.
+
+Arguments: 2.
+
+```text
+ieeeRemainder(7,4) = -1
+ieeeRemainder(6,4) = -2
+ieeeRemainder(-7,4) = 1
+```
+
+Rejected examples: `ieeeRemainder(1,0)`.
+
