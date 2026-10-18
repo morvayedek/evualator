@@ -75,6 +75,12 @@ public final class ExtendedMathTest {
         check(e, "logistic(-1000)", 0.0);
         check(e, "logistic(1)", 0.7310585786300049);
         reject(e, "logistic()");
+        check(e, "logit(.5)", 0.0);
+        check(e, "logit(.75)", 1.0986122886681098);
+        check(e, "logistic(logit(.2))", 0.2);
+        reject(e, "logit(0)");
+        reject(e, "logit(1)");
+        reject(e, "logit()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

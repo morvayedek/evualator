@@ -17,6 +17,7 @@ final class ExtendedMath {
         map.put("smoothstep", new FunctionSpec(3, 3, ExtendedMath::smoothstep));
         map.put("smootherstep", new FunctionSpec(3, 3, ExtendedMath::smootherstep));
         map.put("logistic", new FunctionSpec(1, 1, ExtendedMath::logistic));
+        map.put("logit", new FunctionSpec(1, 1, ExtendedMath::logit));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -108,5 +109,12 @@ final class ExtendedMath {
         if(a[0]>=0) return 1/(1+Math.exp(-a[0]));
         double e=Math.exp(a[0]);
         return e/(1+e);
+    }
+
+    /** Inverse logistic transform for probabilities strictly between zero and one. */
+    private static double logit(double[] a) {
+        
+        Functions.require(a[0]>0 && a[0]<1, "logit requires 0 < p < 1");
+        return Math.log(a[0])-Math.log1p(-a[0]);
     }
 }
