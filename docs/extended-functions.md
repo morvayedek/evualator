@@ -33,3 +33,18 @@ acosh(1e300) = 691.4686750787737
 
 Rejected examples: `acosh(.9)`.
 
+## `atanh`
+
+Inverse hyperbolic tangent on the open interval (-1,1).
+
+Arguments: 1.
+
+```text
+atanh(0) = 0
+atanh(.5) = 0.5493061443340548
+atanh(-.5) = -0.5493061443340548
+atanh(1e-20) = 1e-20
+```
+
+Rejected examples: `atanh(1)`, `atanh(-1)`.
+
