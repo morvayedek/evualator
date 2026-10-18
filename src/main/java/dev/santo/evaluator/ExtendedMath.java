@@ -7,6 +7,7 @@ final class ExtendedMath {
     private ExtendedMath() { }
     static void register(Map<String, FunctionSpec> map) {
         map.put("asinh", new FunctionSpec(1, 1, ExtendedMath::asinh));
+        map.put("acosh", new FunctionSpec(1, 1, ExtendedMath::acosh));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -15,5 +16,13 @@ final class ExtendedMath {
         double x = Math.abs(a[0]);
         double value = x > 1e154 ? Math.log(x) + Math.log(2) : Math.log1p(x + x*x/(1 + Math.sqrt(1+x*x)));
         return Math.copySign(value, a[0]);
+    }
+
+    /** Inverse hyperbolic cosine for x >= 1 without squaring huge inputs. */
+    private static double acosh(double[] a) {
+        
+        Functions.require(a[0] >= 1, "acosh requires x >= 1");
+        double x=a[0];
+        return x > 1e154 ? Math.log(x)+Math.log(2) : Math.log1p((x-1)+Math.sqrt(x-1)*Math.sqrt(x+1));
     }
 }

@@ -11,6 +11,11 @@ public final class ExtendedMathTest {
         check(e, "asinh(1e300)", 691.4686750787737);
         check(e, "asinh(1e-20)", 1e-20);
         reject(e, "asinh()");
+        check(e, "acosh(1)", 0.0);
+        check(e, "acosh(2)", 1.3169578969248166);
+        check(e, "acosh(1e300)", 691.4686750787737);
+        reject(e, "acosh(.9)");
+        reject(e, "acosh()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
