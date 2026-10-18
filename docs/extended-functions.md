@@ -163,3 +163,17 @@ logistic(-1000) = 0
 logistic(1) = 0.7310585786300049
 ```
 
+## `logit`
+
+Inverse logistic transform for probabilities strictly between zero and one.
+
+Arguments: 1.
+
+```text
+logit(.5) = 0
+logit(.75) = 1.0986122886681098
+logistic(logit(.2)) = 0.2
+```
+
+Rejected examples: `logit(0)`, `logit(1)`.
+
