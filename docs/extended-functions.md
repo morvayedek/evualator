@@ -286,3 +286,15 @@ fma(1e308,2,-1e308) = 1e+308
 fma(-2,3,6) = 0
 ```
 
+## `copySign`
+
+Copy the sign of the second value to the magnitude of the first, including signed zero.
+
+Arguments: 2.
+
+```text
+copySign(3,-1) = -3
+copySign(-3,1) = 3
+copySign(3,-0) = -3
+```
+
