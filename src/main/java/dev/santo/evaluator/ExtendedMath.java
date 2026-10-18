@@ -47,6 +47,7 @@ final class ExtendedMath {
         map.put("distance2d", new FunctionSpec(4, 4, ExtendedMath::distance2d));
         map.put("distance3d", new FunctionSpec(6, 6, ExtendedMath::distance3d));
         map.put("circleArea", new FunctionSpec(1, 1, ExtendedMath::circleArea));
+        map.put("circleCircumference", new FunctionSpec(1, 1, ExtendedMath::circleCircumference));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -372,5 +373,10 @@ final class ExtendedMath {
     /** Area of a circle with a nonnegative radius. */
     private static double circleArea(double[] a) {
         Functions.require(a[0]>=0,"Radius must be nonnegative"); return (Math.PI*a[0])*a[0];
+    }
+
+    /** Circumference of a circle with a nonnegative radius. */
+    private static double circleCircumference(double[] a) {
+        Functions.require(a[0]>=0,"Radius must be nonnegative"); return (2*Math.PI)*a[0];
     }
 }

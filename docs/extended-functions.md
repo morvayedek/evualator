@@ -574,3 +574,17 @@ circleArea(2) = 12.566370614359172
 
 Rejected examples: `circleArea(-1)`.
 
+## `circleCircumference`
+
+Circumference of a circle with a nonnegative radius.
+
+Arguments: 1.
+
+```text
+circleCircumference(1) = 6.283185307179586
+circleCircumference(0) = 0
+circleCircumference(2) = 12.566370614359172
+```
+
+Rejected examples: `circleCircumference(-1)`.
+
