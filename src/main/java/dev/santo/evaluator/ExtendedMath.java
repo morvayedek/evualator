@@ -60,6 +60,7 @@ final class ExtendedMath {
         map.put("celsiusToKelvin", new FunctionSpec(1, 1, ExtendedMath::celsiusToKelvin));
         map.put("kelvinToCelsius", new FunctionSpec(1, 1, ExtendedMath::kelvinToCelsius));
         map.put("degreesWrap", new FunctionSpec(1, 1, ExtendedMath::degreesWrap));
+        map.put("angularDistance", new FunctionSpec(2, 2, ExtendedMath::angularDistance));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -450,5 +451,10 @@ final class ExtendedMath {
     /** Canonical degree angle in [-180,180), including negative and multiple-turn inputs. */
     private static double degreesWrap(double[] a) {
         double x=a[0]%360; if(x>=180) x-=360; if(x< -180) x+=360; return x==0?0:x;
+    }
+
+    /** Signed shortest rotation from the first angle to the second, in radians [-pi,pi). */
+    private static double angularDistance(double[] a) {
+        double tau=2*Math.PI; double x=(a[1]%tau-a[0]%tau)%tau; if(x>=Math.PI) x-=tau; if(x< -Math.PI) x+=tau; return x==0?0:x;
     }
 }

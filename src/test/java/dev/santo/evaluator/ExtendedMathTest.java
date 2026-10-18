@@ -308,6 +308,10 @@ public final class ExtendedMathTest {
         check(e, "degreesWrap(180)", -180.0);
         check(e, "degreesWrap(720)", 0.0);
         reject(e, "degreesWrap()");
+        check(e, "angularDistance(0,pi)", -3.141592653589793);
+        check(e, "angularDistance(rad(350),rad(10))", 0.3490658503988659);
+        check(e, "angularDistance(2,2)", 0.0);
+        reject(e, "angularDistance()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
