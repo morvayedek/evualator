@@ -234,6 +234,11 @@ public final class ExtendedMathTest {
         check(e, "distance3d(1,2,3,1,2,3)", 0.0);
         check(e, "distance3d(0,0,0,1e300,0,0)", 1e+300);
         reject(e, "distance3d()");
+        check(e, "circleArea(1)", 3.141592653589793);
+        check(e, "circleArea(0)", 0.0);
+        check(e, "circleArea(2)", 12.566370614359172);
+        reject(e, "circleArea(-1)");
+        reject(e, "circleArea()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

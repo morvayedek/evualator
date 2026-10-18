@@ -560,3 +560,17 @@ distance3d(1,2,3,1,2,3) = 0
 distance3d(0,0,0,1e300,0,0) = 1e+300
 ```
 
+## `circleArea`
+
+Area of a circle with a nonnegative radius.
+
+Arguments: 1.
+
+```text
+circleArea(1) = 3.141592653589793
+circleArea(0) = 0
+circleArea(2) = 12.566370614359172
+```
+
+Rejected examples: `circleArea(-1)`.
+

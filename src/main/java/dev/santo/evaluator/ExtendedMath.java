@@ -46,6 +46,7 @@ final class ExtendedMath {
         map.put("dot", new FunctionSpec(2, 256, ExtendedMath::dot));
         map.put("distance2d", new FunctionSpec(4, 4, ExtendedMath::distance2d));
         map.put("distance3d", new FunctionSpec(6, 6, ExtendedMath::distance3d));
+        map.put("circleArea", new FunctionSpec(1, 1, ExtendedMath::circleArea));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -366,5 +367,10 @@ final class ExtendedMath {
     /** Euclidean distance between two spatial points (x1,y1,z1,x2,y2,z2). */
     private static double distance3d(double[] a) {
         return Math.hypot(Math.hypot(a[3]-a[0],a[4]-a[1]),a[5]-a[2]);
+    }
+
+    /** Area of a circle with a nonnegative radius. */
+    private static double circleArea(double[] a) {
+        Functions.require(a[0]>=0,"Radius must be nonnegative"); return (Math.PI*a[0])*a[0];
     }
 }
