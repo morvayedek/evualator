@@ -48,3 +48,17 @@ atanh(1e-20) = 1e-20
 
 Rejected examples: `atanh(1)`, `atanh(-1)`.
 
+## `reciprocal`
+
+Reciprocal with explicit rejection of signed zero.
+
+Arguments: 1.
+
+```text
+reciprocal(4) = 0.25
+reciprocal(-2) = -0.5
+reciprocal(1e300) = 1e-300
+```
+
+Rejected examples: `reciprocal(0)`, `reciprocal(-0)`, `reciprocal(5e-324)`.
+
