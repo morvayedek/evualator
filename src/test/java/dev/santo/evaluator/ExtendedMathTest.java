@@ -96,6 +96,13 @@ public final class ExtendedMathTest {
         check(e, "relu(0)", 0.0);
         check(e, "relu(-0)", 0.0);
         reject(e, "relu()");
+        check(e, "leakyRelu(-2,.1)", -0.2);
+        check(e, "leakyRelu(2,.1)", 2.0);
+        check(e, "leakyRelu(-3,0)", 0.0);
+        check(e, "leakyRelu(-3,1)", -3.0);
+        reject(e, "leakyRelu(1,-1)");
+        reject(e, "leakyRelu(1,2)");
+        reject(e, "leakyRelu()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
