@@ -16,6 +16,13 @@ public final class ExtendedMathTest {
         check(e, "acosh(1e300)", 691.4686750787737);
         reject(e, "acosh(.9)");
         reject(e, "acosh()");
+        check(e, "atanh(0)", 0.0);
+        check(e, "atanh(.5)", 0.5493061443340548);
+        check(e, "atanh(-.5)", -0.5493061443340548);
+        check(e, "atanh(1e-20)", 1e-20);
+        reject(e, "atanh(1)");
+        reject(e, "atanh(-1)");
+        reject(e, "atanh()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
