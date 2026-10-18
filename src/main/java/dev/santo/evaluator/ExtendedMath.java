@@ -53,6 +53,7 @@ final class ExtendedMath {
         map.put("coneVolume", new FunctionSpec(2, 2, ExtendedMath::coneVolume));
         map.put("cylinderVolume", new FunctionSpec(2, 2, ExtendedMath::cylinderVolume));
         map.put("rectangleDiagonal", new FunctionSpec(2, 2, ExtendedMath::rectangleDiagonal));
+        map.put("triangleArea", new FunctionSpec(2, 2, ExtendedMath::triangleArea));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -408,5 +409,10 @@ final class ExtendedMath {
     /** Diagonal of a rectangle with nonnegative side lengths, avoiding square overflow. */
     private static double rectangleDiagonal(double[] a) {
         Functions.require(a[0]>=0 && a[1]>=0,"Side lengths must be nonnegative"); return Math.hypot(a[0],a[1]);
+    }
+
+    /** Triangle area from a nonnegative base and perpendicular height, without premature underflow. */
+    private static double triangleArea(double[] a) {
+        Functions.require(a[0]>=0 && a[1]>=0,"Base and height must be nonnegative"); return java.math.BigDecimal.valueOf(a[0]).multiply(java.math.BigDecimal.valueOf(a[1])).multiply(java.math.BigDecimal.valueOf(.5)).doubleValue();
     }
 }
