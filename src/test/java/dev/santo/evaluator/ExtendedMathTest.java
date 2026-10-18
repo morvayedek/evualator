@@ -144,6 +144,13 @@ public final class ExtendedMathTest {
         check(e, "ieeeRemainder(-7,4)", 1.0);
         reject(e, "ieeeRemainder(1,0)");
         reject(e, "ieeeRemainder()");
+        check(e, "roundToMultiple(1.25,.5)", 1.0);
+        check(e, "roundToMultiple(1.75,.5)", 2.0);
+        check(e, "roundToMultiple(-1.25,.5)", -1.0);
+        check(e, "roundToMultiple(1e300,1e-300)", 1e+300);
+        reject(e, "roundToMultiple(1,0)");
+        reject(e, "roundToMultiple(1,-1)");
+        reject(e, "roundToMultiple()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
