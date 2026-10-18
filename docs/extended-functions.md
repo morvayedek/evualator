@@ -426,3 +426,15 @@ harmonicMean(1e-300,1e-300) = 1e-300
 
 Rejected examples: `harmonicMean(0,1)`, `harmonicMean(-1,2)`.
 
+## `meanAbsoluteDeviation`
+
+Mean absolute deviation around the arithmetic mean.
+
+Arguments: 1..256.
+
+```text
+meanAbsoluteDeviation(1,2,3) = 0.6666666666666666
+meanAbsoluteDeviation(2,2) = 0
+meanAbsoluteDeviation(-1e308,1e308) = 1e+308
+```
+

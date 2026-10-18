@@ -36,6 +36,7 @@ final class ExtendedMath {
         map.put("rms", new FunctionSpec(1, 256, ExtendedMath::rms));
         map.put("geometricMean", new FunctionSpec(1, 256, ExtendedMath::geometricMean));
         map.put("harmonicMean", new FunctionSpec(1, 256, ExtendedMath::harmonicMean));
+        map.put("meanAbsoluteDeviation", new FunctionSpec(1, 256, ExtendedMath::meanAbsoluteDeviation));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -258,5 +259,18 @@ final class ExtendedMath {
         double sum=0;
         for(double x:a) sum+=scale/x;
         return scale*(a.length/sum);
+    }
+
+    /** Mean absolute deviation around the arithmetic mean. */
+    private static double meanAbsoluteDeviation(double[] a) {
+        
+        double scale=0;
+        for(double x:a) scale=Math.max(scale,Math.abs(x));
+        if(scale==0) return 0;
+        double mean=0;
+        for(double x:a) mean+=x/scale/a.length;
+        double sum=0;
+        for(double x:a) sum+=Math.abs(x/scale-mean)/a.length;
+        return sum*scale;
     }
 }
