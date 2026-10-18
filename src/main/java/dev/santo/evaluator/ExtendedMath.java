@@ -365,13 +365,16 @@ final class ExtendedMath {
     private static double weightedMean(double[] a) {
 
         Functions.require(a.length%2==0,"weightedMean requires value,weight pairs");
-        double weightScale=0,valueScale=0;
-        for(int i=0;i<a.length;i+=2) { Functions.require(a[i+1]>=0,"Weights must be nonnegative"); weightScale=Math.max(weightScale,a[i+1]); valueScale=Math.max(valueScale,Math.abs(a[i])); }
-        Functions.require(weightScale>0,"At least one weight must be positive");
-        if(valueScale==0) return 0;
-        double weights=0,sum=0;
-        for(int i=0;i<a.length;i+=2) { double w=a[i+1]/weightScale; weights+=w; sum+=(a[i]/valueScale)*w; }
-        return (sum/weights)*valueScale;
+        var weights=java.math.BigDecimal.ZERO;
+        var sum=java.math.BigDecimal.ZERO;
+        for(int i=0;i<a.length;i+=2) {
+            Functions.require(a[i+1]>=0,"Weights must be nonnegative");
+            var weight=java.math.BigDecimal.valueOf(a[i+1]);
+            weights=weights.add(weight);
+            sum=sum.add(java.math.BigDecimal.valueOf(a[i]).multiply(weight));
+        }
+        Functions.require(weights.signum()>0,"At least one weight must be positive");
+        return sum.divide(weights,java.math.MathContext.DECIMAL128).doubleValue();
     }
 
     /** Dot product from interleaved x,y pairs, using decimal products and accumulation. */

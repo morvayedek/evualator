@@ -510,6 +510,8 @@ Rejected examples: `product(1e300,1e300)`.
 ## `weightedMean`
 
 Weighted mean from value,weight pairs; weights are nonnegative with at least one positive weight.
+Decimal accumulation preserves cancellation and excludes the effect of zero-weight observations.
+The final division uses 34 significant decimal digits before conversion to a double.
 
 Arguments: 2..256.
 
