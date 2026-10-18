@@ -42,6 +42,7 @@ final class ExtendedMath {
         map.put("coefficientVariation", new FunctionSpec(1, 256, ExtendedMath::coefficientVariation));
         map.put("sumSquares", new FunctionSpec(1, 256, ExtendedMath::sumSquares));
         map.put("product", new FunctionSpec(1, 256, ExtendedMath::product));
+        map.put("weightedMean", new FunctionSpec(2, 256, ExtendedMath::weightedMean));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -330,5 +331,18 @@ final class ExtendedMath {
         var result=java.math.BigDecimal.ONE;
         for(double x:a) result=result.multiply(java.math.BigDecimal.valueOf(x));
         return result.doubleValue();
+    }
+
+    /** Weighted mean from value,weight pairs; weights are nonnegative with at least one positive weight. */
+    private static double weightedMean(double[] a) {
+        
+        Functions.require(a.length%2==0,"weightedMean requires value,weight pairs");
+        double weightScale=0,valueScale=0;
+        for(int i=0;i<a.length;i+=2) { Functions.require(a[i+1]>=0,"Weights must be nonnegative"); weightScale=Math.max(weightScale,a[i+1]); valueScale=Math.max(valueScale,Math.abs(a[i])); }
+        Functions.require(weightScale>0,"At least one weight must be positive");
+        if(valueScale==0) return 0;
+        double weights=0,sum=0;
+        for(int i=0;i<a.length;i+=2) { double w=a[i+1]/weightScale; weights+=w; sum+=(a[i]/valueScale)*w; }
+        return (sum/weights)*valueScale;
     }
 }

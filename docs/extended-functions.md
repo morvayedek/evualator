@@ -507,3 +507,18 @@ product(1e300,1e300,0) = 0
 
 Rejected examples: `product(1e300,1e300)`.
 
+## `weightedMean`
+
+Weighted mean from value,weight pairs; weights are nonnegative with at least one positive weight.
+
+Arguments: 2..256.
+
+```text
+weightedMean(10,1,20,3) = 17.5
+weightedMean(5,0,10,1) = 10
+weightedMean(1e308,1e308,1e308,1e308) = 1e+308
+weightedMean(0,1) = 0
+```
+
+Rejected examples: `weightedMean(1,0)`, `weightedMean(1,-1)`, `weightedMean(1,1,2)`.
+

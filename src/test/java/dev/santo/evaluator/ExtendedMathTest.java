@@ -213,6 +213,14 @@ public final class ExtendedMathTest {
         check(e, "product(1e300,1e300,0)", 0.0);
         reject(e, "product(1e300,1e300)");
         reject(e, "product()");
+        check(e, "weightedMean(10,1,20,3)", 17.5);
+        check(e, "weightedMean(5,0,10,1)", 10.0);
+        check(e, "weightedMean(1e308,1e308,1e308,1e308)", 1e+308);
+        check(e, "weightedMean(0,1)", 0.0);
+        reject(e, "weightedMean(1,0)");
+        reject(e, "weightedMean(1,-1)");
+        reject(e, "weightedMean(1,1,2)");
+        reject(e, "weightedMean()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
