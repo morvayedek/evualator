@@ -346,6 +346,14 @@ public final class ExtendedMathTest {
         reject(e, "divisorCount(0)");
         reject(e, "divisorCount(1.5)");
         reject(e, "divisorCount()");
+        check(e, "fibonacci(0)", 0.0);
+        check(e, "fibonacci(1)", 1.0);
+        check(e, "fibonacci(10)", 55.0);
+        check(e, "fibonacci(78)", 8944394323791464.0);
+        reject(e, "fibonacci(-1)");
+        reject(e, "fibonacci(79)");
+        reject(e, "fibonacci(.5)");
+        reject(e, "fibonacci()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
