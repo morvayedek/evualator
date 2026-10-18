@@ -273,6 +273,12 @@ public final class ExtendedMathTest {
         check(e, "rectangleDiagonal(1e300,0)", 1e+300);
         reject(e, "rectangleDiagonal(-1,2)");
         reject(e, "rectangleDiagonal()");
+        check(e, "triangleArea(3,4)", 6.0);
+        check(e, "triangleArea(0,2)", 0.0);
+        check(e, "triangleArea(1e308,2)", 1e+308);
+        check(e, "triangleArea(1e-300,1e300)", 0.5);
+        reject(e, "triangleArea(1,-1)");
+        reject(e, "triangleArea()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

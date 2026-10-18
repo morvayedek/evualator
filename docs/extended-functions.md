@@ -660,3 +660,18 @@ rectangleDiagonal(1e300,0) = 1e+300
 
 Rejected examples: `rectangleDiagonal(-1,2)`.
 
+## `triangleArea`
+
+Triangle area from a nonnegative base and perpendicular height, without premature underflow.
+
+Arguments: 2.
+
+```text
+triangleArea(3,4) = 6
+triangleArea(0,2) = 0
+triangleArea(1e308,2) = 1e+308
+triangleArea(1e-300,1e300) = 0.5
+```
+
+Rejected examples: `triangleArea(1,-1)`.
+
