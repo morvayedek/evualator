@@ -285,6 +285,10 @@ public final class ExtendedMathTest {
         check(e, "trapezoidArea(1e-300,1e-300,1e300)", 1.0);
         reject(e, "trapezoidArea(-1,2,3)");
         reject(e, "trapezoidArea()");
+        check(e, "fahrenheitToCelsius(32)", 0.0);
+        check(e, "fahrenheitToCelsius(212)", 100.0);
+        check(e, "fahrenheitToCelsius(-40)", -40.0);
+        reject(e, "fahrenheitToCelsius()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

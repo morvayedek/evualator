@@ -55,6 +55,7 @@ final class ExtendedMath {
         map.put("rectangleDiagonal", new FunctionSpec(2, 2, ExtendedMath::rectangleDiagonal));
         map.put("triangleArea", new FunctionSpec(2, 2, ExtendedMath::triangleArea));
         map.put("trapezoidArea", new FunctionSpec(3, 3, ExtendedMath::trapezoidArea));
+        map.put("fahrenheitToCelsius", new FunctionSpec(1, 1, ExtendedMath::fahrenheitToCelsius));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -420,5 +421,10 @@ final class ExtendedMath {
     /** Trapezoid area from two nonnegative parallel side lengths and a nonnegative height, using decimal intermediates. */
     private static double trapezoidArea(double[] a) {
         Functions.require(a[0]>=0 && a[1]>=0 && a[2]>=0,"Side lengths and height must be nonnegative"); return java.math.BigDecimal.valueOf(a[0]).add(java.math.BigDecimal.valueOf(a[1])).multiply(java.math.BigDecimal.valueOf(a[2])).multiply(java.math.BigDecimal.valueOf(.5)).doubleValue();
+    }
+
+    /** Convert Fahrenheit to Celsius without an overflowing initial subtraction. */
+    private static double fahrenheitToCelsius(double[] a) {
+        return (a[0]/9)*5-(32.0/9)*5;
     }
 }

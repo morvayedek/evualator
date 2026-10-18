@@ -690,3 +690,15 @@ trapezoidArea(1e-300,1e-300,1e300) = 1
 
 Rejected examples: `trapezoidArea(-1,2,3)`.
 
+## `fahrenheitToCelsius`
+
+Convert Fahrenheit to Celsius without an overflowing initial subtraction.
+
+Arguments: 1.
+
+```text
+fahrenheitToCelsius(32) = 0
+fahrenheitToCelsius(212) = 100
+fahrenheitToCelsius(-40) = -40
+```
+
