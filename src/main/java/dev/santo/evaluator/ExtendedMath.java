@@ -65,6 +65,7 @@ final class ExtendedMath {
         map.put("polarY", new FunctionSpec(2, 2, ExtendedMath::polarY));
         map.put("isPrime", new FunctionSpec(1, 1, ExtendedMath::isPrime));
         map.put("nextPrime", new FunctionSpec(1, 1, ExtendedMath::nextPrime));
+        map.put("divisorCount", new FunctionSpec(1, 1, ExtendedMath::divisorCount));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -490,5 +491,15 @@ final class ExtendedMath {
         Functions.require(n>=0 && n<=2147483628L,"nextPrime requires an integer in [0,2147483628]");
         for(long candidate=n+1;candidate<=2147483647L;candidate++) if(isPrime(new double[]{candidate})==1) return candidate;
         throw new IllegalArgumentException("No prime in supported range");
+    }
+
+    /** Number of positive divisors for integers in [1,2147483647]. */
+    private static double divisorCount(double[] a) {
+        
+        long n=Functions.integer(a[0]);
+        Functions.require(n>=1 && n<=2147483647L,"divisorCount requires an integer in [1,2147483647]");
+        long total=0;
+        for(long d=1;d*d<=n;d++) if(n%d==0) total+=d*d==n?1:2;
+        return total;
     }
 }

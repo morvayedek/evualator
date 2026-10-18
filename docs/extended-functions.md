@@ -827,3 +827,18 @@ nextPrime(2147483628) = 2147483629
 
 Rejected examples: `nextPrime(-1)`, `nextPrime(2147483629)`.
 
+## `divisorCount`
+
+Number of positive divisors for integers in [1,2147483647].
+
+Arguments: 1.
+
+```text
+divisorCount(1) = 1
+divisorCount(12) = 6
+divisorCount(36) = 9
+divisorCount(97) = 2
+```
+
+Rejected examples: `divisorCount(0)`, `divisorCount(1.5)`.
+
