@@ -12,6 +12,7 @@ final class ExtendedMath {
         map.put("reciprocal", new FunctionSpec(1, 1, ExtendedMath::reciprocal));
         map.put("sinc", new FunctionSpec(1, 1, ExtendedMath::sinc));
         map.put("logBase", new FunctionSpec(2, 2, ExtendedMath::logBase));
+        map.put("root", new FunctionSpec(2, 2, ExtendedMath::root));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -55,5 +56,14 @@ final class ExtendedMath {
         
         Functions.require(a[0]>0 && a[1]>0 && a[1]!=1, "logBase requires x > 0 and base > 0, base != 1");
         return Math.log(a[0])/Math.log(a[1]);
+    }
+
+    /** Real nth roots; negative radicands require an odd positive integer degree. */
+    private static double root(double[] a) {
+        
+        long n=Functions.integer(a[1]);
+        Functions.require(n>=1 && n<=1000000, "root degree must be 1..1000000");
+        Functions.require(a[0]>=0 || n%2==1, "Negative radicands require an odd degree");
+        return a[0]<0 ? -Math.pow(-a[0],1.0/n) : Math.pow(a[0],1.0/n);
     }
 }

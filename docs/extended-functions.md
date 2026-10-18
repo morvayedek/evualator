@@ -90,3 +90,18 @@ logBase(1,3) = 0
 
 Rejected examples: `logBase(0,2)`, `logBase(2,1)`, `logBase(2,-1)`.
 
+## `root`
+
+Real nth roots; negative radicands require an odd positive integer degree.
+
+Arguments: 2.
+
+```text
+root(81,4) = 3
+root(-27,3) = -3
+root(0,2) = 0
+root(16,1) = 16
+```
+
+Rejected examples: `root(-1,2)`, `root(4,0)`, `root(4,1.5)`.
+

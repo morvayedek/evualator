@@ -43,6 +43,14 @@ public final class ExtendedMathTest {
         reject(e, "logBase(2,1)");
         reject(e, "logBase(2,-1)");
         reject(e, "logBase()");
+        check(e, "root(81,4)", 3.0);
+        check(e, "root(-27,3)", -3.0);
+        check(e, "root(0,2)", 0.0);
+        check(e, "root(16,1)", 16.0);
+        reject(e, "root(-1,2)");
+        reject(e, "root(4,0)");
+        reject(e, "root(4,1.5)");
+        reject(e, "root()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
