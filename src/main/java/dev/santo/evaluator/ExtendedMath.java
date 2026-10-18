@@ -15,6 +15,7 @@ final class ExtendedMath {
         map.put("root", new FunctionSpec(2, 2, ExtendedMath::root));
         map.put("wrap", new FunctionSpec(3, 3, ExtendedMath::wrap));
         map.put("smoothstep", new FunctionSpec(3, 3, ExtendedMath::smoothstep));
+        map.put("smootherstep", new FunctionSpec(3, 3, ExtendedMath::smootherstep));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -88,5 +89,15 @@ final class ExtendedMath {
         if(a[2]>=a[1]) return 1;
         double t=(a[2]-a[0])/(a[1]-a[0]);
         return t*t*(3-2*t);
+    }
+
+    /** Quintic interpolation with zero first and second derivatives at both edges. */
+    private static double smootherstep(double[] a) {
+        
+        Functions.require(a[1]>a[0] && Double.isFinite(a[1]-a[0]), "smootherstep requires finite increasing edges");
+        if(a[2]<=a[0]) return 0;
+        if(a[2]>=a[1]) return 1;
+        double t=(a[2]-a[0])/(a[1]-a[0]);
+        return t*t*t*(t*(6*t-15)+10);
     }
 }
