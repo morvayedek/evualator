@@ -755,3 +755,15 @@ degreesWrap(180) = -180
 degreesWrap(720) = 0
 ```
 
+## `angularDistance`
+
+Signed shortest rotation from the first angle to the second, in radians [-pi,pi).
+
+Arguments: 2.
+
+```text
+angularDistance(0,pi) = -3.141592653589793
+angularDistance(rad(350),rad(10)) = 0.3490658503988659
+angularDistance(2,2) = 0
+```
+
