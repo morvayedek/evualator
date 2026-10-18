@@ -261,6 +261,13 @@ public final class ExtendedMathTest {
         reject(e, "coneVolume(-1,2)");
         reject(e, "coneVolume(1,-1)");
         reject(e, "coneVolume()");
+        check(e, "cylinderVolume(1,3)", 9.42477796076938);
+        check(e, "cylinderVolume(0,1)", 0.0);
+        check(e, "cylinderVolume(1e308,0)", 0.0);
+        check(e, "cylinderVolume(1e200,1e-200)", 3.141592653589793e+200);
+        reject(e, "cylinderVolume(-1,2)");
+        reject(e, "cylinderVolume(1,-1)");
+        reject(e, "cylinderVolume()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
