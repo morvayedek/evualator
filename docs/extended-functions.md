@@ -274,3 +274,15 @@ cube(0) = 0
 
 Rejected examples: `cube(1e200)`.
 
+## `fma`
+
+Fused multiply-add with one final rounding and no intermediate product overflow.
+
+Arguments: 3.
+
+```text
+fma(2,3,4) = 10
+fma(1e308,2,-1e308) = 1e+308
+fma(-2,3,6) = 0
+```
+

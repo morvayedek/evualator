@@ -25,6 +25,7 @@ final class ExtendedMath {
         map.put("elu", new FunctionSpec(2, 2, ExtendedMath::elu));
         map.put("square", new FunctionSpec(1, 1, ExtendedMath::square));
         map.put("cube", new FunctionSpec(1, 1, ExtendedMath::cube));
+        map.put("fma", new FunctionSpec(3, 3, ExtendedMath::fma));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -162,5 +163,10 @@ final class ExtendedMath {
     /** Cube a value, preserving its sign. */
     private static double cube(double[] a) {
         return a[0]*a[0]*a[0];
+    }
+
+    /** Fused multiply-add with one final rounding and no intermediate product overflow. */
+    private static double fma(double[] a) {
+        return Math.fma(a[0],a[1],a[2]);
     }
 }
