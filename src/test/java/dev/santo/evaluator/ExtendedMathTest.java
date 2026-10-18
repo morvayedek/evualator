@@ -176,6 +176,12 @@ public final class ExtendedMathTest {
         reject(e, "geometricMean(0,1)");
         reject(e, "geometricMean(-1,2)");
         reject(e, "geometricMean()");
+        check(e, "harmonicMean(1,2)", 1.3333333333333333);
+        check(e, "harmonicMean(2,2)", 2.0);
+        check(e, "harmonicMean(1e-300,1e-300)", 1e-300);
+        reject(e, "harmonicMean(0,1)");
+        reject(e, "harmonicMean(-1,2)");
+        reject(e, "harmonicMean()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

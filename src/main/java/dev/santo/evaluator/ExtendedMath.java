@@ -35,6 +35,7 @@ final class ExtendedMath {
         map.put("rangeSpread", new FunctionSpec(1, 256, ExtendedMath::rangeSpread));
         map.put("rms", new FunctionSpec(1, 256, ExtendedMath::rms));
         map.put("geometricMean", new FunctionSpec(1, 256, ExtendedMath::geometricMean));
+        map.put("harmonicMean", new FunctionSpec(1, 256, ExtendedMath::harmonicMean));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -247,5 +248,15 @@ final class ExtendedMath {
         double sum=0;
         for(double x:a) { Functions.require(x>0,"geometricMean requires positive observations"); sum+=Math.log(x); }
         return Math.exp(sum/a.length);
+    }
+
+    /** Harmonic mean of positive observations with reciprocal scaling. */
+    private static double harmonicMean(double[] a) {
+        
+        double scale=Double.POSITIVE_INFINITY;
+        for(double x:a) { Functions.require(x>0,"harmonicMean requires positive observations"); scale=Math.min(scale,x); }
+        double sum=0;
+        for(double x:a) sum+=scale/x;
+        return scale*(a.length/sum);
     }
 }
