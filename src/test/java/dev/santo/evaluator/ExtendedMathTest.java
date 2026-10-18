@@ -91,6 +91,11 @@ public final class ExtendedMathTest {
         check(e, "softsign(-2)", -0.6666666666666666);
         check(e, "softsign(1e300)", 1.0);
         reject(e, "softsign()");
+        check(e, "relu(-2)", 0.0);
+        check(e, "relu(3)", 3.0);
+        check(e, "relu(0)", 0.0);
+        check(e, "relu(-0)", 0.0);
+        reject(e, "relu()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

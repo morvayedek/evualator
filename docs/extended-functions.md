@@ -203,3 +203,16 @@ softsign(-2) = -0.6666666666666666
 softsign(1e300) = 1
 ```
 
+## `relu`
+
+Rectified linear activation with a nonnegative zero result.
+
+Arguments: 1.
+
+```text
+relu(-2) = 0
+relu(3) = 3
+relu(0) = 0
+relu(-0) = 0
+```
+

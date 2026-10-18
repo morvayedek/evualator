@@ -20,6 +20,7 @@ final class ExtendedMath {
         map.put("logit", new FunctionSpec(1, 1, ExtendedMath::logit));
         map.put("softplus", new FunctionSpec(1, 1, ExtendedMath::softplus));
         map.put("softsign", new FunctionSpec(1, 1, ExtendedMath::softsign));
+        map.put("relu", new FunctionSpec(1, 1, ExtendedMath::relu));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -128,5 +129,10 @@ final class ExtendedMath {
     /** Bounded softsign activation x/(1+abs(x)). */
     private static double softsign(double[] a) {
         return a[0]/(1+Math.abs(a[0]));
+    }
+
+    /** Rectified linear activation with a nonnegative zero result. */
+    private static double relu(double[] a) {
+        return Math.max(0,a[0]);
     }
 }
