@@ -548,3 +548,15 @@ distance2d(-1,-1,-1,-1) = 0
 distance2d(0,0,1e300,0) = 1e+300
 ```
 
+## `distance3d`
+
+Euclidean distance between two spatial points (x1,y1,z1,x2,y2,z2).
+
+Arguments: 6.
+
+```text
+distance3d(0,0,0,2,3,6) = 7
+distance3d(1,2,3,1,2,3) = 0
+distance3d(0,0,0,1e300,0,0) = 1e+300
+```
+

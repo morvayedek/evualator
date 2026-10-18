@@ -230,6 +230,10 @@ public final class ExtendedMathTest {
         check(e, "distance2d(-1,-1,-1,-1)", 0.0);
         check(e, "distance2d(0,0,1e300,0)", 1e+300);
         reject(e, "distance2d()");
+        check(e, "distance3d(0,0,0,2,3,6)", 7.0);
+        check(e, "distance3d(1,2,3,1,2,3)", 0.0);
+        check(e, "distance3d(0,0,0,1e300,0,0)", 1e+300);
+        reject(e, "distance3d()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
