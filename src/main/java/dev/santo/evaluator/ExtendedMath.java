@@ -34,6 +34,7 @@ final class ExtendedMath {
         map.put("quantile", new FunctionSpec(2, 256, ExtendedMath::quantile));
         map.put("rangeSpread", new FunctionSpec(1, 256, ExtendedMath::rangeSpread));
         map.put("rms", new FunctionSpec(1, 256, ExtendedMath::rms));
+        map.put("geometricMean", new FunctionSpec(1, 256, ExtendedMath::geometricMean));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -238,5 +239,13 @@ final class ExtendedMath {
         double sum=0;
         for(double x:a) { double y=x/scale; sum+=y*y; }
         return scale*Math.sqrt(sum/a.length);
+    }
+
+    /** Geometric mean of strictly positive observations, calculated in log space. */
+    private static double geometricMean(double[] a) {
+        
+        double sum=0;
+        for(double x:a) { Functions.require(x>0,"geometricMean requires positive observations"); sum+=Math.log(x); }
+        return Math.exp(sum/a.length);
     }
 }
