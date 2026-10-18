@@ -14,6 +14,7 @@ final class ExtendedMath {
         map.put("logBase", new FunctionSpec(2, 2, ExtendedMath::logBase));
         map.put("root", new FunctionSpec(2, 2, ExtendedMath::root));
         map.put("wrap", new FunctionSpec(3, 3, ExtendedMath::wrap));
+        map.put("smoothstep", new FunctionSpec(3, 3, ExtendedMath::smoothstep));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -77,5 +78,15 @@ final class ExtendedMath {
         if (offset<0) offset+=width;
         double result=low+offset;
         return result>=high ? low : result;
+    }
+
+    /** Cubic interpolation between ordered edges with saturation outside the interval. */
+    private static double smoothstep(double[] a) {
+        
+        Functions.require(a[1]>a[0] && Double.isFinite(a[1]-a[0]), "smoothstep requires finite increasing edges");
+        if(a[2]<=a[0]) return 0;
+        if(a[2]>=a[1]) return 1;
+        double t=(a[2]-a[0])/(a[1]-a[0]);
+        return t*t*(3-2*t);
     }
 }
