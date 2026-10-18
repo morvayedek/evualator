@@ -45,6 +45,7 @@ final class ExtendedMath {
         map.put("weightedMean", new FunctionSpec(2, 256, ExtendedMath::weightedMean));
         map.put("dot", new FunctionSpec(2, 256, ExtendedMath::dot));
         map.put("distance2d", new FunctionSpec(4, 4, ExtendedMath::distance2d));
+        map.put("distance3d", new FunctionSpec(6, 6, ExtendedMath::distance3d));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -360,5 +361,10 @@ final class ExtendedMath {
     /** Euclidean distance between two planar points (x1,y1,x2,y2). */
     private static double distance2d(double[] a) {
         return Math.hypot(a[2]-a[0],a[3]-a[1]);
+    }
+
+    /** Euclidean distance between two spatial points (x1,y1,z1,x2,y2,z2). */
+    private static double distance3d(double[] a) {
+        return Math.hypot(Math.hypot(a[3]-a[0],a[4]-a[1]),a[5]-a[2]);
     }
 }
