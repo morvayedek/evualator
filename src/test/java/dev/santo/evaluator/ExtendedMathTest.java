@@ -332,6 +332,13 @@ public final class ExtendedMathTest {
         reject(e, "isPrime(2147483648)");
         reject(e, "isPrime(1.5)");
         reject(e, "isPrime()");
+        check(e, "nextPrime(0)", 2.0);
+        check(e, "nextPrime(2)", 3.0);
+        check(e, "nextPrime(100)", 101.0);
+        check(e, "nextPrime(2147483628)", 2147483629.0);
+        reject(e, "nextPrime(-1)");
+        reject(e, "nextPrime(2147483629)");
+        reject(e, "nextPrime()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

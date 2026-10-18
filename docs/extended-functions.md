@@ -812,3 +812,18 @@ isPrime(2147483647) = 1
 
 Rejected examples: `isPrime(-1)`, `isPrime(2147483648)`, `isPrime(1.5)`.
 
+## `nextPrime`
+
+Smallest prime strictly greater than an integer n in [0,2147483628].
+
+Arguments: 1.
+
+```text
+nextPrime(0) = 2
+nextPrime(2) = 3
+nextPrime(100) = 101
+nextPrime(2147483628) = 2147483629
+```
+
+Rejected examples: `nextPrime(-1)`, `nextPrime(2147483629)`.
+

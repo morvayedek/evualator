@@ -64,6 +64,7 @@ final class ExtendedMath {
         map.put("polarX", new FunctionSpec(2, 2, ExtendedMath::polarX));
         map.put("polarY", new FunctionSpec(2, 2, ExtendedMath::polarY));
         map.put("isPrime", new FunctionSpec(1, 1, ExtendedMath::isPrime));
+        map.put("nextPrime", new FunctionSpec(1, 1, ExtendedMath::nextPrime));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -480,5 +481,14 @@ final class ExtendedMath {
         if(n%2==0) return n==2?1:0;
         for(long d=3;d*d<=n;d+=2) if(n%d==0) return 0;
         return 1;
+    }
+
+    /** Smallest prime strictly greater than an integer n in [0,2147483628]. */
+    private static double nextPrime(double[] a) {
+        
+        long n=Functions.integer(a[0]);
+        Functions.require(n>=0 && n<=2147483628L,"nextPrime requires an integer in [0,2147483628]");
+        for(long candidate=n+1;candidate<=2147483647L;candidate++) if(isPrime(new double[]{candidate})==1) return candidate;
+        throw new IllegalArgumentException("No prime in supported range");
     }
 }
