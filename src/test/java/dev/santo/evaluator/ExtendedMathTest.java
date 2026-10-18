@@ -354,6 +354,13 @@ public final class ExtendedMathTest {
         reject(e, "fibonacci(79)");
         reject(e, "fibonacci(.5)");
         reject(e, "fibonacci()");
+        check(e, "triangular(0)", 0.0);
+        check(e, "triangular(1)", 1.0);
+        check(e, "triangular(10)", 55.0);
+        check(e, "triangular(134217727)", 9007199187632128.0);
+        reject(e, "triangular(-1)");
+        reject(e, "triangular(134217728)");
+        reject(e, "triangular()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

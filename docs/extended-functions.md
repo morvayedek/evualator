@@ -857,3 +857,18 @@ fibonacci(78) = 8944394323791464
 
 Rejected examples: `fibonacci(-1)`, `fibonacci(79)`, `fibonacci(.5)`.
 
+## `triangular`
+
+Exact triangular numbers for integers in [0,134217727].
+
+Arguments: 1.
+
+```text
+triangular(0) = 0
+triangular(1) = 1
+triangular(10) = 55
+triangular(134217727) = 9007199187632128
+```
+
+Rejected examples: `triangular(-1)`, `triangular(134217728)`.
+
