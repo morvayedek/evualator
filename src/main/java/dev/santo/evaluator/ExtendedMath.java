@@ -16,6 +16,7 @@ final class ExtendedMath {
         map.put("wrap", new FunctionSpec(3, 3, ExtendedMath::wrap));
         map.put("smoothstep", new FunctionSpec(3, 3, ExtendedMath::smoothstep));
         map.put("smootherstep", new FunctionSpec(3, 3, ExtendedMath::smootherstep));
+        map.put("logistic", new FunctionSpec(1, 1, ExtendedMath::logistic));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -99,5 +100,13 @@ final class ExtendedMath {
         if(a[2]>=a[1]) return 1;
         double t=(a[2]-a[0])/(a[1]-a[0]);
         return t*t*t*(t*(6*t-15)+10);
+    }
+
+    /** Overflow-safe logistic activation for arbitrarily large finite inputs. */
+    private static double logistic(double[] a) {
+        
+        if(a[0]>=0) return 1/(1+Math.exp(-a[0]));
+        double e=Math.exp(a[0]);
+        return e/(1+e);
     }
 }

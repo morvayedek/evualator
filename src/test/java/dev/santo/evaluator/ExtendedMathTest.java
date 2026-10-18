@@ -70,6 +70,11 @@ public final class ExtendedMathTest {
         check(e, "smootherstep(0,1,.25)", 0.103515625);
         reject(e, "smootherstep(2,1,1)");
         reject(e, "smootherstep()");
+        check(e, "logistic(0)", 0.5);
+        check(e, "logistic(1000)", 1.0);
+        check(e, "logistic(-1000)", 0.0);
+        check(e, "logistic(1)", 0.7310585786300049);
+        reject(e, "logistic()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
