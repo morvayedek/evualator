@@ -186,6 +186,10 @@ public final class ExtendedMathTest {
         check(e, "meanAbsoluteDeviation(2,2)", 0.0);
         check(e, "meanAbsoluteDeviation(-1e308,1e308)", 1e+308);
         reject(e, "meanAbsoluteDeviation()");
+        check(e, "medianAbsoluteDeviation(1,2,3)", 1.0);
+        check(e, "medianAbsoluteDeviation(1,1,2,2)", 0.5);
+        check(e, "medianAbsoluteDeviation(9)", 0.0);
+        reject(e, "medianAbsoluteDeviation()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

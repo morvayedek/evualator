@@ -438,3 +438,15 @@ meanAbsoluteDeviation(2,2) = 0
 meanAbsoluteDeviation(-1e308,1e308) = 1e+308
 ```
 
+## `medianAbsoluteDeviation`
+
+Median absolute deviation around the median, without normal-distribution scaling.
+
+Arguments: 1..256.
+
+```text
+medianAbsoluteDeviation(1,2,3) = 1
+medianAbsoluteDeviation(1,1,2,2) = 0.5
+medianAbsoluteDeviation(9) = 0
+```
+

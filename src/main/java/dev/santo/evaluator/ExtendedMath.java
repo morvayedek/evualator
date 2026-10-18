@@ -37,6 +37,7 @@ final class ExtendedMath {
         map.put("geometricMean", new FunctionSpec(1, 256, ExtendedMath::geometricMean));
         map.put("harmonicMean", new FunctionSpec(1, 256, ExtendedMath::harmonicMean));
         map.put("meanAbsoluteDeviation", new FunctionSpec(1, 256, ExtendedMath::meanAbsoluteDeviation));
+        map.put("medianAbsoluteDeviation", new FunctionSpec(1, 256, ExtendedMath::medianAbsoluteDeviation));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -272,5 +273,17 @@ final class ExtendedMath {
         double sum=0;
         for(double x:a) sum+=Math.abs(x/scale-mean)/a.length;
         return sum*scale;
+    }
+
+    /** Median absolute deviation around the median, without normal-distribution scaling. */
+    private static double medianAbsoluteDeviation(double[] a) {
+        
+        double[] sorted=a.clone();
+        java.util.Arrays.sort(sorted);
+        int n=sorted.length, m=n/2;
+        double center=n%2==1?sorted[m]:sorted[m-1]/2+sorted[m]/2;
+        for(int i=0;i<n;i++) sorted[i]=Math.abs(a[i]-center);
+        java.util.Arrays.sort(sorted);
+        return n%2==1?sorted[m]:sorted[m-1]/2+sorted[m]/2;
     }
 }
