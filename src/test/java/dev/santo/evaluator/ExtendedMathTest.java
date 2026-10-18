@@ -123,6 +123,10 @@ public final class ExtendedMathTest {
         check(e, "fma(1e308,2,-1e308)", 1e+308);
         check(e, "fma(-2,3,6)", 0.0);
         reject(e, "fma()");
+        check(e, "copySign(3,-1)", -3.0);
+        check(e, "copySign(-3,1)", 3.0);
+        check(e, "copySign(3,-0)", -3.0);
+        reject(e, "copySign()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
