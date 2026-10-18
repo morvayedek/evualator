@@ -795,3 +795,20 @@ polarY(0,3) = 0
 
 Rejected examples: `polarY(-1,0)`.
 
+## `isPrime`
+
+Primality indicator (1 or 0) for integers in [0,2147483647], with bounded trial division.
+
+Arguments: 1.
+
+```text
+isPrime(0) = 0
+isPrime(1) = 0
+isPrime(2) = 1
+isPrime(97) = 1
+isPrime(99) = 0
+isPrime(2147483647) = 1
+```
+
+Rejected examples: `isPrime(-1)`, `isPrime(2147483648)`, `isPrime(1.5)`.
+

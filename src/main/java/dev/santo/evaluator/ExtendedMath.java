@@ -63,6 +63,7 @@ final class ExtendedMath {
         map.put("angularDistance", new FunctionSpec(2, 2, ExtendedMath::angularDistance));
         map.put("polarX", new FunctionSpec(2, 2, ExtendedMath::polarX));
         map.put("polarY", new FunctionSpec(2, 2, ExtendedMath::polarY));
+        map.put("isPrime", new FunctionSpec(1, 1, ExtendedMath::isPrime));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -468,5 +469,16 @@ final class ExtendedMath {
     /** Cartesian y coordinate from nonnegative radius and angle in radians. */
     private static double polarY(double[] a) {
         Functions.require(a[0]>=0,"Radius must be nonnegative"); return a[0]*Math.sin(a[1]);
+    }
+
+    /** Primality indicator (1 or 0) for integers in [0,2147483647], with bounded trial division. */
+    private static double isPrime(double[] a) {
+        
+        long n=Functions.integer(a[0]);
+        Functions.require(n>=0 && n<=2147483647L,"isPrime requires an integer in [0,2147483647]");
+        if(n<2) return 0;
+        if(n%2==0) return n==2?1:0;
+        for(long d=3;d*d<=n;d+=2) if(n%d==0) return 0;
+        return 1;
     }
 }
