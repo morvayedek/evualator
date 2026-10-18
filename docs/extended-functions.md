@@ -135,3 +135,18 @@ smoothstep(0,1,.25) = 0.15625
 
 Rejected examples: `smoothstep(1,1,1)`.
 
+## `smootherstep`
+
+Quintic interpolation with zero first and second derivatives at both edges.
+
+Arguments: 3.
+
+```text
+smootherstep(0,1,.5) = 0.5
+smootherstep(0,1,-1) = 0
+smootherstep(0,1,2) = 1
+smootherstep(0,1,.25) = 0.103515625
+```
+
+Rejected examples: `smootherstep(2,1,1)`.
+
