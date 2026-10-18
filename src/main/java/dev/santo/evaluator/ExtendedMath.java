@@ -41,6 +41,7 @@ final class ExtendedMath {
         map.put("sampleStddev", new FunctionSpec(2, 256, ExtendedMath::sampleStddev));
         map.put("coefficientVariation", new FunctionSpec(1, 256, ExtendedMath::coefficientVariation));
         map.put("sumSquares", new FunctionSpec(1, 256, ExtendedMath::sumSquares));
+        map.put("product", new FunctionSpec(1, 256, ExtendedMath::product));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
@@ -321,5 +322,13 @@ final class ExtendedMath {
         double norm=0;
         for(double x:a) norm=Math.hypot(norm,x);
         return norm*norm;
+    }
+
+    /** Product accumulated in decimal arithmetic to avoid intermediate double overflow or underflow. */
+    private static double product(double[] a) {
+        
+        var result=java.math.BigDecimal.ONE;
+        for(double x:a) result=result.multiply(java.math.BigDecimal.valueOf(x));
+        return result.doubleValue();
     }
 }

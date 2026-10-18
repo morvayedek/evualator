@@ -206,6 +206,13 @@ public final class ExtendedMathTest {
         check(e, "sumSquares(0)", 0.0);
         reject(e, "sumSquares(1e200)");
         reject(e, "sumSquares()");
+        check(e, "product(2,3,4)", 24.0);
+        check(e, "product(-2,3)", -6.0);
+        check(e, "product(1e300,1e300,1e-300)", 1e+300);
+        check(e, "product(1e-300,1e-300,1e300)", 1e-300);
+        check(e, "product(1e300,1e300,0)", 0.0);
+        reject(e, "product(1e300,1e300)");
+        reject(e, "product()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {
