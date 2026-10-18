@@ -378,6 +378,14 @@ public final class ExtendedMathTest {
         reject(e, "poissonProbability(2,-1)");
         reject(e, "poissonProbability(10001,1)");
         reject(e, "poissonProbability()");
+        check(e, "normalPdf(0,0,1)", 0.3989422804014327);
+        check(e, "normalPdf(1,0,1)", 0.24197072451914337);
+        check(e, "normalPdf(2,2,2)", 0.19947114020071635);
+        check(e, "normalPdf(1000,0,1)", 0.0);
+        check(e, "normalPdf(1e308,-1e308,1e308)", 5.3990966513188e-310);
+        reject(e, "normalPdf(0,0,0)");
+        reject(e, "normalPdf(0,0,-1)");
+        reject(e, "normalPdf()");
         System.out.println("PASS: " + checks + " extended numerical checks");
     }
     private static void check(Evaluator e, String expression, double expected) {

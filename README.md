@@ -50,3 +50,22 @@ double result = new Evaluator().evaluate("(12 - 2) / 5"); // 2.0
 The [development roadmap](ROADMAP.md) records the 48 implementation and
 verification increments. Each increment is covered by the build-time test suite
 or documentation review. Remote PR and CI status must be checked on GitHub.
+
+## Extended numerical library
+
+The [extended catalog](docs/extended-functions.md) adds 65 operations covering
+inverse hyperbolic functions, activations, descriptive statistics, geometry,
+coordinates, temperature conversions, integer sequences and probability masses/densities.
+All new operations include expression examples, domain and arity checks.
+The build also checks distribution normalisation, inverse transformations, prime
+classification and coordinate identities.
+
+An optional independent cross-check uses only Python standard-library math and
+statistics implementations (Python 3.8+):
+
+```sh
+python tools/check-numerics.py
+```
+
+Run it after building the JAR. It validates 2,100 deterministic numerical cases
+and writes its result to `build/numerical-checks.json`.

@@ -70,11 +70,12 @@ final class ExtendedMath {
         map.put("triangular", new FunctionSpec(1, 1, ExtendedMath::triangular));
         map.put("binomialProbability", new FunctionSpec(3, 3, ExtendedMath::binomialProbability));
         map.put("poissonProbability", new FunctionSpec(2, 2, ExtendedMath::poissonProbability));
+        map.put("normalPdf", new FunctionSpec(3, 3, ExtendedMath::normalPdf));
     }
 
     /** Stable inverse hyperbolic sine, including tiny and very large inputs. */
     private static double asinh(double[] a) {
-        
+
         double x = Math.abs(a[0]);
         double value = x > 1e154 ? Math.log(x) + Math.log(2) : Math.log1p(x + x*x/(1 + Math.sqrt(1+x*x)));
         return Math.copySign(value, a[0]);
@@ -82,7 +83,7 @@ final class ExtendedMath {
 
     /** Inverse hyperbolic cosine for x >= 1 without squaring huge inputs. */
     private static double acosh(double[] a) {
-        
+
         Functions.require(a[0] >= 1, "acosh requires x >= 1");
         double x=a[0];
         return x > 1e154 ? Math.log(x)+Math.log(2) : Math.log1p((x-1)+Math.sqrt(x-1)*Math.sqrt(x+1));
@@ -90,7 +91,7 @@ final class ExtendedMath {
 
     /** Inverse hyperbolic tangent on the open interval (-1,1). */
     private static double atanh(double[] a) {
-        
+
         double x=Math.abs(a[0]);
         Functions.require(x < 1, "atanh requires -1 < x < 1");
         return Math.copySign(.5*Math.log1p(2*x/(1-x)),a[0]);
@@ -98,7 +99,7 @@ final class ExtendedMath {
 
     /** Reciprocal with explicit rejection of signed zero. */
     private static double reciprocal(double[] a) {
-        
+
         Functions.require(a[0] != 0, "reciprocal requires a nonzero value");
         return 1/a[0];
     }
@@ -110,14 +111,14 @@ final class ExtendedMath {
 
     /** Logarithm of a positive value in any positive base other than one. */
     private static double logBase(double[] a) {
-        
+
         Functions.require(a[0]>0 && a[1]>0 && a[1]!=1, "logBase requires x > 0 and base > 0, base != 1");
         return Math.log(a[0])/Math.log(a[1]);
     }
 
     /** Real nth roots; negative radicands require an odd positive integer degree. */
     private static double root(double[] a) {
-        
+
         long n=Functions.integer(a[1]);
         Functions.require(n>=1 && n<=1000000, "root degree must be 1..1000000");
         Functions.require(a[0]>=0 || n%2==1, "Negative radicands require an odd degree");
@@ -126,7 +127,7 @@ final class ExtendedMath {
 
     /** Wrap values to [low,high), requiring a finite positive interval width. */
     private static double wrap(double[] a) {
-        
+
         double low=a[1], high=a[2], width=high-low;
         Functions.require(high>low && Double.isFinite(width), "wrap requires finite low < high and finite width");
         double offset=(a[0]%width-low%width)%width;
@@ -137,7 +138,7 @@ final class ExtendedMath {
 
     /** Cubic interpolation between ordered edges with saturation outside the interval. */
     private static double smoothstep(double[] a) {
-        
+
         Functions.require(a[1]>a[0] && Double.isFinite(a[1]-a[0]), "smoothstep requires finite increasing edges");
         if(a[2]<=a[0]) return 0;
         if(a[2]>=a[1]) return 1;
@@ -147,7 +148,7 @@ final class ExtendedMath {
 
     /** Quintic interpolation with zero first and second derivatives at both edges. */
     private static double smootherstep(double[] a) {
-        
+
         Functions.require(a[1]>a[0] && Double.isFinite(a[1]-a[0]), "smootherstep requires finite increasing edges");
         if(a[2]<=a[0]) return 0;
         if(a[2]>=a[1]) return 1;
@@ -157,7 +158,7 @@ final class ExtendedMath {
 
     /** Overflow-safe logistic activation for arbitrarily large finite inputs. */
     private static double logistic(double[] a) {
-        
+
         if(a[0]>=0) return 1/(1+Math.exp(-a[0]));
         double e=Math.exp(a[0]);
         return e/(1+e);
@@ -165,7 +166,7 @@ final class ExtendedMath {
 
     /** Inverse logistic transform for probabilities strictly between zero and one. */
     private static double logit(double[] a) {
-        
+
         Functions.require(a[0]>0 && a[0]<1, "logit requires 0 < p < 1");
         return Math.log(a[0])-Math.log1p(-a[0]);
     }
@@ -187,14 +188,14 @@ final class ExtendedMath {
 
     /** Leaky rectifier with a caller-selected negative slope in [0,1]. */
     private static double leakyRelu(double[] a) {
-        
+
         Functions.require(a[1]>=0 && a[1]<=1, "leakyRelu slope must be in [0,1]");
         return a[0]>=0 ? a[0] : a[0]*a[1];
     }
 
     /** Exponential linear activation with a positive alpha parameter. */
     private static double elu(double[] a) {
-        
+
         Functions.require(a[1]>0,"elu requires alpha > 0");
         return a[0]>=0 ? a[0] : a[1]*Math.expm1(a[0]);
     }
@@ -221,7 +222,7 @@ final class ExtendedMath {
 
     /** Scale by an integral power of two with a bounded exponent parameter. */
     private static double scalb(double[] a) {
-        
+
         long n=Functions.integer(a[1]);
         Functions.require(n>=-2098 && n<=2098,"scalb exponent must be -2098..2098");
         return Math.scalb(a[0],(int)n);
@@ -234,14 +235,14 @@ final class ExtendedMath {
 
     /** IEEE remainder using the nearest ties-to-even quotient, distinct from percent remainder. */
     private static double ieeeRemainder(double[] a) {
-        
+
         Functions.require(a[1]!=0,"ieeeRemainder requires a nonzero divisor");
         return Math.IEEEremainder(a[0],a[1]);
     }
 
     /** Round to a positive decimal step with ties to even using decimal arithmetic. */
     private static double roundToMultiple(double[] a) {
-        
+
         Functions.require(a[1]>0,"roundToMultiple requires a positive step");
         var value=java.math.BigDecimal.valueOf(a[0]);
         var step=java.math.BigDecimal.valueOf(a[1]);
@@ -250,7 +251,7 @@ final class ExtendedMath {
 
     /** Type-7 linearly interpolated quantile: probability first, then one or more observations. */
     private static double quantile(double[] a) {
-        
+
         Functions.require(a[0]>=0 && a[0]<=1,"quantile probability must be in [0,1]");
         double[] values=java.util.Arrays.copyOfRange(a,1,a.length);
         java.util.Arrays.sort(values);
@@ -267,7 +268,7 @@ final class ExtendedMath {
 
     /** Root-mean-square with scaling to avoid overflow from squaring large observations. */
     private static double rms(double[] a) {
-        
+
         double scale=0;
         for(double x:a) scale=Math.max(scale,Math.abs(x));
         if(scale==0) return 0;
@@ -278,7 +279,7 @@ final class ExtendedMath {
 
     /** Geometric mean of strictly positive observations, calculated in log space. */
     private static double geometricMean(double[] a) {
-        
+
         double sum=0;
         for(double x:a) { Functions.require(x>0,"geometricMean requires positive observations"); sum+=Math.log(x); }
         return Math.exp(sum/a.length);
@@ -286,7 +287,7 @@ final class ExtendedMath {
 
     /** Harmonic mean of positive observations with reciprocal scaling. */
     private static double harmonicMean(double[] a) {
-        
+
         double scale=Double.POSITIVE_INFINITY;
         for(double x:a) { Functions.require(x>0,"harmonicMean requires positive observations"); scale=Math.min(scale,x); }
         double sum=0;
@@ -296,7 +297,7 @@ final class ExtendedMath {
 
     /** Mean absolute deviation around the arithmetic mean. */
     private static double meanAbsoluteDeviation(double[] a) {
-        
+
         double scale=0;
         for(double x:a) scale=Math.max(scale,Math.abs(x));
         if(scale==0) return 0;
@@ -309,7 +310,7 @@ final class ExtendedMath {
 
     /** Median absolute deviation around the median, without normal-distribution scaling. */
     private static double medianAbsoluteDeviation(double[] a) {
-        
+
         double[] sorted=a.clone();
         java.util.Arrays.sort(sorted);
         int n=sorted.length, m=n/2;
@@ -321,7 +322,7 @@ final class ExtendedMath {
 
     /** Sample standard deviation with scaled observations and n-1 denominator. */
     private static double sampleStddev(double[] a) {
-        
+
         double scale=0;
         for(double x:a) scale=Math.max(scale,Math.abs(x));
         if(scale==0) return 0;
@@ -334,7 +335,7 @@ final class ExtendedMath {
 
     /** Population coefficient of variation for strictly positive observations. */
     private static double coefficientVariation(double[] a) {
-        
+
         double scale=0;
         for(double x:a) { Functions.require(x>0,"coefficientVariation requires positive observations"); scale=Math.max(scale,x); }
         double mean=0;
@@ -346,7 +347,7 @@ final class ExtendedMath {
 
     /** Sum of squares calculated with a stable Euclidean norm. */
     private static double sumSquares(double[] a) {
-        
+
         double norm=0;
         for(double x:a) norm=Math.hypot(norm,x);
         return norm*norm;
@@ -354,7 +355,7 @@ final class ExtendedMath {
 
     /** Product accumulated in decimal arithmetic to avoid intermediate double overflow or underflow. */
     private static double product(double[] a) {
-        
+
         var result=java.math.BigDecimal.ONE;
         for(double x:a) result=result.multiply(java.math.BigDecimal.valueOf(x));
         return result.doubleValue();
@@ -362,7 +363,7 @@ final class ExtendedMath {
 
     /** Weighted mean from value,weight pairs; weights are nonnegative with at least one positive weight. */
     private static double weightedMean(double[] a) {
-        
+
         Functions.require(a.length%2==0,"weightedMean requires value,weight pairs");
         double weightScale=0,valueScale=0;
         for(int i=0;i<a.length;i+=2) { Functions.require(a[i+1]>=0,"Weights must be nonnegative"); weightScale=Math.max(weightScale,a[i+1]); valueScale=Math.max(valueScale,Math.abs(a[i])); }
@@ -375,7 +376,7 @@ final class ExtendedMath {
 
     /** Dot product from interleaved x,y pairs, using decimal products and accumulation. */
     private static double dot(double[] a) {
-        
+
         Functions.require(a.length%2==0,"dot requires x,y pairs");
         var sum=java.math.BigDecimal.ZERO;
         for(int i=0;i<a.length;i+=2) sum=sum.add(java.math.BigDecimal.valueOf(a[i]).multiply(java.math.BigDecimal.valueOf(a[i+1])));
@@ -479,7 +480,7 @@ final class ExtendedMath {
 
     /** Primality indicator (1 or 0) for integers in [0,2147483647], with bounded trial division. */
     private static double isPrime(double[] a) {
-        
+
         long n=Functions.integer(a[0]);
         Functions.require(n>=0 && n<=2147483647L,"isPrime requires an integer in [0,2147483647]");
         if(n<2) return 0;
@@ -490,7 +491,7 @@ final class ExtendedMath {
 
     /** Smallest prime strictly greater than an integer n in [0,2147483628]. */
     private static double nextPrime(double[] a) {
-        
+
         long n=Functions.integer(a[0]);
         Functions.require(n>=0 && n<=2147483628L,"nextPrime requires an integer in [0,2147483628]");
         for(long candidate=n+1;candidate<=2147483647L;candidate++) if(isPrime(new double[]{candidate})==1) return candidate;
@@ -499,7 +500,7 @@ final class ExtendedMath {
 
     /** Number of positive divisors for integers in [1,2147483647]. */
     private static double divisorCount(double[] a) {
-        
+
         long n=Functions.integer(a[0]);
         Functions.require(n>=1 && n<=2147483647L,"divisorCount requires an integer in [1,2147483647]");
         long total=0;
@@ -509,7 +510,7 @@ final class ExtendedMath {
 
     /** Exact Fibonacci numbers F(0)..F(78), staying within the exact double integer range. */
     private static double fibonacci(double[] a) {
-        
+
         long n=Functions.integer(a[0]);
         Functions.require(n>=0 && n<=78,"fibonacci requires an integer in [0,78]");
         long x=0,y=1;
@@ -519,7 +520,7 @@ final class ExtendedMath {
 
     /** Exact triangular numbers for integers in [0,134217727]. */
     private static double triangular(double[] a) {
-        
+
         long n=Functions.integer(a[0]);
         Functions.require(n>=0 && n<=134217727,"triangular requires an integer in [0,134217727]");
         return n*(n+1)/2;
@@ -527,7 +528,7 @@ final class ExtendedMath {
 
     /** Binomial probability mass P(X=k) for n trials and probability p; n <= 10000. */
     private static double binomialProbability(double[] a) {
-        
+
         long n=Functions.integer(a[0]),k=Functions.integer(a[1]); double p=a[2];
         Functions.require(n>=0 && n<=10000 && k>=0 && k<=n && p>=0 && p<=1,"binomialProbability requires 0 <= k <= n <= 10000 and p in [0,1]");
         if(p==0) return k==0?1:0;
@@ -539,12 +540,21 @@ final class ExtendedMath {
 
     /** Poisson probability mass P(X=k), with integral 0 <= k <= 10000 and nonnegative rate. */
     private static double poissonProbability(double[] a) {
-        
+
         long k=Functions.integer(a[0]); double rate=a[1];
         Functions.require(k>=0 && k<=10000 && rate>=0,"poissonProbability requires 0 <= k <= 10000 and rate >= 0");
         if(rate==0) return k==0?1:0;
         double logFactorial=0;
         for(long i=2;i<=k;i++) logFactorial+=Math.log(i);
         return Math.exp(k*Math.log(rate)-rate-logFactorial);
+    }
+
+    /** Normal probability density at x with a finite mean and positive standard deviation. */
+    private static double normalPdf(double[] a) {
+
+        Functions.require(a[2]>0,"normalPdf standard deviation must be positive");
+        double difference=a[0]-a[1];
+        double z=Double.isFinite(difference)?difference/a[2]:a[0]/a[2]-a[1]/a[2];
+        return Math.exp(-.5*z*z-Math.log(a[2])-.5*Math.log(2*Math.PI));
     }
 }
