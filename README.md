@@ -1,4 +1,4 @@
 # requirements
-*jdk 8
-*highiq
-*morvay friend
+* jdk 8
+* highiq
+* morvay friend
